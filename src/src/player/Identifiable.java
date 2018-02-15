@@ -1,7 +1,8 @@
 package player;
-
+import property.Property;
+import java.util.ArrayList;
 public interface Identifiable {
     String name();
-    //(maybe) LinkedList<Property> properties(); or ArrayList<Property> properties();
+    ArrayList<Property> properties();
     double balance();
 }
