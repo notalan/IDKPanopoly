@@ -1,9 +1,8 @@
 package player;
 import property.Property;
-import java.util.ArrayList;
 
-public class Player implements Bankruptable{
-    public Property CURRENT_TILE;
+public class Player implements Locatable, Interactable, Bankruptable{
+    private Property CURRENT_TILE;
     private String NAME;
     private double BALANCE;
     void Player(String name, int balance, Property startingTile){
@@ -71,7 +70,7 @@ public class Player implements Bankruptable{
     }
 
     @Override
-    public ArrayList<Property> properties() {
+    public Property[] properties() {
         return null;
     }
 }

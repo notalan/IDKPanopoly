@@ -1,5 +1,5 @@
 package player;
 
-public interface Jailable extends Interactable{
+public interface Jailable{
     void moveToJail();
 }
