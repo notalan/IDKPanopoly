@@ -13,6 +13,7 @@ public class JailButtons extends Button {
     {
         ArrayList<Component> buttonList = new ArrayList<>();
         buttonList.add(makeRoll());
+        buttonList.add(makePay());
 
         return buttonList;
     }
