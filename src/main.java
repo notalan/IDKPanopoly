@@ -1,7 +1,9 @@
 import board.Board;
+import buttons.ChooseButtons;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ListIterator;
 
 public class main {
     public static void main(String[] args){
@@ -14,6 +16,18 @@ public class main {
         test.setHorizontalAlignment(JLabel.CENTER);
         test.setVerticalAlignment(JLabel.CENTER);
         panel.add(test);
+
+        JPanel buttonPanel =  new JPanel();
+        buttonPanel.setPreferredSize(new Dimension(560, 100));
+        buttonPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
+
+        ListIterator<Component> iterator = new ChooseButtons().showButtons().listIterator();
+        while(iterator.hasNext())
+        {
+            buttonPanel.add(iterator.next());
+        }
+        
+        panel.add(buttonPanel, BorderLayout.SOUTH);
         panopoly.add(panel);
         panopoly.pack();
 
