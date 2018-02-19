@@ -7,29 +7,28 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Button {
+public class LuxuryTaxButtons extends Button {
     public List<Component> showButtons()
     {
         ArrayList<Component> buttonList = new ArrayList<>();
         buttonList.add(makeRoll());
-
+        buttonList.add(makeLuxuryTax());
         return buttonList;
     }
 
-    public JButton makeRoll()
+    public JButton makeLuxuryTax()
     {
-        JButton roll = new JButton("Roll");
+        JButton luxuryTax = new JButton("Pay Luxury Tax");
 
-        roll.addActionListener(new ActionListener() {
+        luxuryTax.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Rolled");
+                System.out.println("Unlucky Mate");
 
             }
 
         } );
-
-        return roll;
+        return luxuryTax;
     }
 }

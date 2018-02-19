@@ -7,29 +7,28 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Button {
+public class FreeParkingButtons extends Button{
     public List<Component> showButtons()
     {
         ArrayList<Component> buttonList = new ArrayList<>();
         buttonList.add(makeRoll());
-
+        buttonList.add(makeCollectMoney());
         return buttonList;
     }
 
-    public JButton makeRoll()
+    public JButton makeCollectMoney()
     {
-        JButton roll = new JButton("Roll");
+        JButton collectMoney = new JButton("Collect Money");
 
-        roll.addActionListener(new ActionListener() {
+        collectMoney.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Rolled");
+                System.out.println("Money collected, lucky boiiii!");
 
             }
 
         } );
-
-        return roll;
+        return collectMoney;
     }
 }

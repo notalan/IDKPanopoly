@@ -7,29 +7,30 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Button {
+public class CommunityChestButtons extends Button{
     public List<Component> showButtons()
     {
         ArrayList<Component> buttonList = new ArrayList<>();
         buttonList.add(makeRoll());
+        buttonList.add(makeDrawCommunityChestCard());
 
         return buttonList;
     }
 
-    public JButton makeRoll()
+    public JButton makeDrawCommunityChestCard()
     {
-        JButton roll = new JButton("Roll");
+        JButton drawCard = new JButton("Draw Card");
 
-        roll.addActionListener(new ActionListener() {
+        drawCard.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Rolled");
+                System.out.println("Community Chest Card Drawn");
 
             }
 
         } );
 
-        return roll;
+        return drawCard;
     }
 }

@@ -7,29 +7,28 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Button {
+public class GoToJailButtons extends Button{
     public List<Component> showButtons()
     {
         ArrayList<Component> buttonList = new ArrayList<>();
         buttonList.add(makeRoll());
-
+        buttonList.add(makeGoToJail());
         return buttonList;
     }
 
-    public JButton makeRoll()
+    public JButton makeGoToJail()
     {
-        JButton roll = new JButton("Roll");
+        JButton goToJail = new JButton("Go to Jail");
 
-        roll.addActionListener(new ActionListener() {
+        goToJail.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Rolled");
+                System.out.println("Sad times criminal brother");
 
             }
 
         } );
-
-        return roll;
+        return goToJail;
     }
 }
