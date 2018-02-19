@@ -5,7 +5,8 @@ public class Player implements Locatable, Interactable, Bankruptable{
     private Property CURRENT_TILE;
     private String NAME;
     private double BALANCE;
-    void Player(String name, int balance, Property startingTile){
+
+    public Player(String name, int balance, Property startingTile){
         NAME = name;
         BALANCE = balance;
         CURRENT_TILE = startingTile;
