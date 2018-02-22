@@ -37,11 +37,6 @@ public class Player implements Locatable, Interactable, Bankruptable{
     }
 
     @Override
-    public Property trade(Property p) {
-        return null;
-    }
-
-    @Override
     public double build(int cost) {
         BALANCE -= cost;
         return BALANCE;
@@ -70,8 +65,4 @@ public class Player implements Locatable, Interactable, Bankruptable{
         return CURRENT_TILE;
     }
 
-    @Override
-    public Property[] properties() {
-        return null;
-    }
 }
