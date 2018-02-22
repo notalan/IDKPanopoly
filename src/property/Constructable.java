@@ -6,4 +6,5 @@ public interface Constructable extends Ownable {
     public int countHotels(); // Keeps track of how many hotels are built
     public void buildHouse();
     public void buildHotel();
+    public double housePrice();
 }

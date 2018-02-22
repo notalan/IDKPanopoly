@@ -27,7 +27,11 @@ public class Player implements Locatable, Interactable, Bankruptable{
 
     @Override
     public void moveToJail() {
+    }
 
+    @Override
+    public void receiveIncome(double income) {
+        BALANCE += income;
     }
 
     @Override

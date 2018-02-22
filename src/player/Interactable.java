@@ -4,6 +4,7 @@ import property.Property;
 public interface Interactable{
     //Think of putting all the property interaction here:
     double payRent(double rent);
+    void receiveIncome(double income);
     double build(int cost);
     double buyProperty(int cost);
     double sellProperty(int saleValue);
