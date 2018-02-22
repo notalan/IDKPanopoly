@@ -2,14 +2,22 @@ package property;
 
 import player.Player;
 
-public class Property extends Tile implements Buyable, Ownable, Mortgageable, Rentable{
+public class Property extends Tile implements Buyable, Ownable, Mortgageable, Rentable, Tradeable{
 
 
-    double mortgagePrice; // How much you get back when you mortgage something
+    double MortgagePrice; // How much you get back when you mortgage something
     int tilePrice;
     Player owner;
     double rentPrice;
     boolean isMortgaged;
+
+    Property(String name, int price, double mortgagePrice, double rent)
+    {
+        tilePrice = price;
+        MortgagePrice = mortgagePrice;
+        rentPrice = rent;
+        super.NAME = name;
+    }
 
     @Override
     public int getPrice() {
@@ -40,7 +48,7 @@ public class Property extends Tile implements Buyable, Ownable, Mortgageable, Re
 
     @Override
     public double getMortgageAmount() {
-        return mortgagePrice;
+        return MortgagePrice;
     }
 
     @Override
@@ -52,4 +60,15 @@ public class Property extends Tile implements Buyable, Ownable, Mortgageable, Re
     public double getRent() {
         return rentPrice;
     }
+
+    @Override
+    public boolean getTradeable() {
+        return false;
+    }
+
+    @Override
+    public String transfer() {
+        return null;
+    }
+
 }
