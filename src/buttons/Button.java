@@ -29,7 +29,6 @@ public class Button {
                 Dice dice = new Dice();
                 int rolled_result = dice.rollDice(2, 6);
                 System.out.println("Rolled: " + rolled_result);
-
             }
 
         } );
