@@ -1,5 +1,7 @@
 package buttons;
 
+import dice.Dice;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -24,7 +26,9 @@ public class Button {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Rolled");
+                Dice dice = new Dice();
+                int rolled_result = dice.rollDice(2, 6);
+                System.out.println("Rolled: " + rolled_result);
 
             }
 
