@@ -80,7 +80,14 @@ public class PropertyButtons extends Button{
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Sold");
+               /* if(property.ImproveProperty.countHouses() <= 4)
+                {
+
+                }
+                else if((property.ImproveProperty.countHouses() == 4) && (property.ImproveProperty.countHotels() == 1))
+                {
+
+                }*/
 
             }
 
@@ -97,8 +104,14 @@ public class PropertyButtons extends Button{
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Built");
+               /*if(property.ImproveProperty.countHouses() < 4)
+               {
 
+               }
+               else if((property.ImproveProperty.countHouses() == 4) && (property.ImproveProperty.countHotels() < 1))
+               {
+
+               }*/
             }
 
         } );
@@ -114,8 +127,10 @@ public class PropertyButtons extends Button{
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Mortgaged");
+              /*  if(property.isMortgaged())
+                {
 
+                }*/
             }
 
         } );
