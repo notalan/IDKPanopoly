@@ -7,6 +7,8 @@ import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ListIterator;
 import java.awt.GraphicsEnvironment;
 import java.awt.GraphicsDevice;
@@ -16,10 +18,10 @@ public class main {
     static GraphicsDevice device = GraphicsEnvironment
             .getLocalGraphicsEnvironment().getScreenDevices()[0];
 
-    public static void main(String[] args){
+    public static void main(String[] args) throws MalformedURLException {
         Board panopoly = new Board(); // Makes the entire frame, you add panels into it to divide it into board, console etc.
         JPanel panel = new JPanel(new GridLayout());
-        JLabel test = new JLabel(new ImageIcon("C:\\Users\\1997a\\Documents\\IDKPanopoly\\src\\dewey.jpg"));
+        JLabel test = new JLabel(new ImageIcon(new URL("https://imgur.com/1CD0wm2.png")));
         panel.add(test);
         JPanel buttonPanel = new JPanel();
 //        buttonPanel.setPreferredSize(new Dimension(560, 100));
