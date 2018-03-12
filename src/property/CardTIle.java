@@ -8,8 +8,6 @@ public class CardTIle extends Tile implements Actionable, Cardable {
     public boolean performActionOn(Player p) {
         // ignore this. Cant be done until cards is done
 
-
-
 //        if (card = int)
 //            return __
 //

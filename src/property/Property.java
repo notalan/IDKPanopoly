@@ -11,7 +11,7 @@ public class Property extends Tile implements Buyable, Ownable, Mortgageable, Re
     double rentPrice;
     boolean isMortgaged;
 
-    Property(String name, int price, double mortgagePrice, double rent)
+    public Property(String name, int price, double mortgagePrice, double rent)
     {
         tilePrice = price;
         MortgagePrice = mortgagePrice;
