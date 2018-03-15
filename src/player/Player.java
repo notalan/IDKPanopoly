@@ -1,20 +1,24 @@
 package player;
-import property.Property;
+import property.*;
 
 public class Player implements Locatable, Interactable, Bankruptable{
-    private Property CURRENT_TILE;
+    private Tile CURRENT_TILE;
     private String NAME;
     private double BALANCE;
+    private Tile[] BOARD;
+    private int currentPlace = 0;
 
-    public Player(String name, int balance, Property startingTile){
+    public Player(String name, int balance, Property startingTile, Tile[] board){
         NAME = name;
         BALANCE = balance;
         CURRENT_TILE = startingTile;
+        BOARD = board;
     }
 
     @Override
-    public Property move(int diceRoll) {
-        return null;
+    public Tile move(int diceRoll) {
+        CURRENT_TILE = BOARD[(currentPlace += diceRoll) % BOARD.length];
+        return CURRENT_TILE;
     }
 
     public double balance(){
@@ -65,8 +69,16 @@ public class Player implements Locatable, Interactable, Bankruptable{
     }
 
     @Override
-    public Property Location() {
+    public Tile Location() {
         return CURRENT_TILE;
+    }
+
+    /*
+    Required as updates to BOARD are not global so this method will be called
+    for all other players to sync up changes.
+     */
+    public void updateBoard(Tile[] updatedBoard){
+        BOARD = updatedBoard;
     }
 
 }

@@ -1,6 +1,6 @@
 package player;
-import property.Property;
+import property.*;
 
 public interface Locatable extends Movable{
-    Property Location();
+    Tile Location();
 }
