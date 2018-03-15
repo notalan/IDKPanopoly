@@ -16,18 +16,27 @@ import java.util.ListIterator;
 import java.awt.GraphicsEnvironment;
 import java.awt.GraphicsDevice;
 
-
 public class main {
+
     static GraphicsDevice device = GraphicsEnvironment
             .getLocalGraphicsEnvironment().getScreenDevices()[0];
 
     public static void main(String[] args) throws MalformedURLException {
         Board panopoly = new Board(); // Makes the entire frame, you add panels into it to divide it into board, console etc.
-        JPanel panel = new JPanel(new GridLayout());
-        JLabel test = new JLabel(new ImageIcon(new URL("https://imgur.com/1CD0wm2.png")));
-        panel.add(test);
+        JPanel panel = new JPanel();
+        JLabel image = new JLabel(new ImageIcon(new URL("https://i.imgur.com/YNAbDLe.png"))) {
+            public void paint(Graphics g) {
+                super.paint(g);
+                g.setColor(Color.red);
+                int x = 10, y = 10;
+                g.drawOval(x, y, 10, 10);
+            }
+        };
+
+        image.setForeground(Color.blue);
+        image.setOpaque(true);
+        panel.add(image);
         JPanel buttonPanel = new JPanel();
-//        buttonPanel.setPreferredSize(new Dimension(560, 100));
         buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 
         ListIterator<Component> iterator = new ChooseButtons().showButtons().listIterator();
