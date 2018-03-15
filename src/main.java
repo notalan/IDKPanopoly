@@ -1,6 +1,9 @@
 import board.Board;
 import buttons.ChooseButtons;
 import dice.Dice;
+import player.Player;
+import property.ImproveProperty;
+import property.Tile;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -57,7 +60,38 @@ public class main {
         panopoly.pack();
         panopoly.setVisible(true);
 
+        Initialiser initialise = new Initialiser();
+        Tile[] tiles = initialise.tiles();
+        String[] names = {"Bill", "John"};
+        //players can be acquired properly later one
+
+        Player[] players = initialise.players(2, names, tiles);
+
+        Player currentPlayer;
+        Tile currentTile;
         Dice dice = new Dice(); //Test rolling dice
-        System.out.println(dice.rollDice(2, 6));
+        ChooseButtons buttons = new ChooseButtons();
+        int i;
+        boolean gameEnd = false;
+        while(!gameEnd) {
+            i = 0;
+            while (i < players.length) {
+                /*
+                representing each turn, the player rolls to move and then
+                the tile type is checked, the appropriate buttons wil appear
+                 */
+                currentPlayer = players[i % players.length];
+                System.out.println(currentPlayer.name());
+                int x = dice.rollDice(2, 6);
+                System.out.println(x);
+                currentTile = currentPlayer.move(x);
+                if(currentTile instanceof ImproveProperty){
+                    System.out.println(currentTile.getIdentifier());
+                    //but like make a way to change what buttons appear.
+                }
+                i++;
+            }
+            gameEnd = true;
+        }
     }
 }

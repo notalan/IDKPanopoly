@@ -16,7 +16,7 @@ public class Initialiser {
         Tile[] tileArray = new Tile[3];
         tileArray[0] = GO;
         tileArray[1] = new ImproveProperty("Old Kent Road", 60, 20,
-                2, 50, 50);
+                2, 50);
         tileArray[2] = new Property("bus garage", 200, 50, 50);
         return tileArray;
     }
