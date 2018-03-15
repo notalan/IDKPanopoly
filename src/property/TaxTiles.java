@@ -2,20 +2,30 @@ package property;
 
 public class TaxTiles extends Tile implements Taxable {
 
-    // add a constructor later on for when adding additional game features
+    // alter constructor later on for when adding additional game features
+
+    double ITPercent;
+    int FlatITAmount;
+    int FlatLuxaryAmount;
+
+    public TaxTiles(double ITPercentage, int getFlatIncomeTaxAmount, int getFlatLuxaryTaxAmount) {
+        ITPercent = ITPercentage;
+        FlatITAmount = getFlatIncomeTaxAmount;
+        FlatLuxaryAmount = getFlatLuxaryTaxAmount;
+    }
 
     @Override
     public double getIncomeTaxPercentage() { // takes 10% off
-        return 0.1;
+        return ITPercent;
     }
 
     @Override
     public int getFlatIncomeTaxAmount() { // takes 200 off
-        return 200;
+        return FlatITAmount;
     }
 
     @Override
     public int getFlatLuxaryTaxAmount() { // takes 75 off
-        return 75;
+        return FlatLuxaryAmount;
     }
 }

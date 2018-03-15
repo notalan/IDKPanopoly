@@ -2,7 +2,7 @@ package property;
 
 import player.Player;
 
-public class Property extends Tile implements Buyable, Ownable, Mortgageable, Rentable, Tradeable{
+public class Property extends Tile implements Buyable, Ownable, Mortgageable, Rentable, Tradeable {
 
 
     double MortgagePrice; // How much you get back when you mortgage something
@@ -11,8 +11,7 @@ public class Property extends Tile implements Buyable, Ownable, Mortgageable, Re
     double rentPrice;
     boolean isMortgaged;
 
-    public Property(String name, int price, double mortgagePrice, double rent)
-    {
+    public Property(String name, int price, double mortgagePrice, double rent) {
         tilePrice = price;
         MortgagePrice = mortgagePrice;
         rentPrice = rent;
@@ -37,7 +36,7 @@ public class Property extends Tile implements Buyable, Ownable, Mortgageable, Re
 
     @Override
     public void mortgageProperty() {
-         isMortgaged = true;
+        isMortgaged = true;
 
     }
 
