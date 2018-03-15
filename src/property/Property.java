@@ -5,11 +5,11 @@ import player.Player;
 public class Property extends Tile implements Buyable, Ownable, Mortgageable, Rentable, Tradeable {
 
 
-    double MortgagePrice; // How much you get back when you mortgage something
-    int tilePrice;
-    Player owner;
-    double rentPrice;
-    boolean isMortgaged;
+    private double MortgagePrice; // How much you get back when you mortgage something
+    private int tilePrice;
+    private Player owner;
+    private double rentPrice;
+    private boolean isMortgaged;
 
     public Property(String name, int price, double mortgagePrice, double rent) {
         tilePrice = price;

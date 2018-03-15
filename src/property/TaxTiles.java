@@ -4,9 +4,9 @@ public class TaxTiles extends Tile implements Taxable {
 
     // alter constructor later on for when adding additional game features
 
-    double ITPercent;
-    int FlatITAmount;
-    int FlatLuxaryAmount;
+    private double ITPercent;
+    private int FlatITAmount;
+    private int FlatLuxaryAmount;
 
     public TaxTiles(double ITPercentage, int getFlatIncomeTaxAmount, int getFlatLuxaryTaxAmount) {
         ITPercent = ITPercentage;

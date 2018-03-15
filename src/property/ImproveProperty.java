@@ -1,26 +1,22 @@
 package property;
 
-public class ImproveProperty extends Property implements Constructable, Sellable{
+public class ImproveProperty extends Property implements Constructable, Sellable {
 
-    int numberOfHouses;
-    int numberOfHotels;
-    int housePrices;
-    int hotelPrices;
+    private int numberOfHouses;
+    private int numberOfHotels;
+    private int housePrices;
 
-    public ImproveProperty(String name, int price, double mortgagePrice, double rent, int housePrice, int hotelPrice)
-    {
-        super(name,price,mortgagePrice,rent);
+    public ImproveProperty(String name, int price, double mortgagePrice, double rent, int housePrice) {
+        super(name, price, mortgagePrice, rent);
         housePrices = housePrice;
-        hotelPrices = hotelPrice;
+
     }
 
     @Override
     public boolean getConstructable() {
-        if (countHouses() == 4 && countHotels() == 1)
-        {
+        if (countHouses() == 4 && countHotels() == 1) {
             return false;
-        }
-        else return true;
+        } else return true;
     }
 
     @Override
@@ -50,11 +46,9 @@ public class ImproveProperty extends Property implements Constructable, Sellable
 
     @Override
     public boolean getSellable() {
-        if(numberOfHouses > 0 && numberOfHotels > 0)
-        {
+        if (numberOfHouses > 0 && numberOfHotels > 0) {
             return true;
-        }
-        else return false;
+        } else return false;
     }
 
     @Override
