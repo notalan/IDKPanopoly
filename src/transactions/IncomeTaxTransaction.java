@@ -5,7 +5,7 @@ package transactions;
 import player.Player;
 import property.*;
 public class IncomeTaxTransaction {
-    IncomeTaxTransaction(Player player, TaxTiles prop, boolean choice){
+    public IncomeTaxTransaction(Player player, TaxTiles prop, boolean choice){
         if(choice)
             player.payRent(prop.getFlatIncomeTaxAmount());
         else
