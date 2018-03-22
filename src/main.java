@@ -39,6 +39,7 @@ public class main {
                 g.setColor(Color.CYAN);
                 g.drawOval(x4, y4, 10, 10);
 
+                // This is set to 4 players
             }
         };
 
