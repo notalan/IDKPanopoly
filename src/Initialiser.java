@@ -13,11 +13,12 @@ public class Initialiser {
     }
 
     public Tile[] tiles(){
-        Tile[] tileArray = new Tile[3];
+        Tile[] tileArray = new Tile[40];
         tileArray[0] = GO;
         tileArray[1] = new ImproveProperty("Old Kent Road", 60, 20,
                 2, 50);
         tileArray[2] = new Property("bus garage", 200, 50, 50);
+        tileArray[3] = new ImproveProperty("a", 10, 5, 2, 10);
         return tileArray;
     }
 

@@ -1,15 +1,19 @@
 package buttons;
 
 import dice.Dice;
-
+import board.Board;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.awt.GraphicsEnvironment;
+import java.awt.GraphicsDevice;
 
 public class Button {
+    static GraphicsDevice device = GraphicsEnvironment
+            .getLocalGraphicsEnvironment().getScreenDevices()[0];
     public List<Component> showButtons()
     {
         ArrayList<Component> buttonList = new ArrayList<>();
