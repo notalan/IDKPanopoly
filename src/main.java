@@ -17,7 +17,6 @@ import java.awt.GraphicsEnvironment;
 import java.awt.GraphicsDevice;
 
 public class main {
-
     static GraphicsDevice device = GraphicsEnvironment
             .getLocalGraphicsEnvironment().getScreenDevices()[0];
 
@@ -25,11 +24,22 @@ public class main {
         Board panopoly = new Board(); // Makes the entire frame, you add panels into it to divide it into board, console etc.
         JPanel panel = new JPanel();
         JLabel image = new JLabel(new ImageIcon(new URL("https://i.imgur.com/YNAbDLe.png"))) {
-            public void paint(Graphics g) {
+            public void paint(Graphics g, int x1, int x2, int x3, int x4, int y1, int y2, int y3, int y4) {
                 super.paint(g);
-                g.setColor(Color.red);
-                int x = 10, y = 10;
-                g.drawOval(x, y, 10, 10);
+
+                g.setColor(Color.red); //Colour placeholder for the player - will add images later
+                g.drawOval(x1, y1, 10, 10);
+
+                g.setColor(Color.blue);
+                g.drawOval(x2, y2, 10, 10);
+
+                g.setColor(Color.GREEN);
+                g.drawOval(x3, y3, 10, 10);
+
+                g.setColor(Color.CYAN);
+                g.drawOval(x4, y4, 10, 10);
+
+                // This is set to 4 players
             }
         };
 
