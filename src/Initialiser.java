@@ -13,7 +13,7 @@ class Initialiser {
 
     private  Random rand = new Random();
 
-    private Property GO = new Property("GO", 0, 0, 0);
+    private Property GO = new Property("GO", 0, 0, 0,0,0);
 
     private String kdir = "DATA/TSV Lists/";
     private KnowledgeBaseModule NOC = new KnowledgeBaseModule(kdir + "Veale's The NOC List.txt", 0);
@@ -33,8 +33,8 @@ class Initialiser {
         Tile[] tileArray = new Tile[3];
         tileArray[0] = GO;
         tileArray[1] = new ImproveProperty("Old Kent Road", 60, 20,
-                2, 50);
-        tileArray[2] = new Property("bus garage", 200, 50, 50);
+                2, 50,0,0);
+        tileArray[2] = new Property("bus garage", 200, 50, 50,0,0);
 
         /*
         try-catch needed as fileIO used to access NOC list.

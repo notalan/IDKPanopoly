@@ -6,8 +6,8 @@ public class ImproveProperty extends Property implements Constructable, Sellable
     private int numberOfHotels;
     private int housePrices;
 
-    public ImproveProperty(String name, int price, double mortgagePrice, double rent, int housePrice) {
-        super(name, price, mortgagePrice, rent);
+    public ImproveProperty(String name, int xco, int yco, int price, double mortgagePrice, double rent, int housePrice) {
+        super(name, price, xco, yco, mortgagePrice, rent);
         housePrices = housePrice;
 
     }

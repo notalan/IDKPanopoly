@@ -3,13 +3,13 @@ package property;
 public class Tile implements Identifiable {
 
     String NAME;
-    String XCO;
-    String YCO;
+    int XCO;
+    int YCO;
 
     public String getIdentifier() {
         return NAME;
     }
-    public String getXCo(){return XCO;}
-    public String getYCo(){return YCO;}
+    public int getXCo(){return XCO;}
+    public int getYCo(){return YCO;}
 
 }
