@@ -47,14 +47,8 @@ public class main {
         image.setOpaque(true);
         panel.add(image);
         JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+        buttonPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
 
-        ListIterator<Component> iterator = new ChooseButtons().showButtons().listIterator();
-        while(iterator.hasNext())
-        {
-            buttonPanel.add(iterator.next());
-        }
-        panel.add(buttonPanel, BorderLayout.CENTER);
         panopoly.add(panel);
         panopoly.setUndecorated(true); // hides close, minimize, fullscreen
 
@@ -99,11 +93,22 @@ public class main {
                 representing each turn, the player rolls to move and then
                 the tile type is checked, the appropriate buttons wil appear
                  */
+                buttonPanel.removeAll();
+                buttonPanel.revalidate();
+
                 currentPlayer = players[i % players.length];
                 System.out.println(currentPlayer.name());
                 int x = dice.rollDice(2, 6);
                 System.out.println(x);
                 currentTile = currentPlayer.move(x);
+
+                ListIterator<Component> iterator = new ChooseButtons().showButtons(currentTile).listIterator();
+                while(iterator.hasNext())
+                {
+                    buttonPanel.add(iterator.next());
+                }
+                panel.add(buttonPanel, BorderLayout.CENTER);
+
                 if(currentTile instanceof ImproveProperty){
                     System.out.println(currentTile.getIdentifier());
                     //but like make a way to change what buttons appear.

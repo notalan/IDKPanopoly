@@ -7,29 +7,29 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class IncomeTaxButtons extends Button{
+public class TaxButtons extends Button{
     public List<Component> showButtons()
     {
         ArrayList<Component> buttonList = new ArrayList<>();
         buttonList.add(makeRoll());
-        buttonList.add(makeIncomeTax());
+        buttonList.add(makeTax());
         return buttonList;
     }
 
-    public JButton makeIncomeTax()
+    public JButton makeTax()
     {
-        JButton incomeTax = new JButton("Pay Income Tax");
+        JButton tax = new JButton("Pay Tax");
 
-        incomeTax.addActionListener(new ActionListener() {
+        tax.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Income Tax Paid");
+                System.out.println("Tax Paid");
 
             }
 
         } );
 
-        return incomeTax;
+        return tax;
     }
 }

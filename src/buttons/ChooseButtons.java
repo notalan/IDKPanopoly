@@ -1,55 +1,40 @@
 package buttons;
 
+import property.*;
+
 import java.awt.*;
 import java.util.List;
 
 public class ChooseButtons {
 
-    public List<Component> showButtons() {
+    public List<Component> showButtons(Tile currentTile) {
 
-        boolean isProperty = false, isJail = true, isGo = false,
-                isCommunityChest = false, isChance = false,
-                isUtility = false, isIncomeTax = false, isFreeParking = false,
-                isGoToJail = false, isLuxuryTax = false;
-
-        if (isProperty) {
+        if (currentTile instanceof ImproveProperty) {
             return new PropertyButtons().showButtons();
         }
-        else if(isGo)
+        else if(currentTile instanceof Go)
         {
             return new GoButtons().showButtons();
         }
-        else if(isJail)
+        else if(currentTile instanceof Jail)
         {
             return new JailButtons().showButtons();
         }
-        else if(isCommunityChest)
+        else if(currentTile instanceof  CardTIle)
         {
             return new CommunityChestButtons().showButtons();
         }
-        else if(isChance)
+        else if(currentTile instanceof  CardTIle)
         {
             return new ChanceButtons().showButtons();
         }
-        else if(isUtility)
+        else if(currentTile instanceof Property)
         {
             return new UtilityButtons().showButtons();
         }
-        else if(isIncomeTax)
+        else if(currentTile instanceof TaxTiles)
         {
-            return new IncomeTaxButtons().showButtons();
-        }
-        else if(isLuxuryTax)
-        {
-            return new LuxuryTaxButtons().showButtons();
-        }
-        else if(isFreeParking)
-        {
-            return new FreeParkingButtons().showButtons();
-        }
-        else if(isGoToJail)
-        {
-            return new GoToJailButtons().showButtons();
+            return new TaxButtons().showButtons();
         }
 
         return null;
