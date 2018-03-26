@@ -22,7 +22,9 @@ public class main {
 
     public static void main(String[] args) throws MalformedURLException {
         Board panopoly = new Board(); // Makes the entire frame, you add panels into it to divide it into board, console etc.
+        panopoly.setLayout(new FlowLayout());
         JPanel panel = new JPanel();
+
         JLabel image = new JLabel(new ImageIcon(new URL("https://i.imgur.com/YNAbDLe.png"))) {
             public void paint(Graphics g, int x1, int x2, int x3, int x4, int y1, int y2, int y3, int y4) {
                 super.paint(g);
@@ -45,31 +47,39 @@ public class main {
 
         image.setForeground(Color.blue);
         image.setOpaque(true);
-        panel.add(image);
-        JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
 
-        panopoly.add(panel);
-        panopoly.setUndecorated(true); // hides close, minimize, fullscreen
+        panel.add(image);
+
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new GridLayout(10,1));
+
+        panel.add(buttonPanel);
 
         JButton btn1 = new JButton("Full-Screen");
+
         btn1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 device.setFullScreenWindow(panopoly);
             }
         });
+
         JButton btn2 = new JButton("Normal");
+
         btn2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 device.setFullScreenWindow(null);
             }
         });
-        panel.add(btn1);
-        panel.add(btn2);
-        panopoly.add(panel);
 
+        buttonPanel.add(btn1);
+        buttonPanel.add(btn2);
+
+        panel.add(buttonPanel);
+
+        panopoly.getContentPane().add(panel, FlowLayout.LEFT);
+        panopoly.setUndecorated(true); // hides close, minimize, fullscreen
         panopoly.pack();
         panopoly.setVisible(true);
 
@@ -83,7 +93,6 @@ public class main {
         Player currentPlayer;
         Tile currentTile;
         Dice dice = new Dice(); //Test rolling dice
-        ChooseButtons buttons = new ChooseButtons();
         int i;
         boolean gameEnd = false;
         while(!gameEnd) {
@@ -94,7 +103,6 @@ public class main {
                 the tile type is checked, the appropriate buttons wil appear
                  */
                 buttonPanel.removeAll();
-                buttonPanel.revalidate();
 
                 currentPlayer = players[i % players.length];
                 System.out.println(currentPlayer.name());
@@ -102,12 +110,17 @@ public class main {
                 System.out.println(x);
                 currentTile = currentPlayer.move(x);
 
+                buttonPanel.add(btn1);
+                buttonPanel.add(btn2);
                 ListIterator<Component> iterator = new ChooseButtons().showButtons(currentTile).listIterator();
+                Component temp;
                 while(iterator.hasNext())
                 {
-                    buttonPanel.add(iterator.next());
+                    temp = iterator.next();
+                    temp.setSize(new Dimension(30, 10));
+                    buttonPanel.add(temp);
                 }
-                panel.add(buttonPanel, BorderLayout.CENTER);
+                buttonPanel.revalidate();
 
                 if(currentTile instanceof ImproveProperty){
                     System.out.println(currentTile.getIdentifier());

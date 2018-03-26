@@ -36,7 +36,6 @@ public class Button {
             }
 
         } );
-
         return roll;
     }
 }
