@@ -18,7 +18,7 @@ class Initialiser {
     private String kdir = "DATA/TSV Lists/";
     private KnowledgeBaseModule NOC = new KnowledgeBaseModule(kdir + "Veale's The NOC List.txt", 0);
 
-    private String[] ENTRIES = new String[23];
+    private String[] ENTRIES = new String[22];
     private int COUNT = 0;
 
     Player[] players(int num, String[] names, Tile[] board){
@@ -30,11 +30,25 @@ class Initialiser {
     }
 
     Tile[] tiles(){
-        Tile[] tileArray = new Tile[3];
+        Tile[] tileArray = new Tile[40];
         tileArray[0] = GO;
-        tileArray[1] = new ImproveProperty("Old Kent Road", 60, 20,
-                2, 50,0,0);
-        tileArray[2] = new Property("bus garage", 200, 50, 50,0,0);
+        tileArray[2] = new Property ("cardTile1", 0, 0, 0, 0, 0);
+        tileArray[4] = new TaxTiles (0.1, 100, 200);
+        tileArray[5] = new Property ("Train Station 1", 0, 0, 200, 100, 25);
+        tileArray[7] = new Property ("cardTile2", 0, 0, 0, 0, 0);
+        tileArray[10] = new Jail    ("Jail", 0, 0);
+        tileArray[12] = new Property("Electric Company", 0, 0, 150, 75, 4/* *diceroll */);
+        tileArray[15] = new Property("Train Station 2", 0, 0, 200, 100, 25);
+        tileArray[17] = new Property("cardTile3", 0, 0, 0, 0, 0);
+        tileArray[20] = new FreeParking("Free Parking", 0, 0);
+        tileArray[22] = new Property("cardTile4", 0, 0, 0, 0, 0);
+        tileArray[25] = new Property("Train Station 3", 0, 0, 200, 100, 25);
+        tileArray[28] = new Property("Water Works", 0, 0, 150, 75, 4/* *diceroll */);
+        tileArray[30] = new GoToJail("Go To Jail", 0, 0);
+        tileArray[33] = new Property("cardTile5", 0, 0, 0, 0, 0);
+        tileArray[35] = new Property("Train Station 4", 0, 0, 200, 100, 25);
+        tileArray[36] = new Property("cardTile6", 0, 0, 0, 0, 0);
+        tileArray[38] = new TaxTiles (0.1, 100, 200);
 
         /*
         try-catch needed as fileIO used to access NOC list.
@@ -79,15 +93,36 @@ class Initialiser {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        /*
-        e.g use:
-        TileArray[1] = new ImproveProperty(ENTRIES[0], 60, 20,
-                2, 50);
-        TileArray[3] = new ImproveProperty(ENTRIES[1], 60, 20,
-                2, 50)
-                ...
-         */
 
+        tileArray[1] = new ImproveProperty(ENTRIES[20], 0, 0, 60, 50, 2, 50);
+        tileArray[3] = new ImproveProperty(ENTRIES[21], 0, 0, 60, 50, 2, 50);
+
+        tileArray[6] = new ImproveProperty(ENTRIES[0], 0, 0, 60, 50, 2, 50);
+        tileArray[8] = new ImproveProperty(ENTRIES[1], 0, 0, 60, 50, 2, 50);
+        tileArray[9] = new ImproveProperty(ENTRIES[2], 0, 0, 60, 50, 2, 50);
+
+        tileArray[11] = new ImproveProperty(ENTRIES[3], 0, 0, 60, 50, 2, 50);
+        tileArray[13] = new ImproveProperty(ENTRIES[4], 0, 0, 60, 50, 2, 50);
+        tileArray[14] = new ImproveProperty(ENTRIES[5], 0, 0, 60, 50, 2, 50);
+
+        tileArray[16] = new ImproveProperty(ENTRIES[6], 0, 0, 60, 50, 2, 50);
+        tileArray[18] = new ImproveProperty(ENTRIES[7], 0, 0, 60, 50, 2, 50);
+        tileArray[19] = new ImproveProperty(ENTRIES[8], 0, 0, 60, 50, 2, 50);
+
+        tileArray[21] = new ImproveProperty(ENTRIES[9], 0, 0, 60, 50, 2, 50);
+        tileArray[23] = new ImproveProperty(ENTRIES[10], 0, 0, 60, 50, 2, 50);
+        tileArray[24] = new ImproveProperty(ENTRIES[11], 0, 0, 60, 50, 2, 50);
+
+        tileArray[26] = new ImproveProperty(ENTRIES[12], 0, 0, 60, 50, 2, 50);
+        tileArray[27] = new ImproveProperty(ENTRIES[13], 0, 0, 60, 50, 2, 50);
+        tileArray[29] = new ImproveProperty(ENTRIES[14], 0, 0, 60, 50, 2, 50);
+
+        tileArray[31] = new ImproveProperty(ENTRIES[15], 0, 0, 60, 50, 2, 50);
+        tileArray[32] = new ImproveProperty(ENTRIES[16], 0, 0, 60, 50, 2, 50);
+        tileArray[34] = new ImproveProperty(ENTRIES[17], 0, 0, 60, 50, 2, 50);
+
+        tileArray[37] = new ImproveProperty(ENTRIES[18], 0, 0, 60, 50, 2, 50);
+        tileArray[39] = new ImproveProperty(ENTRIES[19], 0, 0, 60, 50, 2, 50);
         return tileArray;
     }
 
