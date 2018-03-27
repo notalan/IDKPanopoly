@@ -8,7 +8,7 @@ public class Player implements Locatable, Interactable, Bankruptable{
     private Tile[] BOARD;
     private int currentPlace = 0;
 
-    public Player(String name, int balance, Property startingTile, Tile[] board){
+    public Player(String name, int balance, Tile startingTile, Tile[] board){
         NAME = name;
         BALANCE = balance;
         CURRENT_TILE = startingTile;

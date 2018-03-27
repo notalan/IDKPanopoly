@@ -13,7 +13,7 @@ class Initialiser {
 
     private  Random rand = new Random();
 
-    private Property GO = new Property("GO", 0, 0, 0,0,0);
+    private Go GO = new Go("GO", 0, 0);
 
     private String kdir = "DATA/TSV Lists/";
     private KnowledgeBaseModule NOC = new KnowledgeBaseModule(kdir + "Veale's The NOC List.txt", 0);
