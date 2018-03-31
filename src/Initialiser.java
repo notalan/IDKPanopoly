@@ -21,6 +21,11 @@ class Initialiser {
     private String[] ENTRIES = new String[22];
     private int COUNT = 0;
 
+    private String [] STATION_NAMES = {"Interdimensional", "Trans-Plane", "Vaporwave", "L o n g", "Magnet", "Space",
+            "Haunted", "Old-Timey", "Colony World"};
+    private String [] STATION_TYPES = {"Parkway", "Line", "Subway", "Monorail", "Bullet Train", "Hyperrail", "Pentarail",
+            "Northbound", "Southbound", "Eastbound", "WestBound", "Express"};
+
     Player[] players(int num, String[] names, Tile[] board){
         Player[] playerArray = new Player[num];
         for(int i = 0; i < num; i++){
@@ -34,40 +39,66 @@ class Initialiser {
         tileArray[0] = GO;
         tileArray[2] = new Property ("cardTile1", 0, 0, 0, 0, 0);
         tileArray[4] = new TaxTiles (0.1, 100, 200);
-        tileArray[5] = new Property ("Train Station 1", 0, 0, 200, 100, 25);
         tileArray[7] = new Property ("cardTile2", 0, 0, 0, 0, 0);
         tileArray[10] = new Jail    ("Jail", 0, 0);
         tileArray[12] = new Property("Electric Company", 0, 0, 150, 75, 4/* *diceroll */);
-        tileArray[15] = new Property("Train Station 2", 0, 0, 200, 100, 25);
         tileArray[17] = new Property("cardTile3", 0, 0, 0, 0, 0);
         tileArray[20] = new FreeParking("Free Parking", 0, 0);
         tileArray[22] = new Property("cardTile4", 0, 0, 0, 0, 0);
-        tileArray[25] = new Property("Train Station 3", 0, 0, 200, 100, 25);
         tileArray[28] = new Property("Water Works", 0, 0, 150, 75, 4/* *diceroll */);
         tileArray[30] = new GoToJail("Go To Jail", 0, 0);
         tileArray[33] = new Property("cardTile5", 0, 0, 0, 0, 0);
-        tileArray[35] = new Property("Train Station 4", 0, 0, 200, 100, 25);
         tileArray[36] = new Property("cardTile6", 0, 0, 0, 0, 0);
         tileArray[38] = new TaxTiles (0.1, 100, 200);
+
+        String[] stationName = new String[4];
+        String[] stationlist = new String[8];
+        String first, second;
+        for(int i = 0; i < 4; i++){
+            first = STATION_NAMES[rand.nextInt(STATION_NAMES.length)];
+            while(hasOccurredIn(stationlist, first)){
+                first = STATION_NAMES[rand.nextInt(STATION_NAMES.length)];
+            }
+            stationlist[i] = first;
+            second = STATION_TYPES[rand.nextInt(STATION_TYPES.length)];
+            while(hasOccurredIn(stationlist, second)){
+                second = STATION_TYPES[rand.nextInt(STATION_TYPES.length)];
+            }
+            stationlist[i+4] = second;
+            stationName[i] = first + " " + second;
+            //System.out.println(stationName[i]);
+        }
+        tileArray[5] = new Property (stationName[0], 0, 0, 200, 100, 25);
+        tileArray[15] = new Property(stationName[1], 0, 0, 200, 100, 25);
+        tileArray[25] = new Property(stationName[2], 0, 0, 200, 100, 25);
+        tileArray[35] = new Property(stationName[3], 0, 0, 200, 100, 25);
 
         /*
         try-catch needed as fileIO used to access NOC list.
         First while loop gets the 6 sets of 3 sized monopolies, pulled from NOC list.
         Second while loop gets the 2 sets of 2 sized monopolies, pulled from NOC list.
          */
+        String[] domainList = new String[8];
+        int domainCount = 0;
         try {
             Vector<String> nameList;
+            String domain;
             String currentName;
             int numOfSets = 0;
             while (numOfSets < 6) {
-                nameList = getDomain();
+                domain = getDomain();
+                while(hasOccurredIn(domainList, domain)){
+                    domain = getDomain();
+                }
+                nameList = NOC.getAllKeysWithFieldValue("Domains", domain);
                 if (nameList.size() >= 3) {
+                    domainList[domainCount++] = domain;
+                    System.out.println(domain);
                     for (int i = 0; i < 3; i++) {
                         currentName = generateNameFromDomain(nameList);
-                        while (hasOccurredInEntries(currentName)) {//if name has already been taken, get a new one to avoid repeats
+                        while (hasOccurredIn(ENTRIES, currentName)) {//if name has already been taken, get a new one to avoid repeats
                             currentName = generateNameFromDomain(nameList);
                         }
-                        System.out.println(currentName);
                         ENTRIES[COUNT++] = currentName;
                     }
                     numOfSets++;
@@ -76,14 +107,19 @@ class Initialiser {
             }
             numOfSets = 0;
             while (numOfSets < 2) {
-                nameList = getDomain();
+                domain = getDomain();
+                while(hasOccurredIn(domainList, domain)){
+                    domain = getDomain();
+                }
+                nameList = NOC.getAllKeysWithFieldValue("Domains", domain);
                 if (nameList.size() == 2) {
+                    domainList[domainCount++] = domain;
+                    System.out.println(domain);
                     for (int i = 0; i < 2; i++) {
                         currentName = generateNameFromDomain(nameList);
-                        while (hasOccurredInEntries(currentName)) {
+                        while (hasOccurredIn(ENTRIES, currentName)) {
                             currentName = generateNameFromDomain(nameList);
                         }
-                        System.out.println(currentName);
                         ENTRIES[COUNT++] = currentName;
                     }
                     numOfSets++;
@@ -126,8 +162,12 @@ class Initialiser {
         return tileArray;
     }
 
-    private boolean hasOccurredInEntries(String name){
-        for(String entry: ENTRIES){ //check if it has appeared before/if it is already on the board
+    private boolean hasOccurredIn(String[] list, String name){
+        for(String entry: list){ //check if it has appeared before/if it is already on the board
+            if(name == null){
+                System.out.println("name was null error");
+                return true;
+            }
             if(name.equals(entry)){
                 return true;    //Repeat Error
             }
@@ -141,18 +181,15 @@ class Initialiser {
         e.g.    Hilary Clinton -> American Politics
                 Elton John -> Music
                 Batman -> DC Comics
-
-     returns the vector containing all names associated with that domain.
      */
-    private Vector<String> getDomain()  throws IOException{
+    private String getDomain()  throws IOException{
         BufferedReader br = new BufferedReader(new FileReader(kdir + "Veale's The NOC List.txt"));
         int lineNum = rand.nextInt(825) + 1; //num of lines in "Veale's The NOC List.txt", +1 to avoid field names
         for(int i = 0; i < lineNum - 1; i++) {
             br.readLine();
         }
         String randomPerson = br.readLine().split("\t")[0];
-        String domain = NOC.getFirstValue("Domains", randomPerson);
-        return NOC.getAllKeysWithFieldValue("Domains", domain);
+        return NOC.getFirstValue("Domains", randomPerson);
     }
 
     /*
@@ -161,5 +198,6 @@ class Initialiser {
     private String generateNameFromDomain(Vector<String> domain){
         return domain.elementAt(rand.nextInt(domain.size()));
     }
+
 
 }
