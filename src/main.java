@@ -17,6 +17,14 @@ import java.awt.GraphicsEnvironment;
 import java.awt.GraphicsDevice;
 
 public class main {
+    public static int x1;
+    public static int x2;
+    public static int x3;
+    public static int x4;
+    public static int y1;
+    public static int y2;
+    public static int y3;
+    public static int y4;
     static GraphicsDevice device = GraphicsEnvironment
             .getLocalGraphicsEnvironment().getScreenDevices()[0];
 
@@ -26,7 +34,7 @@ public class main {
         JPanel panel = new JPanel();
 
         JLabel image = new JLabel(new ImageIcon(new URL("https://i.imgur.com/YNAbDLe.png"))) {
-            public void paint(Graphics g, int x1, int x2, int x3, int x4, int y1, int y2, int y3, int y4) {
+            public void paint(Graphics g) {
                 super.paint(g);
 
                 g.setColor(Color.red); //Colour placeholder for the player - will add images later
@@ -109,7 +117,9 @@ public class main {
                 int x = dice.rollDice(2, 6);
                 System.out.println(x);
                 currentTile = currentPlayer.move(x);
-
+                x1 = currentTile.getXCo(); // moving the players
+                y1 = currentTile.getYCo();
+                image.repaint();
                 buttonPanel.add(btn1);
                 buttonPanel.add(btn2);
                 ListIterator<Component> iterator = new ChooseButtons().showButtons(currentTile).listIterator();
