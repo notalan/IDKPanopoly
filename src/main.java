@@ -153,7 +153,7 @@ public class main {
 
                 while(!turnEnd[0])
                 {
-                    System.out.println(currentPlayer.name() + "'s turn");
+                    
                 }
 
                 i++;
