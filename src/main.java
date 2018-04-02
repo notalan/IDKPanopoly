@@ -81,8 +81,21 @@ public class main {
             }
         });
 
+        final boolean[] turnEnd = {false};
+
+        JButton finished = new JButton("Finished");
+
+        finished.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                turnEnd[0] = true;
+                System.out.println("Turn Finished");
+            }
+        });
+
         buttonPanel.add(btn1);
         buttonPanel.add(btn2);
+        buttonPanel.add(finished);
 
         panel.add(buttonPanel);
 
@@ -111,19 +124,25 @@ public class main {
                 the tile type is checked, the appropriate buttons wil appear
                  */
                 buttonPanel.removeAll();
+                turnEnd[0] = false;
 
                 currentPlayer = players[i % players.length];
                 System.out.println(currentPlayer.name());
+
                 int x = dice.rollDice(2, 6);
                 System.out.println(x);
                 currentTile = currentPlayer.move(x);
                 x1 = currentTile.getXCo(); // moving the players
                 y1 = currentTile.getYCo();
                 image.repaint();
+
                 buttonPanel.add(btn1);
                 buttonPanel.add(btn2);
+                buttonPanel.add(finished);
+
                 ListIterator<Component> iterator = new ChooseButtons().showButtons(currentTile).listIterator();
                 Component temp;
+
                 while(iterator.hasNext())
                 {
                     temp = iterator.next();
@@ -132,10 +151,11 @@ public class main {
                 }
                 buttonPanel.revalidate();
 
-                if(currentTile instanceof ImproveProperty){
-                    System.out.println(currentTile.getIdentifier());
-                    //but like make a way to change what buttons appear.
+                while(!turnEnd[0])
+                {
+                    System.out.println(currentPlayer.name() + "'s turn");
                 }
+
                 i++;
             }
             gameEnd = true;
