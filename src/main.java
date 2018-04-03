@@ -15,6 +15,7 @@ import java.net.URL;
 import java.util.ListIterator;
 import java.awt.GraphicsEnvironment;
 import java.awt.GraphicsDevice;
+import java.util.concurrent.TimeUnit;
 
 public class main {
     public static int x1;
@@ -151,9 +152,13 @@ public class main {
                 }
                 buttonPanel.revalidate();
 
-                while(!turnEnd[0])
-                {
-                    
+                try {
+                    while (!turnEnd[0]) {
+                        TimeUnit.MILLISECONDS.sleep(5);
+                    }
+                }
+                catch (Exception e){
+                    e.printStackTrace();
                 }
 
                 i++;
