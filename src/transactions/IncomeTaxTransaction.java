@@ -7,8 +7,8 @@ import property.*;
 public class IncomeTaxTransaction {
     public IncomeTaxTransaction(Player player, TaxTiles prop, boolean choice){
         if(choice)
-            player.payRent(prop.getFlatIncomeTaxAmount());
+            player.pay(prop.getFlatIncomeTaxAmount());
         else
-            player.payRent(player.balance() * prop.getIncomeTaxPercentage());
+            player.pay(player.balance() * prop.getIncomeTaxPercentage());
     }
 }

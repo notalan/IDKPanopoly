@@ -6,7 +6,7 @@ import player.Player;
 import property.*;
 public class UnmortgageTransaction{
     public UnmortgageTransaction(Player player, Property prop ){
-        player.payRent(prop.getMortgageAmount() * 1.1);//using getRent bc there's no real need to make a new function
+        player.pay(prop.getMortgageAmount() * 1.1);//using getRent bc there's no real need to make a new function
         prop.unMortgageProperty();
     }
 }

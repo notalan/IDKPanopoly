@@ -3,6 +3,6 @@ import player.Player;
 import property.*;
 public class LuxuryTransaction {
     public LuxuryTransaction(Player player, TaxTiles prop){
-        player.payRent(prop.getFlatLuxaryTaxAmount());
+        player.pay(prop.getFlatLuxaryTaxAmount());
     }
 }

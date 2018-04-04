@@ -4,7 +4,7 @@ import property.Property;
 
 public class RentTransaction {
     public RentTransaction(Player player, Property prop){
-        player.payRent(prop.getRent());
+        player.pay(prop.getRent());
         prop.owner().receiveIncome(prop.getRent());
     }
 }
