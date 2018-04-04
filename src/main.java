@@ -34,7 +34,7 @@ public class main {
         panopoly.setLayout(new FlowLayout());
         JPanel panel = new JPanel();
 
-        JLabel image = new JLabel(new ImageIcon(new URL("https://i.imgur.com/YNAbDLe.png"))) {
+        JLabel image = new JLabel(new ImageIcon(new URL("https://i.imgur.com/y7GC8xJ.png"))) {
             public void paint(Graphics g) {
                 super.paint(g);
 
@@ -167,3 +167,51 @@ public class main {
         }
     }
 }
+
+/*       x, y
+0    Go = 665 665
+    --Bottom line--
+1    585 665
+2   530
+3   470
+4    420
+5    360
+6    305
+7    250
+8    195
+9    140
+
+10 JAIL = 50 665
+    --Left--
+11    50 580
+12       530
+13       470
+14       420
+15       360
+16       305
+17       250
+18       190
+19       140
+20    FREE PARKING 50 60
+    --top--
+21    140 50
+22    195
+3    250
+4    305
+5    360
+6    420
+7    470
+8    530
+9    585
+30    GO TO JAIL 665 50
+    --right--
+1    665 140
+2        190
+3        250
+4        305
+5        360
+6        420
+7        470
+8        530
+9        580
+ */
