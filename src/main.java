@@ -141,7 +141,7 @@ public class main {
                 buttonPanel.add(btn2);
                 buttonPanel.add(finished);
 
-                ListIterator<Component> iterator = new ChooseButtons().showButtons(currentTile).listIterator();
+                ListIterator<Component> iterator = new ChooseButtons().showButtons(currentTile, currentPlayer).listIterator();
                 Component temp;
 
                 while(iterator.hasNext())

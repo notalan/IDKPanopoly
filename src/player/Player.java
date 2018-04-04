@@ -13,6 +13,7 @@ public class Player implements Locatable, Interactable, Bankruptable{
         BALANCE = balance;
         CURRENT_TILE = startingTile;
         BOARD = board;
+        boolean inJail = false;
     }
 
     @Override

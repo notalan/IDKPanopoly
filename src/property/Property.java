@@ -56,6 +56,8 @@ public class Property extends Tile implements Buyable, Ownable, Mortgageable, Re
         return owner;
     }
 
+    public boolean hasOwner(){return !(owner == null);}
+
     @Override
     public double getRent() {
         return rentPrice;

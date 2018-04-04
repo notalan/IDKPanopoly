@@ -2,6 +2,8 @@ package buttons;
 
 import dice.Dice;
 import board.Board;
+import property.Tile;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -14,7 +16,7 @@ import java.awt.GraphicsDevice;
 public class Button {
     static GraphicsDevice device = GraphicsEnvironment
             .getLocalGraphicsEnvironment().getScreenDevices()[0];
-    public List<Component> showButtons()
+    public List<Component> showButtons(Tile currentTile)
     {
         ArrayList<Component> buttonList = new ArrayList<>();
         buttonList.add(makeRoll());

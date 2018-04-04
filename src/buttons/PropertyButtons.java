@@ -1,5 +1,9 @@
 package buttons;
 
+import player.Player;
+import property.ImproveProperty;
+import property.Tile;
+
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,16 +14,26 @@ import javax.swing.JButton;
 
 public class PropertyButtons extends Button{
 
-    public List<Component> showButtons()
-    {
+    public List<Component> showButtons(ImproveProperty currentTile, Player currentPlayer) {
         ArrayList<Component> buttonList = new ArrayList<>();
         buttonList.add(makeRoll());
-        buttonList.add(makeBuy());
-        buttonList.add(makeAuction());
-        buttonList.add(makePayRent());
-        buttonList.add(makeBuild());
-        buttonList.add(makeSell());
-        buttonList.add(makeMortgage());
+
+        if (!currentTile.hasOwner()) {
+            buttonList.add(makeBuy());
+            buttonList.add(makeAuction());
+        }
+
+       if(currentTile.hasOwner() && !currentTile.owner().equals(currentPlayer.name()))
+        {
+            buttonList.add(makePayRent());
+        }
+
+        if(currentTile.hasOwner() && currentTile.owner().equals(currentPlayer.name()))
+        {
+            buttonList.add(makeBuild());
+            buttonList.add(makeSell());
+            buttonList.add(makeMortgage());
+        }
         return buttonList;
     }
 
