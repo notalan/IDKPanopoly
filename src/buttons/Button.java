@@ -2,6 +2,7 @@ package buttons;
 
 import dice.Dice;
 import board.Board;
+import player.Player;
 import property.Tile;
 
 import javax.swing.*;
@@ -14,9 +15,13 @@ import java.awt.GraphicsEnvironment;
 import java.awt.GraphicsDevice;
 
 public class Button {
+
+    Player PLAYER;
+    Tile TILE;
+
     static GraphicsDevice device = GraphicsEnvironment
             .getLocalGraphicsEnvironment().getScreenDevices()[0];
-    public List<Component> showButtons(Tile currentTile)
+    public List<Component> showButtons()
     {
         ArrayList<Component> buttonList = new ArrayList<>();
         buttonList.add(makeRoll());
@@ -34,7 +39,9 @@ public class Button {
             public void actionPerformed(ActionEvent e) {
                 Dice dice = new Dice();
                 int rolled_result = dice.rollDice(2, 6);
-                System.out.println("Rolled: " + rolled_result);
+                System.out.println(PLAYER.name());
+                PLAYER.move(rolled_result);
+                System.out.println("Rolled: " + rolled_result + " " + PLAYER.Location().getIdentifier());
             }
 
         } );

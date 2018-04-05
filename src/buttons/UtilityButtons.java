@@ -10,6 +10,7 @@ import java.util.List;
 public class UtilityButtons extends PropertyButtons{
     public List<Component> showButtons(Property currentTile, Player currentPlayer)
     {
+        PLAYER = currentPlayer;
         ArrayList<Component> buttonList = new ArrayList<>();
         buttonList.add(makeRoll());
         if (!currentTile.hasOwner())
@@ -18,13 +19,13 @@ public class UtilityButtons extends PropertyButtons{
             buttonList.add(makeAuction());
         }
 
-        if(currentTile.hasOwner() && currentTile.owner().equals(currentPlayer.name()))
+        if(currentTile.hasOwner() && currentTile.owner().equals(currentPlayer))
         {
-            buttonList.add(makeSell());
+            //buttonList.add(makeSell());
             buttonList.add(makeMortgage());
         }
 
-        if(currentTile.hasOwner() && !currentTile.owner().equals(currentPlayer.name()))
+        if(currentTile.hasOwner() && !currentTile.owner().equals(currentPlayer))
         {
             buttonList.add(makePayRent());
         }

@@ -1,5 +1,7 @@
 package buttons;
 
+import player.Player;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -8,8 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CommunityChestButtons extends Button{
-    public List<Component> showButtons()
+    public List<Component> showButtons(Player currentPlayer)
     {
+        PLAYER = currentPlayer;
         ArrayList<Component> buttonList = new ArrayList<>();
         buttonList.add(makeRoll());
         buttonList.add(makeDrawCommunityChestCard());

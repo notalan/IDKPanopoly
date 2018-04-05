@@ -1,5 +1,8 @@
 package buttons;
 
+import player.Player;
+import property.TaxTiles;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -8,8 +11,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TaxButtons extends Button{
-    public List<Component> showButtons()
+
+//    private Player PLAYER;
+//    private TaxTiles TILE;
+    public List<Component> showButtons(TaxTiles tile, Player p)
     {
+        PLAYER = p;
+        TILE = tile;
+
         ArrayList<Component> buttonList = new ArrayList<>();
         buttonList.add(makeRoll());
         buttonList.add(makeTax());
@@ -25,7 +34,7 @@ public class TaxButtons extends Button{
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Tax Paid");
-
+                //Need some way to identify which type of tax tile it is.
             }
 
         } );

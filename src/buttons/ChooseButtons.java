@@ -15,19 +15,19 @@ public class ChooseButtons {
         }
         else if(currentTile instanceof Go)
         {
-            return new GoButtons().showButtons(currentTile);
+            return new GoButtons().showButtons(currentPlayer);
         }
         else if(currentTile instanceof Jail)
         {
-            return new JailButtons().showButtons(currentTile);
+            return new JailButtons().showButtons(currentPlayer);
         }
         else if(currentTile instanceof  CardTIle)
         {
-            return new CommunityChestButtons().showButtons(currentTile);
+            return new CommunityChestButtons().showButtons(currentPlayer);
         }
         else if(currentTile instanceof  CardTIle)
         {
-            return new ChanceButtons().showButtons(currentTile);
+            return new ChanceButtons().showButtons(currentPlayer);
         }
         else if(currentTile instanceof Property)
         {
@@ -35,7 +35,7 @@ public class ChooseButtons {
         }
         else if(currentTile instanceof TaxTiles)
         {
-            return new TaxButtons().showButtons(currentTile);
+            return new TaxButtons().showButtons((TaxTiles)currentTile, currentPlayer);
         }
 
         return null;

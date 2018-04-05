@@ -1,5 +1,8 @@
 package buttons;
 
+import transactions.ExpenditureTransaction;
+import player.Player;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -9,8 +12,9 @@ import java.util.List;
 
 public class JailButtons extends Button {
 
-    public List<Component> showButtons()
+    public List<Component> showButtons(Player player)
     {
+        PLAYER = player;
         ArrayList<Component> buttonList = new ArrayList<>();
         buttonList.add(makeRoll());
         buttonList.add(makePay());
@@ -26,7 +30,7 @@ public class JailButtons extends Button {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Paid");
+                new ExpenditureTransaction(PLAYER, 50.0);
 
             }
 

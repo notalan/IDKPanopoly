@@ -2,7 +2,9 @@ package buttons;
 
 import player.Player;
 import property.ImproveProperty;
-import property.Tile;
+import property.Property;
+import property.TaxTiles;
+import transactions.*;
 
 import java.awt.Component;
 import java.awt.event.ActionEvent;
@@ -14,7 +16,12 @@ import javax.swing.JButton;
 
 public class PropertyButtons extends Button{
 
+//    private Player PLAYER;
+    private ImproveProperty TILE;
+
     public List<Component> showButtons(ImproveProperty currentTile, Player currentPlayer) {
+        PLAYER = currentPlayer;
+        TILE = currentTile;
         ArrayList<Component> buttonList = new ArrayList<>();
         buttonList.add(makeRoll());
 
@@ -23,16 +30,25 @@ public class PropertyButtons extends Button{
             buttonList.add(makeAuction());
         }
 
-       if(currentTile.hasOwner() && !currentTile.owner().equals(currentPlayer.name()))
+       if(currentTile.hasOwner() && !currentTile.owner().equals(currentPlayer))
         {
             buttonList.add(makePayRent());
         }
 
-        if(currentTile.hasOwner() && currentTile.owner().equals(currentPlayer.name()))
+
+        if(currentTile.hasOwner() && currentTile.owner().equals(currentPlayer))
         {
-            buttonList.add(makeBuild());
-            buttonList.add(makeSell());
             buttonList.add(makeMortgage());
+            /*
+            want to change to involve monopolies
+            e.g if(currentTile.playerMonopoly())
+            */
+            if(currentTile.getConstructable()){
+                buttonList.add(makeBuild());
+            }
+            if(currentTile.getSellable()){
+                buttonList.add(makeSell());
+            }
         }
         return buttonList;
     }
@@ -45,8 +61,8 @@ public class PropertyButtons extends Button{
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Bought");
-
+//                System.out.println("Bought");
+                new BuyTransaction(PLAYER, TILE);
             }
 
         } );
@@ -78,7 +94,7 @@ public class PropertyButtons extends Button{
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Rent Paid");
-
+                new RentTransaction(PLAYER, TILE);
             }
 
         } );
@@ -94,15 +110,13 @@ public class PropertyButtons extends Button{
 
             @Override
             public void actionPerformed(ActionEvent e) {
-               /* if(property.ImproveProperty.countHouses() <= 4)
+                if(TILE.countHotels() > 0)
                 {
-
+                    new SellHotelTransaction(PLAYER, TILE);
                 }
-                else if((property.ImproveProperty.countHouses() == 4) && (property.ImproveProperty.countHotels() == 1))
-                {
-
-                }*/
-
+                else{
+                    new SellHouseTransaction(PLAYER, TILE);
+                }
             }
 
         } );
@@ -118,14 +132,14 @@ public class PropertyButtons extends Button{
 
             @Override
             public void actionPerformed(ActionEvent e) {
-               /*if(property.ImproveProperty.countHouses() < 4)
+               if(TILE.countHouses() < 4)
                {
-
+                   new BuildHouseTransaction(PLAYER, TILE);
                }
-               else if((property.ImproveProperty.countHouses() == 4) && (property.ImproveProperty.countHotels() < 1))
+               else if(TILE.countHouses() == 4 && TILE.countHotels() < 1)
                {
-
-               }*/
+                   new BuildHotelTransaction(PLAYER, TILE);
+               }
             }
 
         } );
@@ -141,10 +155,7 @@ public class PropertyButtons extends Button{
 
             @Override
             public void actionPerformed(ActionEvent e) {
-              /*  if(property.isMortgaged())
-                {
-
-                }*/
+              new MortgageTransaction(PLAYER, (ImproveProperty)TILE);
             }
 
         } );
