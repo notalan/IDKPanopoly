@@ -21,6 +21,8 @@ class Initialiser {
     private String[] ENTRIES = new String[22];
     private int COUNT = 0;
 
+    private String[] domainList = new String[8];
+
     private String [] STATION_NAMES = {"Interdimensional", "Trans-Plane", "Vaporwave", "L o n g", "Magnet", "Space",
             "Haunted", "Old-Timey", "Colony World"};
     private String [] STATION_TYPES = {"Parkway", "Line", "Subway", "Monorail", "Bullet Train", "Hyperrail", "Pentarail",
@@ -68,17 +70,17 @@ class Initialiser {
             stationName[i] = first + " " + second;
             //System.out.println(stationName[i]);
         }
-        tileArray[5] = new Property (stationName[0], 360, 665, 200, 100, 25);
-        tileArray[15] = new Property(stationName[1], 50, 360, 200, 100, 25);
-        tileArray[25] = new Property(stationName[2], 360, 50, 200, 100, 25);
-        tileArray[35] = new Property(stationName[3], 665, 360, 200, 100, 25);
+        tileArray[5] = new StationTile (stationName[0], 360, 665, domainList);
+        tileArray[15] = new StationTile(stationName[1], 50, 360, domainList);
+        tileArray[25] = new StationTile(stationName[2], 360, 50, domainList);
+        tileArray[35] = new StationTile(stationName[3], 665, 360, domainList);
 
         /*
         try-catch needed as fileIO used to access NOC list.
         First while loop gets the 6 sets of 3 sized monopolies, pulled from NOC list.
         Second while loop gets the 2 sets of 2 sized monopolies, pulled from NOC list.
          */
-        String[] domainList = new String[8];
+
         int domainCount = 0;
         try {
             Vector<String> nameList;

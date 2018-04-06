@@ -26,6 +26,10 @@ public class main {
     public static int y2;
     public static int y3;
     public static int y4;
+
+    public static int[] xCoord = new int[4];
+    public static int[] yCoord = new int[4];
+
     static GraphicsDevice device = GraphicsEnvironment
             .getLocalGraphicsEnvironment().getScreenDevices()[0];
 
@@ -39,16 +43,16 @@ public class main {
                 super.paint(g);
 
                 g.setColor(Color.red); //Colour placeholder for the player - will add images later
-                g.drawOval(x1, y1, 10, 10);
+                g.drawOval(xCoord[0], yCoord[0], 10, 10);
 
                 g.setColor(Color.blue);
-                g.drawOval(x2, y2, 10, 10);
+                g.drawOval(xCoord[1], yCoord[1], 10, 10);
 
                 g.setColor(Color.GREEN);
-                g.drawOval(x3, y3, 10, 10);
+                g.drawOval(xCoord[2], yCoord[2], 10, 10);
 
                 g.setColor(Color.CYAN);
-                g.drawOval(x4, y4, 10, 10);
+                g.drawOval(xCoord[2], yCoord[2], 10, 10);
 
                 // This is set to 4 players
             }
@@ -130,11 +134,10 @@ public class main {
                 currentPlayer = players[i % players.length];
                 System.out.println(currentPlayer.name());
 
-                int x = dice.rollDice(2, 6);
-                System.out.println(x);
-                currentTile = currentPlayer.move(x);
-                x1 = currentTile.getXCo(); // moving the players
-                y1 = currentTile.getYCo();
+                currentTile = currentPlayer.Location();
+                xCoord[i % players.length] = currentTile.getXCo();
+                yCoord[i % players.length] = currentTile.getYCo();
+
                 image.repaint();
 
                 buttonPanel.add(btn1);
