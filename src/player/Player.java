@@ -1,6 +1,8 @@
 package player;
 import property.*;
 
+import java.util.ArrayList;
+
 public class Player implements Locatable, Interactable, Bankruptable{
     private Tile CURRENT_TILE;
     private String NAME;
@@ -8,6 +10,8 @@ public class Player implements Locatable, Interactable, Bankruptable{
     private Tile[] BOARD;
     private int currentPlace = 0;
     private boolean IN_JAIL;
+    private ArrayList<Tile> OWNED_PROPERTIES = new ArrayList<>();
+    private ArrayList<Tile>  MORTGAGED_PROPERTIES = new ArrayList<>();
 
     public Player(String name, int balance, Tile startingTile, Tile[] board){
         NAME = name;
@@ -15,6 +19,36 @@ public class Player implements Locatable, Interactable, Bankruptable{
         CURRENT_TILE = startingTile;
         BOARD = board;
         boolean IN_JAIL = false;
+    }
+
+    @Override
+    public ArrayList<Tile> getOwnedProperties() {
+        return OWNED_PROPERTIES;
+    }
+
+    @Override
+    public void addProperty(Tile t) {
+        OWNED_PROPERTIES.add(t);
+    }
+
+    @Override
+    public void addMortgage(Tile t) {
+        MORTGAGED_PROPERTIES.add(t);
+    }
+
+    @Override
+    public void removeProperty(Tile t) {
+        OWNED_PROPERTIES.remove(t);
+    }
+
+    @Override
+    public void removeMortgage(Tile t) {
+        MORTGAGED_PROPERTIES.remove(t);
+    }
+
+    @Override
+    public ArrayList<Tile> getMortProperties() {
+        return MORTGAGED_PROPERTIES;
     }
 
     @Override

@@ -4,6 +4,7 @@ import property.*;
 public class BuyTransaction{
     public BuyTransaction(Player player, Property prop){
         player.pay(prop.getPrice());
+        player.addProperty(prop);
         prop.buyTile(player);
 
 
