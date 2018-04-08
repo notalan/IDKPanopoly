@@ -8,7 +8,7 @@ public class Player implements Locatable, Interactable, Bankruptable{
     private String NAME;
     private double BALANCE;
     private Tile[] BOARD;
-    private int currentPlace = 0;
+    public int currentPlace = 0;
     private boolean IN_JAIL;
     private ArrayList<Tile> OWNED_PROPERTIES = new ArrayList<>();
     private ArrayList<Tile>  MORTGAGED_PROPERTIES = new ArrayList<>();
@@ -53,7 +53,9 @@ public class Player implements Locatable, Interactable, Bankruptable{
 
     @Override
     public Tile move(int diceRoll) {
-        CURRENT_TILE = BOARD[(currentPlace += diceRoll) % BOARD.length];
+        currentPlace = (currentPlace + diceRoll) % BOARD.length;
+        CURRENT_TILE = BOARD[currentPlace];
+        System.out.print(currentPlace + ", ");
         return CURRENT_TILE;
     }
 
