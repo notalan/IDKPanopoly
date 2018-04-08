@@ -55,7 +55,6 @@ public class Player implements Locatable, Interactable, Bankruptable{
     public Tile move(int diceRoll) {
         currentPlace = (currentPlace + diceRoll) % BOARD.length;
         CURRENT_TILE = BOARD[currentPlace];
-        System.out.print(currentPlace + ", ");
         return CURRENT_TILE;
     }
 

@@ -12,7 +12,7 @@ class TrainPopUp extends JFrame{
     TrainPopUp(String trainName, String destination){
         setBounds(200, 300, 400, 210);
         setUndecorated(true);
-        ImageIcon I = new ImageIcon("/Users/connorclancy/Desktop/Ticket.png");
+        ImageIcon I = new ImageIcon("Resources/Images/Ticket.png");
         JLabel test = new JLabel(I);
         JLabel top, middle, bottom;
 
