@@ -37,6 +37,10 @@ public class ChooseButtons {
         {
             return new TaxButtons().showButtons((TaxTiles)currentTile, currentPlayer);
         }
+        else if(currentTile instanceof StationTile)
+        {
+            return new GoButtons().showButtons(currentPlayer);
+        }
 
         return null;
     }

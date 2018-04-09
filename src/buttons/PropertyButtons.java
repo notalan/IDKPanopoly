@@ -2,8 +2,6 @@ package buttons;
 
 import player.Player;
 import property.ImproveProperty;
-import property.Property;
-import property.TaxTiles;
 import transactions.*;
 
 import java.awt.Component;
@@ -62,7 +60,10 @@ public class PropertyButtons extends Button{
             @Override
             public void actionPerformed(ActionEvent e) {
 //                System.out.println("Bought");
-                new BuyTransaction(PLAYER, TILE);
+                if(!TILE.hasOwner()) {
+                    new BuyTransaction(PLAYER, TILE);
+                    System.out.println("Bought");
+                }
             }
 
         } );
@@ -78,7 +79,9 @@ public class PropertyButtons extends Button{
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Auctioned");
-
+                if(!TILE.hasOwner()) {
+                    //some stuff
+                }
             }
 
         } );
@@ -88,15 +91,23 @@ public class PropertyButtons extends Button{
     public JButton makePayRent()
     {
         JButton payRent = new JButton("Pay Rent");
-
         payRent.addActionListener(new ActionListener() {
 
+            boolean payed = false;
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Rent Paid");
-                new RentTransaction(PLAYER, TILE);
+                //System.out.println("Rent Paid");
+                if(!payed){
+                    new RentTransaction(PLAYER, TILE);
+                    beenPayed();
+                }
+                else{
+                    System.out.println("already payed" + PLAYER.balance());
+                }
             }
-
+            void beenPayed(){
+                payed = true;
+            }
         } );
 
         return payRent;
@@ -114,11 +125,10 @@ public class PropertyButtons extends Button{
                 {
                     new SellHotelTransaction(PLAYER, TILE);
                 }
-                else{
+                else if(TILE.countHouses() < 0){
                     new SellHouseTransaction(PLAYER, TILE);
                 }
             }
-
         } );
 
         return sell;

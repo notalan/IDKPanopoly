@@ -26,12 +26,20 @@ public class ChanceButtons extends  Button {
 
         drawCard.addActionListener(new ActionListener() {
 
+            boolean drawn = false;
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Chance Card Drawn");
-
+                if(!drawn){
+                    //draw a card
+                    beenPayed();
+                }
+                else{
+                    System.out.println("already drawn this card");
+                }
             }
-
+            void beenPayed(){
+                drawn = true;
+            }
         } );
 
         return drawCard;

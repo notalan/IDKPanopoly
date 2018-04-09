@@ -25,13 +25,20 @@ public class CommunityChestButtons extends Button{
         JButton drawCard = new JButton("Draw Card");
 
         drawCard.addActionListener(new ActionListener() {
-
+            boolean drawn = false;
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Community Chest Card Drawn");
-
+                if(!drawn){
+                    //draw a card
+                    beenPayed();
+                }
+                else{
+                    System.out.println("already drawn");
+                }
             }
-
+            void beenPayed(){
+                drawn = true;
+            }
         } );
 
         return drawCard;

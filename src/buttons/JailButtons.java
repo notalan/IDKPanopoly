@@ -27,14 +27,21 @@ public class JailButtons extends Button {
         JButton pay = new JButton("Pay to get out");
 
         pay.addActionListener(new ActionListener() {
-
+            boolean payed = false;
             @Override
             public void actionPerformed(ActionEvent e) {
-                new ExpenditureTransaction(PLAYER, 50.0);
-
+                if(!payed){
+                    new ExpenditureTransaction(PLAYER, 50);
+                    beenPayed();
+                }
+                else{
+                    System.out.println("already payed" + PLAYER.balance());
+                }
             }
-
-        } );
+            void beenPayed(){
+                payed = true;
+            }
+        });
 
         return pay;
     }
