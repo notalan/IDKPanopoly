@@ -46,7 +46,7 @@ public class ImproveProperty extends Property implements Constructable, Sellable
 
     @Override
     public boolean getSellable() {
-        if (numberOfHouses > 0 && numberOfHotels > 0) {
+        if (numberOfHouses > 0 || numberOfHotels > 0) {
             return true;
         } else return false;
     }

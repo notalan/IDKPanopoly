@@ -40,7 +40,7 @@ class Initialiser {
         Tile[] tileArray = new Tile[40];
         tileArray[0] = GO;
         tileArray[2] = new Property ("cardTile1", 530,  665, 0, 0, 0);
-        tileArray[4] = new TaxTiles (0.1, 100, 200); // 420, 665
+        tileArray[4] = new TaxTiles ("tax1", 420,665,100, 200,2,3); // 420, 665
         tileArray[7] = new Property ("cardTile2", 250, 665, 0, 0, 0);
         tileArray[10] = new Jail    ("Jail", 50, 665);
         tileArray[12] = new Property("Electric Company", 50, 530, 150, 75, 4/* *diceroll */);
@@ -51,7 +51,7 @@ class Initialiser {
         tileArray[30] = new GoToJail("Go To Jail", 665, 50);
         tileArray[33] = new Property("cardTile5", 665, 250, 0, 0, 0);
         tileArray[36] = new Property("cardTile6", 665, 420, 0, 0, 0);
-        tileArray[38] = new TaxTiles (0.1, 100, 200); // 665, 530
+        tileArray[38] = new TaxTiles ("tax2", 665,530,100, 200,2,3); // 665, 530
 
         String[] stationName = new String[4];
         String[] stationlist = new String[8];
@@ -203,3 +203,4 @@ class Initialiser {
 
 
 }
+
