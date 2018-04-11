@@ -92,19 +92,27 @@ class Initialiser {
                 while(hasOccurredIn(domainList, domain)){
                     domain = getDomain();
                 }
+                boolean OccurredPreviously = false;
                 nameList = NOC.getAllKeysWithFieldValue("Domains", domain);
                 if (nameList.size() >= 3) {
-                    domainList[domainCount++] = domain;
-                    System.out.println(domain);
-                    for (int i = 0; i < 3; i++) {
-                        currentName = generateNameFromDomain(nameList);
-                        while (hasOccurredIn(ENTRIES, currentName)) {//if name has already been taken, get a new one to avoid repeats
-                            currentName = generateNameFromDomain(nameList);
+                    for (String n : nameList) {
+                        if (hasOccurredIn(ENTRIES, n)) {
+                            OccurredPreviously = true;
                         }
-                        ENTRIES[COUNT++] = currentName;
                     }
-                    numOfSets++;
-                    System.out.println("-------");
+                    if(!OccurredPreviously) {
+                        domainList[domainCount++] = domain;
+                        System.out.println(domain);
+                        for (int i = 0; i < 3; i++) {
+                            currentName = generateNameFromDomain(nameList);
+                            while (hasOccurredIn(ENTRIES, currentName)) {//if name has already been taken, get a new one to avoid repeats
+                                currentName = generateNameFromDomain(nameList);
+                            }
+                            ENTRIES[COUNT++] = currentName;
+                        }
+                        numOfSets++;
+                        System.out.println("-------");
+                    }
                 }
             }
             numOfSets = 0;
@@ -113,19 +121,24 @@ class Initialiser {
                 while(hasOccurredIn(domainList, domain)){
                     domain = getDomain();
                 }
+                boolean OccurredPreviously = false;
                 nameList = NOC.getAllKeysWithFieldValue("Domains", domain);
                 if (nameList.size() == 2) {
-                    domainList[domainCount++] = domain;
-                    System.out.println(domain);
-                    for (int i = 0; i < 2; i++) {
-                        currentName = generateNameFromDomain(nameList);
-                        while (hasOccurredIn(ENTRIES, currentName)) {
-                            currentName = generateNameFromDomain(nameList);
+                    for (String n : nameList) {
+                        if (hasOccurredIn(ENTRIES, n)) {
+                            OccurredPreviously = true;
                         }
-                        ENTRIES[COUNT++] = currentName;
                     }
-                    numOfSets++;
-                    System.out.println("-------");
+                    if(!OccurredPreviously) {
+                        domainList[domainCount++] = domain;
+                        System.out.println(domain);
+                        for (int i = 0; i < 2; i++) {
+                            currentName = nameList.elementAt(i);
+                            ENTRIES[COUNT++] = currentName;
+                        }
+                        numOfSets++;
+                        System.out.println("-------");
+                    }
                 }
             }
         } catch (IOException e) {
@@ -167,7 +180,6 @@ class Initialiser {
     private boolean hasOccurredIn(String[] list, String name){
         for(String entry: list){ //check if it has appeared before/if it is already on the board
             if(name == null){
-                System.out.println("name was null error");
                 return true;
             }
             if(name.equals(entry)){
