@@ -37,6 +37,13 @@ public class main {
         Board panopoly = new Board(); // Makes the entire frame, you add panels into it to divide it into board, console etc.
         panopoly.setLayout(new FlowLayout());
         JPanel panel = new JPanel();
+        Initialiser initialise = new Initialiser();
+        Tile[] tiles = initialise.tiles();
+        String[] names = {"Bill", "John"};
+        //players can be acquired properly later one
+
+        Player[] players = initialise.players(2, names, tiles);
+
 
         JLabel image = new JLabel(new ImageIcon(new URL("https://i.imgur.com/y7GC8xJ.png"))) {
             public void paint(Graphics g) {
@@ -53,8 +60,64 @@ public class main {
 
                 g.setColor(Color.CYAN);
                 g.drawOval(xCoord[2], yCoord[2], 10, 10);
-
                 // This is set to 4 players
+
+                // Tiles next
+                g.setColor(Color.white); // Changes the text colour to white
+                Font font1 = new Font("Comic Sans", Font.BOLD, 10);// This changes the font to comic sans and changes it to size 10
+                g.setFont(font1); // This sets the font for the text on the tiles
+
+                SpacingNames(g, tiles[1].getIdentifier(),557, 640);// Brown 1
+                g.drawString("60", 575, 625); // Price
+                SpacingNames(g, tiles[3].getIdentifier(),446, 640);// Brown 2
+                g.drawString("60", 465, 625); // Price
+
+                SpacingNames(g, tiles[6].getIdentifier(),278, 640);// Cyan/Light Blue 1
+                g.drawString("100", 296, 625); // Price
+                SpacingNames(g, tiles[8].getIdentifier(),168, 640);// Cyan/Light Blue 2
+                g.drawString("100", 186, 625); // Price
+                SpacingNames(g, tiles[9].getIdentifier(),112, 640);// Cyan/Light Blue 3
+                g.drawString("120", 130, 625); // Price
+
+                SpacingNamesSides(g, tiles[11].getIdentifier(),5, 565);// Magenta/Pink 1
+                g.drawString("140", 89, 585); // Price
+                SpacingNamesSides(g, tiles[13].getIdentifier(),5, 455);// Magenta/Pink 2
+                g.drawString("140", 89, 475); // Price
+                SpacingNamesSides(g, tiles[14].getIdentifier(),5, 400);// Magenta/Pink 3
+                g.drawString("160", 89, 425); // Price
+
+                SpacingNamesSides(g, tiles[16].getIdentifier(),5, 285);// Orange 1
+                g.drawString("180", 89, 310); // Price
+                SpacingNamesSides(g, tiles[18].getIdentifier(),5, 175);// Orange 2
+                g.drawString("180", 89, 200); // Price
+                SpacingNamesSides(g, tiles[19].getIdentifier(),5, 125);// Orange 3
+                g.drawString("200", 89, 145); // Price
+
+                SpacingNames(g, tiles[21].getIdentifier(),112, 13);// Red 1
+                g.drawString("220", 132, 103); // Price
+                SpacingNames(g, tiles[23].getIdentifier(),223, 13);// Red 2
+                g.drawString("220", 243, 103); // Price
+                SpacingNames(g, tiles[24].getIdentifier(),277, 13);// Red 3
+                g.drawString("240", 297, 103); // Price
+
+                SpacingNames(g, tiles[26].getIdentifier(),391, 13);// Yellow 1
+                g.drawString("260", 405, 103); // Price
+                SpacingNames(g, tiles[27].getIdentifier(),447, 13);// Yellow 2
+                g.drawString("260", 460, 103); // Price
+                SpacingNames(g, tiles[29].getIdentifier(),557, 13);// Yellow 3
+                g.drawString("280", 570, 103); // Price
+
+                SpacingNamesSides(g, tiles[31].getIdentifier(),630, 125);// Green 1
+                g.drawString("300", 610, 145); // Price
+                SpacingNamesSides(g, tiles[32].getIdentifier(),630, 180);// Green 2
+                g.drawString("300", 610, 200); // Price
+                SpacingNamesSides(g, tiles[34].getIdentifier(),630, 290);// Green 3
+                g.drawString("320", 610, 310); // Price
+
+                SpacingNamesSides(g, tiles[37].getIdentifier(),630, 455);// Blue 1
+                g.drawString("350", 610, 473); // Price
+                SpacingNamesSides(g, tiles[39].getIdentifier(),630, 565);// Blue 2
+                g.drawString("400", 610, 583); // Price
             }
         };
 
@@ -109,12 +172,6 @@ public class main {
         panopoly.pack();
         panopoly.setVisible(true);
 
-        Initialiser initialise = new Initialiser();
-        Tile[] tiles = initialise.tiles();
-        String[] names = {"Bill", "John"};
-        //players can be acquired properly later one
-
-        Player[] players = initialise.players(2, names, tiles);
 
         Player currentPlayer;
         Tile currentTile;
@@ -167,6 +224,45 @@ public class main {
                 i++;
             }
             gameEnd = true;
+        }
+    }
+
+    public static void SpacingNames(Graphics g, String toSplit, int x, int y) // top and bottom
+    {
+        String[] splittingString1 = toSplit.split(" ");
+        if(splittingString1.length == 1){
+            g.drawString(splittingString1[0], x, y + 75);
+        }
+        else if(splittingString1.length == 2) {
+            g.drawString(splittingString1[0], x, y);
+            g.drawString(splittingString1[1], x, y + 75);
+        }
+        else if(splittingString1.length == 3){
+            for (int i = 0; i < splittingString1.length; i++) {
+                g.drawString(splittingString1[i], x, y + i * 10);
+            }
+        }
+        else if(splittingString1.length == 4) {
+            for (int i = 0; i < splittingString1.length; i++) {
+                g.drawString(splittingString1[i], x, y + i * 10);
+            }
+        }
+    }
+
+    public static void SpacingNamesSides(Graphics g, String toSplit, int x, int y) // sides
+    {
+        String[] splittingString1 = toSplit.split(" ");
+        if (splittingString1.length == 1) {
+            g.drawString(splittingString1[0], x, y +  40);
+
+        } else if (splittingString1.length == 2) {
+            g.drawString(splittingString1[0], x, y);
+            g.drawString(splittingString1[1], x , y + 40);
+
+        } else if (splittingString1.length == 3) {
+            for (int i = 0; i < splittingString1.length; i++) {
+                g.drawString(splittingString1[i], x , y + i * 10);
+            }
         }
     }
 }
