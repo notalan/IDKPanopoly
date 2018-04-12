@@ -2,11 +2,7 @@ package buttons;
 
 import player.Player;
 import property.ImproveProperty;
-<<<<<<< Updated upstream
 import transactions.*;
-=======
-import property.Tile;
->>>>>>> Stashed changes
 
 import java.awt.Component;
 import java.awt.event.ActionEvent;
@@ -18,7 +14,6 @@ import javax.swing.JButton;
 
 public class PropertyButtons extends Buttons{
 
-<<<<<<< Updated upstream
 //    private Player PLAYER;
     private ImproveProperty TILE;
 
@@ -28,26 +23,16 @@ public class PropertyButtons extends Buttons{
         ArrayList<Component> buttonList = new ArrayList<>();
         buttonList.add(makeRoll());
 
-=======
-    public List<Component> showButtons(ImproveProperty currentTile, Player currentPlayer) {
-        ArrayList<Component> buttonList = new ArrayList<>();
-        buttonList.add(makeRoll());
->>>>>>> Stashed changes
         if (!currentTile.hasOwner()) {
             buttonList.add(makeBuy());
             buttonList.add(makeAuction());
         }
 
-<<<<<<< Updated upstream
        if(currentTile.hasOwner() && !currentTile.owner().equals(currentPlayer))
-=======
-       /*if(!currentTile.owner().equals(currentPlayer.name()))
->>>>>>> Stashed changes
         {
             buttonList.add(makePayRent());
         }
 
-<<<<<<< Updated upstream
 
         if(currentTile.hasOwner() && currentTile.owner().equals(currentPlayer))
         {
@@ -63,14 +48,6 @@ public class PropertyButtons extends Buttons{
                 buttonList.add(makeSell());
             }
         }
-=======
-        if(currentTile.owner().equals(currentPlayer.name()))
-        {
-            buttonList.add(makeBuild());
-            buttonList.add(makeSell());
-            buttonList.add(makeMortgage());
-        }*/
->>>>>>> Stashed changes
         return buttonList;
     }
 

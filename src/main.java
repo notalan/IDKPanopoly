@@ -236,11 +236,7 @@ public class main {
 
                 buttonPanel.remove(roll);
 
-<<<<<<< Updated upstream
                 ListIterator<Component> iterator = new ChooseButtons().showButtons(currentTile, currentPlayer[0]).listIterator();
-=======
-                ListIterator<Component> iterator = new ChooseButtons().showButtons(currentTile, currentPlayer).listIterator();
->>>>>>> Stashed changes
                 Component temp;
 
                 while(iterator.hasNext())
@@ -251,7 +247,6 @@ public class main {
                 }
                 buttonPanel.revalidate();
 
-<<<<<<< Updated upstream
                 try {
                     while (!turnEnd[0]) {
                         TimeUnit.MILLISECONDS.sleep(5);
@@ -259,11 +254,6 @@ public class main {
                 }
                 catch (Exception e){
                     e.printStackTrace();
-=======
-                while(!turnEnd[0])
-                {
-                    turnEnd[0] = false;
->>>>>>> Stashed changes
                 }
 
                 i++;
