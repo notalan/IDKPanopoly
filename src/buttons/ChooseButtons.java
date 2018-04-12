@@ -29,10 +29,6 @@ public class ChooseButtons {
         {
             return new ChanceButtons().showButtons(currentPlayer);
         }
-        else if(currentTile instanceof Property)
-        {
-            return new UtilityButtons().showButtons((Property) currentTile, currentPlayer);
-        }
         else if(currentTile instanceof TaxTiles)
         {
             return new TaxButtons().showButtons((TaxTiles)currentTile, currentPlayer);
