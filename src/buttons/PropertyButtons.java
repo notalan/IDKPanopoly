@@ -48,6 +48,12 @@ public class PropertyButtons extends Buttons{
                 buttonList.add(makeSell());
             }
         }
+
+        if(currentTile.hasOwner() && !currentTile.getMortgageable() && currentTile.owner().equals(currentPlayer))
+        {
+            buttonList.add(makeUnMortgage());
+        }
+
         return buttonList;
     }
 
@@ -171,5 +177,21 @@ public class PropertyButtons extends Buttons{
         } );
 
         return mortgage;
+    }
+
+    public JButton makeUnMortgage()
+    {
+        JButton unmortgage = new JButton("UnMortgage");
+
+        unmortgage.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               
+            }
+
+        } );
+
+        return unmortgage;
     }
 }
