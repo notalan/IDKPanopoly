@@ -2,7 +2,10 @@ package buttons;
 
 import dice.Dice;
 import board.Board;
+<<<<<<< Updated upstream:src/buttons/Buttons.java
 import player.Player;
+=======
+>>>>>>> Stashed changes:src/buttons/Button.java
 import property.Tile;
 
 import javax.swing.*;
@@ -14,15 +17,20 @@ import java.util.List;
 import java.awt.GraphicsEnvironment;
 import java.awt.GraphicsDevice;
 
-public class Button {
+public class Buttons {
 
     Player PLAYER;
     Tile TILE;
 
     static GraphicsDevice device = GraphicsEnvironment
             .getLocalGraphicsEnvironment().getScreenDevices()[0];
-    public List<Component> showButtons()
+<<<<<<< Updated upstream:src/buttons/Buttons.java
+    public List<Component> showButtons(Player player)
+=======
+    public List<Component> showButtons(Tile currentTile)
+>>>>>>> Stashed changes:src/buttons/Button.java
     {
+        PLAYER = player;
         ArrayList<Component> buttonList = new ArrayList<>();
         buttonList.add(makeRoll());
 

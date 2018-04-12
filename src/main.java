@@ -1,31 +1,28 @@
 import board.Board;
+import buttons.Buttons;
 import buttons.ChooseButtons;
 import dice.Dice;
 import player.Player;
-import property.ImproveProperty;
 import property.Tile;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ListIterator;
-import java.awt.GraphicsEnvironment;
-import java.awt.GraphicsDevice;
 import java.util.concurrent.TimeUnit;
 
 public class main {
-    public static int x1;
-    public static int x2;
-    public static int x3;
-    public static int x4;
-    public static int y1;
-    public static int y2;
-    public static int y3;
-    public static int y4;
+    //public static int x1;
+    //public static int x2;
+    //public static int x3;
+    //public static int x4;
+    //public static int y1;
+    //public static int y2;
+    //public static int y3;
+    //public static int y4;
 
     public static int[] xCoord = new int[4];
     public static int[] yCoord = new int[4];
@@ -159,6 +156,7 @@ public class main {
         });
 
         final boolean[] turnEnd = {false};
+        final boolean[] moved = {false};
 
         JButton finished = new JButton("Finished");
 
@@ -182,11 +180,26 @@ public class main {
         panopoly.setVisible(true);
 
 
-        Player currentPlayer;
+        final Player[] currentPlayer = {null};
         Tile currentTile;
         Dice dice = new Dice(); //Test rolling dice
         int i;
         boolean gameEnd = false;
+
+        JButton roll = new JButton("Roll");
+
+        roll.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Dice dice = new Dice();
+                int rolled_result = dice.rollDice(2, 6);
+                System.out.println(currentPlayer[0].name());
+                currentPlayer[0].move(rolled_result);
+                System.out.println("Rolled: " + rolled_result + " " + currentPlayer[0].Location().getIdentifier());
+                moved[0] = true;
+            }
+
+        } );
+
         while(!gameEnd) {
             i = 0;
             while (i < players.length) {
@@ -196,11 +209,12 @@ public class main {
                  */
                 buttonPanel.removeAll();
                 turnEnd[0] = false;
+                moved[0] = false;
 
-                currentPlayer = players[i % players.length];
-                System.out.println(currentPlayer.name());
+                currentPlayer[0] = players[i % players.length];
+                System.out.println(currentPlayer[0].name());
 
-                currentTile = currentPlayer.Location();
+                currentTile = currentPlayer[0].Location();
                 xCoord[i % players.length] = currentTile.getXCo();
                 yCoord[i % players.length] = currentTile.getYCo();
 
@@ -209,8 +223,24 @@ public class main {
                 buttonPanel.add(btn1);
                 buttonPanel.add(btn2);
                 buttonPanel.add(finished);
+                buttonPanel.add(roll);
 
+                try {
+                    while (!moved[0]) {
+                        TimeUnit.MILLISECONDS.sleep(5);
+                    }
+                }
+                catch (Exception e){
+                    e.printStackTrace();
+                }
+
+                buttonPanel.remove(roll);
+
+<<<<<<< Updated upstream
+                ListIterator<Component> iterator = new ChooseButtons().showButtons(currentTile, currentPlayer[0]).listIterator();
+=======
                 ListIterator<Component> iterator = new ChooseButtons().showButtons(currentTile, currentPlayer).listIterator();
+>>>>>>> Stashed changes
                 Component temp;
 
                 while(iterator.hasNext())
@@ -221,6 +251,7 @@ public class main {
                 }
                 buttonPanel.revalidate();
 
+<<<<<<< Updated upstream
                 try {
                     while (!turnEnd[0]) {
                         TimeUnit.MILLISECONDS.sleep(5);
@@ -228,6 +259,11 @@ public class main {
                 }
                 catch (Exception e){
                     e.printStackTrace();
+=======
+                while(!turnEnd[0])
+                {
+                    turnEnd[0] = false;
+>>>>>>> Stashed changes
                 }
 
                 i++;

@@ -18,6 +18,7 @@ public class Player implements Locatable, Interactable, Bankruptable{
         BALANCE = balance;
         CURRENT_TILE = startingTile;
         BOARD = board;
+<<<<<<< Updated upstream
         boolean IN_JAIL = false;
     }
 
@@ -49,6 +50,9 @@ public class Player implements Locatable, Interactable, Bankruptable{
     @Override
     public ArrayList<Tile> getMortProperties() {
         return MORTGAGED_PROPERTIES;
+=======
+        boolean inJail = false;
+>>>>>>> Stashed changes
     }
 
     @Override

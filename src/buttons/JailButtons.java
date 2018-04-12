@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JailButtons extends Button {
+public class JailButtons extends Buttons {
 
     public List<Component> showButtons(Player player)
     {
