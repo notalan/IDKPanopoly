@@ -118,6 +118,15 @@ public class main {
                 g.drawString("350", 610, 473); // Price
                 SpacingNamesSides(g, tiles[39].getIdentifier(),630, 565);// Blue 2
                 g.drawString("400", 610, 583); // Price
+
+                g.setColor(Color.lightGray); // Changes the text colour to light gray
+                Font font2 = new Font("Comic Sans", Font.BOLD, 10);// This changes the font to comic sans and changes it to size 10
+                g.setFont(font2); // This sets the font for the text on the tiles
+
+                SpacingNames(g, tiles[5].getIdentifier(),330, 640);// Transport 1
+                SpacingNamesSides(g, tiles[15].getIdentifier(),5, 340);// Transport 2
+                SpacingNames(g, tiles[25].getIdentifier(),332, 13);// Transport 3
+                SpacingNamesSides(g, tiles[35].getIdentifier(),630, 340);// Transport 4
             }
         };
 
