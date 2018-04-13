@@ -145,35 +145,35 @@ class Initialiser {
             e.printStackTrace();
         }
 
-        tileArray[1] = new ImproveProperty(ENTRIES[20], 585, 665, 60, 30, 2, 50); // browns
-        tileArray[3] = new ImproveProperty(ENTRIES[21], 470, 665, 60, 30, 4, 50);
+        tileArray[1] = new ImproveProperty(ENTRIES[20], "Brown",585, 665, 60, 30, 2, 50); // browns
+        tileArray[3] = new ImproveProperty(ENTRIES[21], "Brown",470, 665, 60, 30, 4, 50);
 
-        tileArray[6] = new ImproveProperty(ENTRIES[0], 305, 665, 100, 50, 6, 50); // light blue
-        tileArray[8] = new ImproveProperty(ENTRIES[1], 195, 665, 100, 50, 6, 50);
-        tileArray[9] = new ImproveProperty(ENTRIES[2], 140, 665, 120, 60, 8, 50);
+        tileArray[6] = new ImproveProperty(ENTRIES[0], "LBlue",305, 665, 100, 50, 6, 50); // light blue
+        tileArray[8] = new ImproveProperty(ENTRIES[1], "LBlue",195, 665, 100, 50, 6, 50);
+        tileArray[9] = new ImproveProperty(ENTRIES[2], "LBlue",140, 665, 120, 60, 8, 50);
 
-        tileArray[11] = new ImproveProperty(ENTRIES[3], 50, 580, 140, 70, 10, 100); // pink
-        tileArray[13] = new ImproveProperty(ENTRIES[4], 50, 470, 140, 70, 10, 100);
-        tileArray[14] = new ImproveProperty(ENTRIES[5], 50, 420, 160, 80, 12, 100);
+        tileArray[11] = new ImproveProperty(ENTRIES[3], "Pink",50, 580, 140, 70, 10, 100); // pink
+        tileArray[13] = new ImproveProperty(ENTRIES[4], "Pink",50, 470, 140, 70, 10, 100);
+        tileArray[14] = new ImproveProperty(ENTRIES[5], "Pink",50, 420, 160, 80, 12, 100);
 
-        tileArray[16] = new ImproveProperty(ENTRIES[6], 50, 305, 180, 90, 14, 100); // orange
-        tileArray[18] = new ImproveProperty(ENTRIES[7], 50, 190, 180, 90, 14, 100);
-        tileArray[19] = new ImproveProperty(ENTRIES[8], 50, 140, 200, 100, 16, 100);
+        tileArray[16] = new ImproveProperty(ENTRIES[6], "Orange", 50, 305, 180, 90, 14, 100); // orange
+        tileArray[18] = new ImproveProperty(ENTRIES[7], "Orange",50, 190, 180, 90, 14, 100);
+        tileArray[19] = new ImproveProperty(ENTRIES[8], "Orange",50, 140, 200, 100, 16, 100);
 
-        tileArray[21] = new ImproveProperty(ENTRIES[9], 140, 50, 220, 110, 18, 150); // red
-        tileArray[23] = new ImproveProperty(ENTRIES[10], 250, 50, 220, 110, 18, 150);
-        tileArray[24] = new ImproveProperty(ENTRIES[11], 305, 50, 240, 120, 20, 150);
+        tileArray[21] = new ImproveProperty(ENTRIES[9], "Red",140, 50, 220, 110, 18, 150); // red
+        tileArray[23] = new ImproveProperty(ENTRIES[10], "Red",250, 50, 220, 110, 18, 150);
+        tileArray[24] = new ImproveProperty(ENTRIES[11], "Red",305, 50, 240, 120, 20, 150);
 
-        tileArray[26] = new ImproveProperty(ENTRIES[12], 420, 50, 260, 130, 22, 150); // yellow
-        tileArray[27] = new ImproveProperty(ENTRIES[13], 470, 50, 260, 130, 22, 150);
-        tileArray[29] = new ImproveProperty(ENTRIES[14], 585, 50, 280, 140, 24, 150);
+        tileArray[26] = new ImproveProperty(ENTRIES[12], "Yellow",420, 50, 260, 130, 22, 150); // yellow
+        tileArray[27] = new ImproveProperty(ENTRIES[13], "Yellow",470, 50, 260, 130, 22, 150);
+        tileArray[29] = new ImproveProperty(ENTRIES[14], "Yellow",585, 50, 280, 140, 24, 150);
 
-        tileArray[31] = new ImproveProperty(ENTRIES[15], 665, 140, 300, 150, 26, 200); // green
-        tileArray[32] = new ImproveProperty(ENTRIES[16], 665, 190, 300, 150, 26, 200);
-        tileArray[34] = new ImproveProperty(ENTRIES[17], 665, 305, 320, 160, 28, 200);
+        tileArray[31] = new ImproveProperty(ENTRIES[15], "Green",665, 140, 300, 150, 26, 200); // green
+        tileArray[32] = new ImproveProperty(ENTRIES[16], "Green",665, 190, 300, 150, 26, 200);
+        tileArray[34] = new ImproveProperty(ENTRIES[17], "Green",665, 305, 320, 160, 28, 200);
 
-        tileArray[37] = new ImproveProperty(ENTRIES[18], 665, 470, 350, 175, 35, 200); // blue
-        tileArray[39] = new ImproveProperty(ENTRIES[19], 665, 580, 400, 200, 50, 200);
+        tileArray[37] = new ImproveProperty(ENTRIES[18], "DBlue",665, 470, 350, 175, 35, 200); // blue
+        tileArray[39] = new ImproveProperty(ENTRIES[19], "Dblue",665, 580, 400, 200, 50, 200);
         return tileArray;
     }
 

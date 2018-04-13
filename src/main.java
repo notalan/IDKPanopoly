@@ -53,7 +53,7 @@ public class main {
 
                 // Tiles next
                 g.setColor(Color.white); // Changes the text colour to white
-                Font font1 = new Font("Comic Sans", Font.BOLD, 10);// This changes the font to comic sans and changes it to size 10
+                Font font1 = new Font("Arial", Font.BOLD, 10);// This changes the font to comic sans and changes it to size 10
                 g.setFont(font1); // This sets the font for the text on the tiles
 
                 SpacingNames(g, tiles[1].getIdentifier(),557, 640);// Brown 1
@@ -61,11 +61,11 @@ public class main {
                 SpacingNames(g, tiles[3].getIdentifier(),446, 640);// Brown 2
                 g.drawString("60", 465, 625); // Price
 
-                SpacingNames(g, tiles[6].getIdentifier(),278, 640);// Cyan/Light Blue 1
+                SpacingNames(g, tiles[6].getIdentifier(),280, 640);// Cyan/Light Blue 1
                 g.drawString("100", 296, 625); // Price
-                SpacingNames(g, tiles[8].getIdentifier(),168, 640);// Cyan/Light Blue 2
+                SpacingNames(g, tiles[8].getIdentifier(),169, 640);// Cyan/Light Blue 2
                 g.drawString("100", 186, 625); // Price
-                SpacingNames(g, tiles[9].getIdentifier(),112, 640);// Cyan/Light Blue 3
+                SpacingNames(g, tiles[9].getIdentifier(),114, 640);// Cyan/Light Blue 3
                 g.drawString("120", 130, 625); // Price
 
                 SpacingNamesSides(g, tiles[11].getIdentifier(),5, 565);// Magenta/Pink 1
@@ -75,47 +75,47 @@ public class main {
                 SpacingNamesSides(g, tiles[14].getIdentifier(),5, 400);// Magenta/Pink 3
                 g.drawString("160", 89, 425); // Price
 
-                SpacingNamesSides(g, tiles[16].getIdentifier(),5, 285);// Orange 1
+                SpacingNamesSides(g, tiles[16].getIdentifier(),5, 290);// Orange 1
                 g.drawString("180", 89, 310); // Price
-                SpacingNamesSides(g, tiles[18].getIdentifier(),5, 175);// Orange 2
+                SpacingNamesSides(g, tiles[18].getIdentifier(),5, 180);// Orange 2
                 g.drawString("180", 89, 200); // Price
                 SpacingNamesSides(g, tiles[19].getIdentifier(),5, 125);// Orange 3
                 g.drawString("200", 89, 145); // Price
 
-                SpacingNames(g, tiles[21].getIdentifier(),112, 13);// Red 1
+                SpacingNames(g, tiles[21].getIdentifier(),114, 13);// Red 1
                 g.drawString("220", 132, 103); // Price
-                SpacingNames(g, tiles[23].getIdentifier(),223, 13);// Red 2
+                SpacingNames(g, tiles[23].getIdentifier(),225, 13);// Red 2
                 g.drawString("220", 243, 103); // Price
-                SpacingNames(g, tiles[24].getIdentifier(),277, 13);// Red 3
+                SpacingNames(g, tiles[24].getIdentifier(),280, 13);// Red 3
                 g.drawString("240", 297, 103); // Price
 
-                SpacingNames(g, tiles[26].getIdentifier(),391, 13);// Yellow 1
+                SpacingNames(g, tiles[26].getIdentifier(),390, 13);// Yellow 1
                 g.drawString("260", 405, 103); // Price
-                SpacingNames(g, tiles[27].getIdentifier(),447, 13);// Yellow 2
+                SpacingNames(g, tiles[27].getIdentifier(),445, 13);// Yellow 2
                 g.drawString("260", 460, 103); // Price
-                SpacingNames(g, tiles[29].getIdentifier(),557, 13);// Yellow 3
+                SpacingNames(g, tiles[29].getIdentifier(),555, 13);// Yellow 3
                 g.drawString("280", 570, 103); // Price
 
-                SpacingNamesSides(g, tiles[31].getIdentifier(),630, 125);// Green 1
+                SpacingNamesSides(g, tiles[31].getIdentifier(),630, 123);// Green 1
                 g.drawString("300", 610, 145); // Price
-                SpacingNamesSides(g, tiles[32].getIdentifier(),630, 180);// Green 2
+                SpacingNamesSides(g, tiles[32].getIdentifier(),630, 177);// Green 2
                 g.drawString("300", 610, 200); // Price
-                SpacingNamesSides(g, tiles[34].getIdentifier(),630, 290);// Green 3
+                SpacingNamesSides(g, tiles[34].getIdentifier(),630, 287);// Green 3
                 g.drawString("320", 610, 310); // Price
 
-                SpacingNamesSides(g, tiles[37].getIdentifier(),630, 455);// Blue 1
+                SpacingNamesSides(g, tiles[37].getIdentifier(),633, 455);// Blue 1
                 g.drawString("350", 610, 473); // Price
-                SpacingNamesSides(g, tiles[39].getIdentifier(),630, 565);// Blue 2
+                SpacingNamesSides(g, tiles[39].getIdentifier(),633, 565);// Blue 2
                 g.drawString("400", 610, 583); // Price
 
                 g.setColor(Color.lightGray); // Changes the text colour to light gray
                 Font font2 = new Font("Comic Sans", Font.BOLD, 10);// This changes the font to comic sans and changes it to size 10
                 g.setFont(font2); // This sets the font for the text on the tiles
 
-                SpacingNames(g, tiles[5].getIdentifier(),330, 640);// Transport 1
-                SpacingNamesSides(g, tiles[15].getIdentifier(),5, 340);// Transport 2
+                SpacingNames(g, tiles[5].getIdentifier(),335, 640);// Transport 1
+                SpacingNamesSides(g, tiles[15].getIdentifier(),5, 345);// Transport 2
                 SpacingNames(g, tiles[25].getIdentifier(),332, 13);// Transport 3
-                SpacingNamesSides(g, tiles[35].getIdentifier(),630, 340);// Transport 4
+                SpacingNamesSides(g, tiles[35].getIdentifier(),630, 342);// Transport 4
             }
         };
 
@@ -261,15 +261,47 @@ public class main {
     {
         String[] splittingString1 = toSplit.split(" ");
         if(splittingString1.length == 1){
-            g.drawString(splittingString1[0], x, y + 75);
+            if(splittingString1[0].length() >= 9){
+                String furtherSplit = splittingString1[0].substring(0, 6); // deals with names that are too large for tiles like groundskeeper
+                g.drawString(furtherSplit + "-", x, y + 65);
+                g.drawString(splittingString1[0].substring(6, splittingString1[0].length()) , x, y + 75);
+            }
+            else {
+                g.drawString(splittingString1[0], x, y + 75);
+            }
         }
         else if(splittingString1.length == 2) {
-            g.drawString(splittingString1[0], x, y);
-            g.drawString(splittingString1[1], x, y + 75);
+            if(splittingString1[0].length() > 9){
+                String furtherSplit = splittingString1[0].substring(0, 6); // deals with names that are too large for tiles like groundskeeper
+                g.drawString(furtherSplit + "-", x, y);
+                g.drawString(splittingString1[0].substring(6, splittingString1[0].length()) , x, y + 10);
+            }
+            else {
+                g.drawString(splittingString1[0], x, y);
+            }
+            if(splittingString1[1].length() > 9){
+                String furtherSplit = splittingString1[1].substring(0, 6); // deals with names that are too large for tiles like groundskeeper
+                g.drawString(furtherSplit + "-", x, y + 65);
+                g.drawString(splittingString1[1].substring(6, splittingString1[1].length()) , x, y + 75);
+            }
+            else {
+                g.drawString(splittingString1[1], x, y + 75);
+            }
         }
         else if(splittingString1.length == 3){
+            int total = 0;
             for (int i = 0; i < splittingString1.length; i++) {
-                g.drawString(splittingString1[i], x, y + i * 10);
+                if(splittingString1[i].length() > 9){
+                    String furtherSplit = splittingString1[i].substring(0, 6); // deals with names that are too large for tiles like groundskeeper
+                    g.drawString(furtherSplit + "-", x, y + total);
+                    total+=10;
+                    g.drawString(splittingString1[i].substring(6, splittingString1[i].length()) , x, y + total);
+                    total+=10;
+                }
+                else {
+                    g.drawString(splittingString1[i], x, y + total);
+                    total+=10;
+                }
             }
         }
         else if(splittingString1.length == 4) {

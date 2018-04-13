@@ -5,16 +5,19 @@ public class ImproveProperty extends Property implements Constructable, Sellable
     private int numberOfHouses;
     private int numberOfHotels;
     private int housePrices;
+    public String colourOfTiles;
+    private boolean monopolied;
 
-    public ImproveProperty(String name, int xco, int yco, int price, double mortgagePrice, double rent, int housePrice) {
+    public ImproveProperty(String name, String colourOfTile, int xco, int yco, int price, double mortgagePrice, double rent, int housePrice) {
         super(name, xco, yco, price, mortgagePrice, rent);
         housePrices = housePrice;
+        colourOfTiles = colourOfTile;
 
     }
 
     @Override
     public boolean getConstructable() {
-        if (countHouses() == 4 && countHotels() == 1) {
+        if (countHouses() == 4 && countHotels() == 1 && monopolied) {
             return false;
         } else return true;
     }
@@ -60,4 +63,18 @@ public class ImproveProperty extends Property implements Constructable, Sellable
     public void sellHotel() {
         numberOfHotels--;
     }
+
+
+    public boolean monopolySet() // Colour Check
+    {
+        return monopolied = true;
+    }
+
+    public boolean monopolyCheck()
+    {
+        return monopolied;
+    }
+
+    // monopoly function boolean here
+
 }
