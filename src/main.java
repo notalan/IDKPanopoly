@@ -15,17 +15,9 @@ import java.util.ListIterator;
 import java.util.concurrent.TimeUnit;
 
 public class main {
-    //public static int x1;
-    //public static int x2;
-    //public static int x3;
-    //public static int x4;
-    //public static int y1;
-    //public static int y2;
-    //public static int y3;
-    //public static int y4;
 
-    public static int[] xCoord = new int[4];
-    public static int[] yCoord = new int[4];
+    private static int[] xCoord = new int[4];
+    private static int[] yCoord = new int[4];
 
     static GraphicsDevice device = GraphicsEnvironment
             .getLocalGraphicsEnvironment().getScreenDevices()[0];
@@ -214,12 +206,12 @@ public class main {
                 currentPlayer[0] = players[i % players.length];
                 System.out.println(currentPlayer[0].name());
 
+
                 currentTile = currentPlayer[0].Location();
                 xCoord[i % players.length] = currentTile.getXCo();
                 yCoord[i % players.length] = currentTile.getYCo();
 
                 image.repaint();
-
                 buttonPanel.add(btn1);
                 buttonPanel.add(btn2);
                 buttonPanel.add(finished);
@@ -236,6 +228,9 @@ public class main {
 
                 buttonPanel.remove(roll);
 
+                currentTile = currentPlayer[0].Location();
+                xCoord[i % players.length] = currentTile.getXCo();
+                yCoord[i % players.length] = currentTile.getYCo();
                 ListIterator<Component> iterator = new ChooseButtons().showButtons(currentTile, currentPlayer[0]).listIterator();
                 Component temp;
 
@@ -246,7 +241,7 @@ public class main {
                     buttonPanel.add(temp);
                 }
                 buttonPanel.revalidate();
-
+                image.repaint();
                 try {
                     while (!turnEnd[0]) {
                         TimeUnit.MILLISECONDS.sleep(5);
@@ -262,7 +257,7 @@ public class main {
         }
     }
 
-    public static void SpacingNames(Graphics g, String toSplit, int x, int y) // top and bottom
+    private static void SpacingNames(Graphics g, String toSplit, int x, int y) // top and bottom
     {
         String[] splittingString1 = toSplit.split(" ");
         if(splittingString1.length == 1){
@@ -284,7 +279,7 @@ public class main {
         }
     }
 
-    public static void SpacingNamesSides(Graphics g, String toSplit, int x, int y) // sides
+    private static void SpacingNamesSides(Graphics g, String toSplit, int x, int y) // sides
     {
         String[] splittingString1 = toSplit.split(" ");
         if (splittingString1.length == 1) {
@@ -301,51 +296,3 @@ public class main {
         }
     }
 }
-
-/*       x, y
-0    Go = 665 665
-    --Bottom line--
-1    585 665
-2   530
-3   470
-4    420
-5    360
-6    305
-7    250
-8    195
-9    140
-
-10 JAIL = 50 665
-    --Left--
-11    50 580
-12       530
-13       470
-14       420
-15       360
-16       305
-17       250
-18       190
-19       140
-20    FREE PARKING 50 60
-    --top--
-21    140 50
-22    195
-3    250
-4    305
-5    360
-6    420
-7    470
-8    530
-9    585
-30    GO TO JAIL 665 50
-    --right--
-1    665 140
-2        190
-3        250
-4        305
-5        360
-6        420
-7        470
-8        530
-9        580
- */
