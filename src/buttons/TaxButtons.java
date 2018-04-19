@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TaxButtons extends Button{
+public class TaxButtons extends Buttons{
 
 //    private Player PLAYER;
 //    private TaxTiles TILE;

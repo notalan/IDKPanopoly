@@ -12,7 +12,7 @@ import java.util.List;
 
 import javax.swing.JButton;
 
-public class PropertyButtons extends Button{
+public class PropertyButtons extends Buttons{
 
 //    private Player PLAYER;
     private ImproveProperty TILE;
@@ -48,6 +48,12 @@ public class PropertyButtons extends Button{
                 buttonList.add(makeSell());
             }
         }
+
+        if(currentTile.hasOwner() && !currentTile.getMortgageable() && currentTile.owner().equals(currentPlayer))
+        {
+            buttonList.add(makeUnMortgage());
+        }
+
         return buttonList;
     }
 
@@ -171,5 +177,21 @@ public class PropertyButtons extends Button{
         } );
 
         return mortgage;
+    }
+
+    public JButton makeUnMortgage()
+    {
+        JButton unmortgage = new JButton("UnMortgage");
+
+        unmortgage.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               
+            }
+
+        } );
+
+        return unmortgage;
     }
 }

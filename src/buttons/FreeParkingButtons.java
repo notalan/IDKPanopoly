@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FreeParkingButtons extends Button{
+public class FreeParkingButtons extends Buttons{
     public List<Component> showButtons()
     {
         ArrayList<Component> buttonList = new ArrayList<>();

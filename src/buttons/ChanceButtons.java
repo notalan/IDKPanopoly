@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ChanceButtons extends  Button {
+public class ChanceButtons extends  Buttons {
     public List<Component> showButtons(Player currentPlayer)
     {
         PLAYER = currentPlayer;

@@ -14,13 +14,16 @@ import java.util.List;
 import java.awt.GraphicsEnvironment;
 import java.awt.GraphicsDevice;
 
-public class Button {
+public class Buttons {
 
     Player PLAYER;
     Tile TILE;
 
-    public List<Component> showButtons()
+    static GraphicsDevice device = GraphicsEnvironment
+            .getLocalGraphicsEnvironment().getScreenDevices()[0];
+    public List<Component> showButtons(Player player)
     {
+        PLAYER = player;
         ArrayList<Component> buttonList = new ArrayList<>();
         buttonList.add(makeRoll());
 
