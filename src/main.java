@@ -52,7 +52,7 @@ public class main {
                 super.paint(g);
 
                 try {
-                    BufferedImage image = ImageIO.read(new File("C:\\Users\\1997a\\Documents\\IDKPanopoly\\src\\tokenImages\\spaceboat.png"));
+                    BufferedImage image = ImageIO.read(new File("tokenImages/spaceboat.png"));
                     g.drawImage(image, xCoord[0]-50, yCoord[0]-50,null);
                 } catch (IOException e) {
                     e.printStackTrace();
