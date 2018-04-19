@@ -1,17 +1,27 @@
 import board.Board;
-import buttons.Buttons;
+import board.MainMenu;
+import board.MainMenuButtons;
+import board.PlayerMenu;
 import buttons.ChooseButtons;
 import dice.Dice;
 import player.Player;
+import property.ImproveProperty;
 import property.Tile;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ListIterator;
+import java.awt.GraphicsEnvironment;
+import java.awt.GraphicsDevice;
 import java.util.concurrent.TimeUnit;
 
 public class main {
@@ -24,8 +34,11 @@ public class main {
 
     public static void main(String[] args) throws MalformedURLException {
         Board panopoly = new Board(); // Makes the entire frame, you add panels into it to divide it into board, console etc.
+        panopoly.setBackground(Color.BLACK);
+        MainMenu main_menu = new MainMenu(panopoly);
         panopoly.setLayout(new FlowLayout());
         JPanel panel = new JPanel();
+        panel.setBackground(Color.BLACK);
         Initialiser initialise = new Initialiser();
         Tile[] tiles = initialise.tiles();
         String[] names = {"Bill", "John"};
@@ -34,21 +47,29 @@ public class main {
         Player[] players = initialise.players(2, names, tiles);
 
 
-        JLabel image = new JLabel(new ImageIcon(new URL("https://i.imgur.com/y7GC8xJ.png"))) {
+        JLabel image = new JLabel(new ImageIcon("Resources/Images/PanopolyBoard.png")) {
             public void paint(Graphics g) {
                 super.paint(g);
 
-                g.setColor(Color.red); //Colour placeholder for the player - will add images later
-                g.drawOval(xCoord[0], yCoord[0], 10, 10);
+                try {
+                    BufferedImage image = ImageIO.read(new File("C:\\Users\\1997a\\Documents\\IDKPanopoly\\src\\tokenImages\\spaceboat.png"));
+                    g.drawImage(image, xCoord[0]-50, yCoord[0]-50,null);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                g.setColor(Color.red);
+
 
                 g.setColor(Color.blue);
-                g.drawOval(xCoord[1], yCoord[1], 10, 10);
+                g.drawOval(xCoord[1]+5, yCoord[1], 30, 30);
 
                 g.setColor(Color.GREEN);
-                g.drawOval(xCoord[2], yCoord[2], 10, 10);
+                g.drawOval(xCoord[2]+10, yCoord[2], 30, 30);
 
                 g.setColor(Color.CYAN);
-                g.drawOval(xCoord[2], yCoord[2], 10, 10);
+                g.drawOval(xCoord[3]+15, yCoord[3], 30, 30);
+
                 // This is set to 4 players
 
                 // Tiles next
@@ -125,6 +146,7 @@ public class main {
         panel.add(image);
 
         JPanel buttonPanel = new JPanel();
+        buttonPanel.setBackground(Color.BLACK);
         buttonPanel.setLayout(new GridLayout(10,1));
 
         panel.add(buttonPanel);
@@ -169,7 +191,7 @@ public class main {
         panopoly.getContentPane().add(panel, FlowLayout.LEFT);
         panopoly.setUndecorated(true); // hides close, minimize, fullscreen
         panopoly.pack();
-        panopoly.setVisible(true);
+        panopoly.setVisible(false);
 
 
         final Player[] currentPlayer = {null};
