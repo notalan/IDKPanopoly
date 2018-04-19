@@ -19,8 +19,6 @@ public class Button {
     Player PLAYER;
     Tile TILE;
 
-    static GraphicsDevice device = GraphicsEnvironment
-            .getLocalGraphicsEnvironment().getScreenDevices()[0];
     public List<Component> showButtons()
     {
         ArrayList<Component> buttonList = new ArrayList<>();
