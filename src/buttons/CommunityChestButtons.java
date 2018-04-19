@@ -1,5 +1,6 @@
 package buttons;
 
+import chestChanceCards.Chooser;
 import player.Player;
 
 import javax.swing.*;
@@ -8,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class CommunityChestButtons extends Buttons{
     public List<Component> showButtons(Player currentPlayer)
@@ -29,7 +31,9 @@ public class CommunityChestButtons extends Buttons{
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(!drawn){
-                    //draw a card
+                    Random rand = new Random();
+                    int choice = rand.nextInt(100) + 1;
+                    new Chooser(choice, PLAYER).callCard();
                     beenPayed();
                 }
                 else{
