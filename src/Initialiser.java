@@ -39,18 +39,18 @@ class Initialiser {
     Tile[] tiles(){
         Tile[] tileArray = new Tile[40];
         tileArray[0] = GO;
-        tileArray[2] = new Property ("cardTile1", 530,  665, 0, 0, 0);
+        tileArray[2] = new CardTIle ( 530,  665);
         tileArray[4] = new TaxTiles ("tax1", 420,665,100, 200,2,3); // 420, 665
-        tileArray[7] = new Property ("cardTile2", 250, 665, 0, 0, 0);
+        tileArray[7] = new CardTIle ( 250, 665);
         tileArray[10] = new Jail    ("Jail", 50, 665);
         tileArray[12] = new Property("Electric Company", 50, 530, 150, 75, 4/* *diceroll */);
-        tileArray[17] = new Property("cardTile3", 50, 250, 0, 0, 0);
+        tileArray[17] = new CardTIle(50, 250);
         tileArray[20] = new FreeParking("Free Parking", 50, 60);
-        tileArray[22] = new Property("cardTile4", 195, 50, 0, 0, 0);
+        tileArray[22] = new CardTIle(195, 50);
         tileArray[28] = new Property("Water Works", 530, 50, 150, 75, 4/* *diceroll */);
         tileArray[30] = new GoToJail("Go To Jail", 665, 50);
-        tileArray[33] = new Property("cardTile5", 665, 250, 0, 0, 0);
-        tileArray[36] = new Property("cardTile6", 665, 420, 0, 0, 0);
+        tileArray[33] = new CardTIle( 665, 250);
+        tileArray[36] = new CardTIle( 665, 420);
         tileArray[38] = new TaxTiles ("tax2", 665,530,100, 200,2,3); // 665, 530
 
         String[] stationName = new String[4];
@@ -70,7 +70,8 @@ class Initialiser {
             stationName[i] = first + " " + second;
             //System.out.println(stationName[i]);
         }
-        tileArray[5] = new StationTile (stationName[0], 360, 665, domainList);
+
+        tileArray[5] = new StationTile(stationName[0], 360, 665, domainList);
         tileArray[15] = new StationTile(stationName[1], 50, 360, domainList);
         tileArray[25] = new StationTile(stationName[2], 360, 50, domainList);
         tileArray[35] = new StationTile(stationName[3], 665, 360, domainList);

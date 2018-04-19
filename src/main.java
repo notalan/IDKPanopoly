@@ -129,7 +129,7 @@ public class main {
                 SpacingNamesSides(g, tiles[39].getIdentifier(),633, 565);// Blue 2
                 g.drawString("400", 610, 583); // Price
 
-                g.setColor(Color.lightGray); // Changes the text colour to light gray
+                g.setColor(Color.yellow); // Changes the text colour to yellow
                 Font font2 = new Font("Comic Sans", Font.BOLD, 10);// This changes the font to comic sans and changes it to size 10
                 g.setFont(font2); // This sets the font for the text on the tiles
 
