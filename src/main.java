@@ -82,6 +82,8 @@ public class main {
                 SpacingNames(g, tiles[3].getIdentifier(),446, 640);// Brown 2
                 g.drawString("60", 465, 625); // Price
 
+                SpacingNames(g, tiles[4].getIdentifier(),391 ,640); // Tax tile 1
+
                 SpacingNames(g, tiles[6].getIdentifier(),280, 640);// Cyan/Light Blue 1
                 g.drawString("100", 296, 625); // Price
                 SpacingNames(g, tiles[8].getIdentifier(),169, 640);// Cyan/Light Blue 2
@@ -128,6 +130,8 @@ public class main {
                 g.drawString("350", 610, 473); // Price
                 SpacingNamesSides(g, tiles[39].getIdentifier(),633, 565);// Blue 2
                 g.drawString("400", 610, 583); // Price
+
+                SpacingNamesSides(g, tiles[38].getIdentifier(), 633, 510); // Tax tile 2
 
                 g.setColor(Color.yellow); // Changes the text colour to yellow
                 Font font2 = new Font("Comic Sans", Font.BOLD, 10);// This changes the font to comic sans and changes it to size 10
@@ -228,7 +232,6 @@ public class main {
                 currentPlayer[0] = players[i % players.length];
                 System.out.println(currentPlayer[0].name());
 
-
                 currentTile = currentPlayer[0].Location();
                 xCoord[i % players.length] = currentTile.getXCo();
                 yCoord[i % players.length] = currentTile.getYCo();
@@ -275,7 +278,7 @@ public class main {
 
                 i++;
             }
-            gameEnd = true;
+            //gameEnd = true;
         }
     }
 
