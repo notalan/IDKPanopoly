@@ -3,7 +3,9 @@ package buttons;
 import dice.Dice;
 import board.Board;
 import player.Player;
+import property.ImproveProperty;
 import property.Tile;
+import transactions.MortgageTransaction;
 
 import javax.swing.*;
 import java.awt.*;
@@ -26,6 +28,8 @@ public class Buttons {
         PLAYER = player;
         ArrayList<Component> buttonList = new ArrayList<>();
         buttonList.add(makeRoll());
+        buttonList.add(makeMortgage());
+        buttonList.add(makeUnMortgage());
 
         return buttonList;
     }
@@ -47,5 +51,35 @@ public class Buttons {
 
         } );
         return roll;
+    }
+
+    public JButton makeMortgage() {
+        JButton mortgage = new JButton("Mortgage");
+
+        mortgage.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new MortgageTransaction(PLAYER, (ImproveProperty) TILE);
+            }
+
+        });
+
+        return mortgage;
+    }
+
+    public JButton makeUnMortgage() {
+        JButton unmortgage = new JButton("UnMortgage");
+
+        unmortgage.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+
+        });
+
+        return unmortgage;
     }
 }
