@@ -20,7 +20,7 @@ public class TaxButtons extends Buttons{
         TILE = tile;
 
         ArrayList<Component> buttonList = new ArrayList<>();
-        buttonList.add(makeRoll());
+        //buttonList.add(makeRoll());
         buttonList.add(makeTax());
         return buttonList;
     }

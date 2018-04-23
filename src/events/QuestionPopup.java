@@ -24,70 +24,71 @@ public class QuestionPopup extends JFrame {
         p.add(Box.createRigidArea(new Dimension(400, 20)));
 
         String kdir = "DATA/TSV Lists/";
-        if(input[0].equals("Seen Wearing")){
-            KnowledgeBaseModule clothes = new KnowledgeBaseModule(kdir + "Veale's clothing line.txt", 1);
-            String det = clothes.getFirstValue("Determiner", input[5]) + " ";
-            if(det.equals(null + " ")){
-                det = "";
-            }
-            top = new JLabel("Which person would you see wearing " + det + input[5]+ "?");
-            top.setAlignmentX(Component.CENTER_ALIGNMENT);
-            p.add(top);
-        }
-        else if(input[0].equals("Weapon of Choice")){
-            KnowledgeBaseModule weapons = new KnowledgeBaseModule("DATA/TSV Lists/Veale's weapon arsenal.txt", 1);
-            KnowledgeBaseModule NOC = new KnowledgeBaseModule("DATA/TSV Lists/Veale's The NOC List.txt", 0);
-            String opponent = NOC.getFirstValue("Opponent", input[6]);
-            String affordance = weapons.getFirstValue("Affordances", input[5]);
-            String det = weapons.getFirstValue("Determiner", input[5]) + " ";
-            if(det.equals(null + " ")){
-                det = "";
-            }
-            String[] affordanceSplit =  affordance.split(" ");
-            String assualting = "";
-            if(opponent != null) {
-                for (int i = 0; i < affordanceSplit.length; i++) {
-                    assualting += affordanceSplit[i] + " ";
-                    if (i == 0) {
-                        assualting += opponent + " ";
+        String det;
+        switch(input[0]) {
+            case "Seen Wearing":
+                KnowledgeBaseModule clothes = new KnowledgeBaseModule(kdir + "Veale's clothing line.txt", 1);
+                det = clothes.getFirstValue("Determiner", input[5]) + " ";
+                if (det.equals(null + " ")) {
+                    det = "";
+                }
+                top = new JLabel("Which person would you see wearing " + det + input[5] + "?");
+                top.setAlignmentX(Component.CENTER_ALIGNMENT);
+                p.add(top);
+                break;
+            case "Weapon of Choice":
+                KnowledgeBaseModule weapons = new KnowledgeBaseModule("DATA/TSV Lists/Veale's weapon arsenal.txt", 1);
+                KnowledgeBaseModule NOC = new KnowledgeBaseModule("DATA/TSV Lists/Veale's The NOC List.txt", 0);
+                String opponent = NOC.getFirstValue("Opponent", input[6]);
+                String affordance = weapons.getFirstValue("Affordances", input[5]);
+                det = weapons.getFirstValue("Determiner", input[5]) + " ";
+                if (det.equals(null + " ")) {
+                    det = "";
+                }
+                String[] affordanceSplit = affordance.split(" ");
+                String assualting = "";
+                if (opponent != null) {
+                    for (int i = 0; i < affordanceSplit.length; i++) {
+                        assualting += affordanceSplit[i] + " ";
+                        if (i == 0) {
+                            assualting += opponent + " ";
+                        }
                     }
                 }
-            }
-            if(assualting.equals("")) {
-                top = new JLabel("You see someone with " + det + input[5] + ", who is it?");
+                if (assualting.equals("")) {
+                    top = new JLabel("You see someone with " + det + input[5] + ", who is it?");
+                    top.setAlignmentX(Component.CENTER_ALIGNMENT);
+                    p.add(top);
+                } else {
+                    top = new JLabel("You see someone " + assualting);
+                    JLabel newLine = new JLabel(det + input[5] + ", who is it?");
+                    newLine.setAlignmentX(Component.CENTER_ALIGNMENT);
+                    top.setAlignmentX(Component.CENTER_ALIGNMENT);
+                    p.add(top);
+                    p.add(newLine);
+                }
+                break;
+            case "Vehicle of Choice":
+                KnowledgeBaseModule vehicles = new KnowledgeBaseModule("DATA/TSV Lists/Veale's vehicle fleet.txt", 1);
+                affordance = vehicles.getFirstValue("Affordances", input[5]) + " ";
+                det = vehicles.getFirstValue("Determiner", input[5]) + " ";
+
+                if (det.equals(" ")) {
+                    det = "";
+                }
+                if (affordance.equals(" ")) {
+                    affordance = "";
+                }
+                top = new JLabel("You see someone " + affordance + det + input[5] + ", who is it?");
                 top.setAlignmentX(Component.CENTER_ALIGNMENT);
                 p.add(top);
-            }
-            else {
-                top = new JLabel("You see someone " + assualting);
-                JLabel newLine = new JLabel(det + input[5] + ", who is it?");
-                newLine.setAlignmentX(Component.CENTER_ALIGNMENT);
+                break;
+            case "Typical Activity":
+                top = new JLabel("Whom might you see " + input[5] + "?");
                 top.setAlignmentX(Component.CENTER_ALIGNMENT);
                 p.add(top);
-                p.add(newLine);
-            }
+                break;
         }
-        else if(input[0].equals("Vehicle of Choice")){
-            KnowledgeBaseModule vehicles = new KnowledgeBaseModule("DATA/TSV Lists/Veale's vehicle fleet.txt", 1);
-            String affordance = vehicles.getFirstValue("Affordances", input[5]) + " ";
-            String det = vehicles.getFirstValue("Determiner", input[5]) + " ";
-
-            if(det.equals(" ")){
-                det = "";
-            }
-            if(affordance.equals(" ")){
-                affordance = "";
-            }
-            top = new JLabel("You see someone " + affordance + det  + input[5] + ", who is it?");
-            top.setAlignmentX(Component.CENTER_ALIGNMENT);
-            p.add(top);
-        }
-        else{
-            top = new JLabel("Whom might you see " + input[5] + "?");
-            top.setAlignmentX(Component.CENTER_ALIGNMENT);
-            p.add(top);
-        }
-
 
         p.add(Box.createRigidArea(new Dimension(400, 50)));
 

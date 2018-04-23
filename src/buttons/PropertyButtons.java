@@ -21,7 +21,7 @@ public class PropertyButtons extends Buttons {
         PLAYER = currentPlayer;
         TILE = currentTile;
         ArrayList<Component> buttonList = new ArrayList<>();
-        buttonList.add(makeRoll());
+        //buttonList.add(makeRoll());
 
         if (!currentTile.hasOwner()) {
             buttonList.add(makeBuy());

@@ -16,8 +16,10 @@ public class JailButtons extends Buttons {
     {
         PLAYER = player;
         ArrayList<Component> buttonList = new ArrayList<>();
-        buttonList.add(makeRoll());
-        buttonList.add(makePay());
+        //buttonList.add(makeRoll());
+        if(player.isJailed()) {
+            buttonList.add(makePay());
+        }
 
         return buttonList;
     }

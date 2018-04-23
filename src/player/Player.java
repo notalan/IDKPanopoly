@@ -1,4 +1,5 @@
 package player;
+import cardDeck.PlayableCard;
 import property.*;
 
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ public class Player implements Locatable, Interactable, Bankruptable{
     private boolean IN_JAIL;
     private ArrayList<Tile> OWNED_PROPERTIES = new ArrayList<>();
     private ArrayList<Tile>  MORTGAGED_PROPERTIES = new ArrayList<>();
+    public ArrayList<PlayableCard>  CARDS = new ArrayList<>();
 
     public Player(String name, int balance, Tile startingTile, Tile[] board){
         NAME = name;

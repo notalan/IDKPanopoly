@@ -4,6 +4,7 @@ import board.MainMenuButtons;
 import board.PlayerMenu;
 import buttons.ChooseButtons;
 import dice.Dice;
+import events.ChooseEvent;
 import player.Player;
 import property.ImproveProperty;
 import property.Tile;
@@ -51,15 +52,15 @@ public class main {
             public void paint(Graphics g) {
                 super.paint(g);
 
-                try {
-                    BufferedImage image = ImageIO.read(new File("tokenImages/spaceboat.png"));
-                    g.drawImage(image, xCoord[0]-50, yCoord[0]-50,null);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+//                try {
+//                    BufferedImage image = ImageIO.read(new File("tokenImages/spaceboat.png"));
+//                    g.drawImage(image, xCoord[0]-50, yCoord[0]-50,null);
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
 
                 g.setColor(Color.red);
-
+                g.drawOval(xCoord[0], yCoord[0], 30, 30);
 
                 g.setColor(Color.blue);
                 g.drawOval(xCoord[1]+5, yCoord[1], 30, 30);
@@ -183,6 +184,7 @@ public class main {
             public void actionPerformed(ActionEvent e) {
                 turnEnd[0] = true;
                 System.out.println("Turn Finished");
+//                image.repaint();
             }
         });
 
@@ -214,6 +216,7 @@ public class main {
                 currentPlayer[0].move(rolled_result);
                 System.out.println("Rolled: " + rolled_result + " " + currentPlayer[0].Location().getIdentifier());
                 moved[0] = true;
+                //image.repaint();
             }
 
         } );
@@ -221,10 +224,6 @@ public class main {
         while(!gameEnd) {
             i = 0;
             while (i < players.length) {
-                /*
-                representing each turn, the player rolls to move and then
-                the tile type is checked, the appropriate buttons wil appear
-                 */
                 buttonPanel.removeAll();
                 turnEnd[0] = false;
                 moved[0] = false;
@@ -239,9 +238,8 @@ public class main {
                 image.repaint();
                 buttonPanel.add(btn1);
                 buttonPanel.add(btn2);
-                buttonPanel.add(finished);
                 buttonPanel.add(roll);
-
+                buttonPanel.repaint();
                 try {
                     while (!moved[0]) {
                         TimeUnit.MILLISECONDS.sleep(5);
@@ -251,12 +249,22 @@ public class main {
                     e.printStackTrace();
                 }
 
+                buttonPanel.add(finished);
                 buttonPanel.remove(roll);
+                buttonPanel.repaint();
 
                 currentTile = currentPlayer[0].Location();
                 xCoord[i % players.length] = currentTile.getXCo();
                 yCoord[i % players.length] = currentTile.getYCo();
-                ListIterator<Component> iterator = new ChooseButtons().showButtons(currentTile, currentPlayer[0]).listIterator();
+
+                new ChooseEvent(currentPlayer[0], currentTile);
+
+                currentTile = currentPlayer[0].Location();
+                xCoord[i % players.length] = currentTile.getXCo();
+                yCoord[i % players.length] = currentTile.getYCo();
+
+                image.repaint();
+                ListIterator<Component> iterator = new ChooseButtons().showButtons(currentTile, currentPlayer[0], players).listIterator();
                 Component temp;
 
                 while(iterator.hasNext())
@@ -264,9 +272,9 @@ public class main {
                     temp = iterator.next();
                     temp.setSize(new Dimension(30, 10));
                     buttonPanel.add(temp);
+                    buttonPanel.repaint();
                 }
                 buttonPanel.revalidate();
-                image.repaint();
                 try {
                     while (!turnEnd[0]) {
                         TimeUnit.MILLISECONDS.sleep(5);
@@ -275,6 +283,9 @@ public class main {
                 catch (Exception e){
                     e.printStackTrace();
                 }
+                buttonPanel.removeAll();
+                //image.repaint();
+                buttonPanel.repaint();
                 i++;
             }
             //gameEnd = true;

@@ -12,11 +12,13 @@ import java.util.List;
 import java.util.Random;
 
 public class CommunityChestButtons extends Buttons{
-    public List<Component> showButtons(Player currentPlayer)
+    private Player[] P_LIST;
+    public List<Component> showButtons(Player currentPlayer, Player[] list)
     {
         PLAYER = currentPlayer;
+        P_LIST = list;
         ArrayList<Component> buttonList = new ArrayList<>();
-        buttonList.add(makeRoll());
+        //buttonList.add(makeRoll());
         buttonList.add(makeDrawCommunityChestCard());
 
         return buttonList;
@@ -33,7 +35,7 @@ public class CommunityChestButtons extends Buttons{
                 if(!drawn){
                     Random rand = new Random();
                     int choice = rand.nextInt(100) + 1;
-                    new Chooser(choice, PLAYER).callCard();
+                    new Chooser(choice, PLAYER, P_LIST).callCard();
                     beenPayed();
                 }
                 else{

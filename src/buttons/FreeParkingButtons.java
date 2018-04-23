@@ -11,7 +11,7 @@ public class FreeParkingButtons extends Buttons{
     public List<Component> showButtons()
     {
         ArrayList<Component> buttonList = new ArrayList<>();
-        buttonList.add(makeRoll());
+        //buttonList.add(makeRoll());
         buttonList.add(makeCollectMoney());
         return buttonList;
     }

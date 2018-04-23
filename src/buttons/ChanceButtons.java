@@ -12,11 +12,13 @@ import java.util.List;
 import java.util.Random;
 
 public class ChanceButtons extends  Buttons {
-    public List<Component> showButtons(Player currentPlayer)
+    private Player[] P_LIST;
+    public List<Component> showButtons(Player currentPlayer, Player[] list)
     {
         PLAYER = currentPlayer;
+        P_LIST = list;
         ArrayList<Component> buttonList = new ArrayList<>();
-        buttonList.add(makeRoll());
+        //buttonList.add(makeRoll());
         buttonList.add(makeDrawChanceCard());
 
         return buttonList;
@@ -34,7 +36,7 @@ public class ChanceButtons extends  Buttons {
                 if(!drawn){
                     Random rand = new Random();
                     int choice = rand.nextInt(100) + 1;
-                    new Chooser(choice, PLAYER);
+                    new Chooser(choice, PLAYER, P_LIST);
                     beenPayed();
                 }
                 else{

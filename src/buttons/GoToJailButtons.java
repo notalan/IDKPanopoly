@@ -14,7 +14,7 @@ public class GoToJailButtons extends Buttons{
     {
         PLAYER = p;
         ArrayList<Component> buttonList = new ArrayList<>();
-        buttonList.add(makeRoll());
+        //buttonList.add(makeRoll());
         buttonList.add(makeGoToJail());
         return buttonList;
     }
