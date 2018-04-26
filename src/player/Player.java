@@ -13,7 +13,7 @@ public class Player implements Locatable, Interactable, Bankruptable{
     private boolean IN_JAIL;
     private ArrayList<Tile> OWNED_PROPERTIES = new ArrayList<>();
     private ArrayList<Tile>  MORTGAGED_PROPERTIES = new ArrayList<>();
-    public ArrayList<PlayableCard>  CARDS = new ArrayList<>();
+    public ArrayList<PlayableCard> CARDS = new ArrayList<>();
 
     public Player(String name, int balance, Tile startingTile, Tile[] board){
         NAME = name;
@@ -36,6 +36,7 @@ public class Player implements Locatable, Interactable, Bankruptable{
     @Override
     public void addMortgage(Tile t) {
         MORTGAGED_PROPERTIES.add(t);
+        OWNED_PROPERTIES.remove(t);
     }
 
     @Override
@@ -46,6 +47,7 @@ public class Player implements Locatable, Interactable, Bankruptable{
     @Override
     public void removeMortgage(Tile t) {
         MORTGAGED_PROPERTIES.remove(t);
+        OWNED_PROPERTIES.add(t);
     }
 
     @Override

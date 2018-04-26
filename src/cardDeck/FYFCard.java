@@ -1,11 +1,16 @@
 package cardDeck;
 
+import events.FYFPopUp;
 import player.Player;
+
+import javax.swing.*;
 
 public class FYFCard implements PlayableCard{
     private Player PLAYER;
-    public FYFCard(Player p){
+    private Player[] PLAYER_LIST;
+    public FYFCard(Player p, Player[] l){
         PLAYER = p;
+        PLAYER_LIST = l;
     }
 
 
@@ -20,7 +25,11 @@ public class FYFCard implements PlayableCard{
     }
 
     @Override
+    public ImageIcon getIcon() {
+        return new ImageIcon("Resources/Images/FYFCardImage.png");
+    }
+    @Override
     public void use() {
-        //new FYFPopUp - takes in P_LIST and player, select your chosen friends
+        new FYFPopUp(PLAYER, PLAYER_LIST);
     }
 }

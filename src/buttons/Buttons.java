@@ -1,11 +1,11 @@
 package buttons;
 
 import dice.Dice;
-import board.Board;
+import events.CardListPopUp;
+import events.MortgagePopUp;
+import events.UnmortgagePopUp;
 import player.Player;
-import property.ImproveProperty;
 import property.Tile;
-import transactions.MortgageTransaction;
 
 import javax.swing.*;
 import java.awt.*;
@@ -28,9 +28,10 @@ public class Buttons {
         PLAYER = player;
         ArrayList<Component> buttonList = new ArrayList<>();
         buttonList.add(makeRoll());
-        buttonList.add(makeMortgage());
-        buttonList.add(makeUnMortgage());
-
+        if(player.getOwnedProperties().size() > 0)
+            buttonList.add(makeMortgage());
+        if(player.getMortProperties().size() > 0)
+            buttonList.add(makeUnMortgage());
         return buttonList;
     }
 
@@ -60,11 +61,10 @@ public class Buttons {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                new MortgageTransaction(PLAYER, (ImproveProperty) TILE);
+//                new MortgageTransaction(PLAYER, (ImproveProperty) TILE);
+                new MortgagePopUp(PLAYER).print();
             }
-
         });
-
         return mortgage;
     }
 
@@ -75,11 +75,22 @@ public class Buttons {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                new UnmortgagePopUp(PLAYER).print();
             }
-
         });
-
         return unmortgage;
+    }
+
+    public JButton makeCardHand() {
+        JButton cardHand = new JButton("Cards");
+
+        cardHand.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new CardListPopUp(PLAYER);
+            }
+        });
+        return cardHand;
     }
 }

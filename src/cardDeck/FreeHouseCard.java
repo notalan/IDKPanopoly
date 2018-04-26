@@ -2,6 +2,8 @@ package cardDeck;
 
 import player.Player;
 
+import javax.swing.*;
+
 public class FreeHouseCard implements PlayableCard{
     private Player Player;
     public FreeHouseCard(Player p){
@@ -15,6 +17,11 @@ public class FreeHouseCard implements PlayableCard{
     @Override
     public String getEffect() {
         return "Gives a free house on any of your monopolised tiles";
+    }
+
+    @Override
+    public ImageIcon getIcon() {
+        return new ImageIcon("Resources/Images/CommCardImage.png");
     }
 
     @Override

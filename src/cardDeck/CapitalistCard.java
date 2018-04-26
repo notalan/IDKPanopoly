@@ -2,6 +2,8 @@ package cardDeck;
 
 import player.Player;
 
+import javax.swing.*;
+
 public class CapitalistCard implements PlayableCard {
     private Player[] P_LIST;
     public CapitalistCard(Player[] list){
@@ -15,6 +17,11 @@ public class CapitalistCard implements PlayableCard {
     @Override
     public String getEffect() {
         return "Winners keepers - losers weepers!";
+    }
+
+    @Override
+    public ImageIcon getIcon() {
+        return new ImageIcon("Resources/Images/CapCardImage.png");
     }
 
     @Override

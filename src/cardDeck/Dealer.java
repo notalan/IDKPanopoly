@@ -4,6 +4,7 @@ import player.Player;
 import property.ImproveProperty;
 import property.Tile;
 
+import javax.swing.*;
 import java.util.Random;
 
 /*
@@ -19,7 +20,8 @@ public class Dealer {
 
     public PlayableCard drawCard(){
         Random rand = new Random();
-        int chooser = rand.nextInt(3);
+        int chooser = rand.nextInt(4);
+        System.out.println(chooser);
         switch (chooser){
             case 0:
                 return new FreeHouseCard(Player);
@@ -27,6 +29,8 @@ public class Dealer {
                 return new CommunistCard(P_LIST);
             case 2:
                 return new CapitalistCard(P_LIST);
+            case 3:
+                return new FYFCard(Player, P_LIST);
         }
         //not supposed to ever reach here bc of switch statement but if there's a bug and it returns this
         //then the least we can do is give the player a thousand bob :)
@@ -41,6 +45,10 @@ public class Dealer {
                 return "not_supposed_to_happen.JPEG";
             }
 
+            @Override
+            public ImageIcon getIcon() {
+                return new ImageIcon("Resources/Images/quitbutton.png");
+            }
             @Override
             public void use() {
                 Player.receiveIncome(1000);

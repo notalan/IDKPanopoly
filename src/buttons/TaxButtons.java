@@ -22,6 +22,12 @@ public class TaxButtons extends Buttons{
         ArrayList<Component> buttonList = new ArrayList<>();
         //buttonList.add(makeRoll());
         buttonList.add(makeTax());
+        if(p.getOwnedProperties().size() > 0)
+            buttonList.add(makeMortgage());
+        if(p.getMortProperties().size() > 0)
+            buttonList.add(makeUnMortgage());
+        if(p.CARDS.size() > 0)
+            buttonList.add(makeCardHand());
         return buttonList;
     }
 

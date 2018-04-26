@@ -22,6 +22,12 @@ public class PropertyButtons extends Buttons {
         TILE = currentTile;
         ArrayList<Component> buttonList = new ArrayList<>();
         //buttonList.add(makeRoll());
+        if(currentPlayer.getOwnedProperties().size() > 0)
+            buttonList.add(makeMortgage());
+        if(currentPlayer.getMortProperties().size() > 0)
+            buttonList.add(makeUnMortgage());
+        if(currentPlayer.CARDS.size() > 0)
+            buttonList.add(makeCardHand());
 
         if (!currentTile.hasOwner()) {
             buttonList.add(makeBuy());

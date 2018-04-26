@@ -1,6 +1,9 @@
 package cardDeck;
 
 import player.Player;
+
+import javax.swing.*;
+
 /*
 Card sets all player balances to be the average of all players
  */
@@ -19,6 +22,11 @@ public class CommunistCard implements PlayableCard{
     @Override
     public String getEffect() {
         return "!!Everybody Equal!!";
+    }
+
+    @Override
+    public ImageIcon getIcon() {
+        return new ImageIcon("Resources/Images/CommCardImage.png");
     }
 
     @Override
