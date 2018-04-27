@@ -1,17 +1,13 @@
 import board.Board;
 import board.MainMenu;
-import board.MainMenuButtons;
-import board.PlayerMenu;
 import buttons.ChooseButtons;
 import dice.Dice;
 import events.ChooseEvent;
 import player.Player;
-import property.ImproveProperty;
 import property.Tile;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,7 +15,6 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ListIterator;
 import java.awt.GraphicsEnvironment;
 import java.awt.GraphicsDevice;
@@ -48,30 +43,21 @@ public class main {
         Player[] players = initialise.players(2, names, tiles);
 
 
-        JLabel image = new JLabel(new ImageIcon("Resources/Images/PanopolyBoard.png")) {
+        JLabel image = new JLabel(new ImageIcon("Resources/Images/PanopolyBoard3.png")) {
             public void paint(Graphics g) {
                 super.paint(g);
-
-//                try {
-//                    BufferedImage image = ImageIO.read(new File("tokenImages/spaceboat.png"));
-//                    g.drawImage(image, xCoord[0]-50, yCoord[0]-50,null);
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-
-                g.setColor(Color.red);
-                g.drawOval(xCoord[0], yCoord[0], 30, 30);
-
-                g.setColor(Color.blue);
-                g.drawOval(xCoord[1]+5, yCoord[1], 30, 30);
-
-                g.setColor(Color.GREEN);
-                g.drawOval(xCoord[2]+10, yCoord[2], 30, 30);
-
-                g.setColor(Color.CYAN);
-                g.drawOval(xCoord[3]+15, yCoord[3], 30, 30);
-
-                // This is set to 4 players
+                try {
+                    Image img = ImageIO.read(getClass().getResourceAsStream("tokenImages/spaceboat.png"));
+                    g.drawImage(img, xCoord[0]-50, yCoord[0]-50, null);
+                    Image img2 = ImageIO.read(getClass().getResourceAsStream("tokenImages/dog.png"));
+                    g.drawImage(img2, xCoord[1]-50, yCoord[1]-50, null);
+                    Image img3 = ImageIO.read(getClass().getResourceAsStream("tokenImages/spacecar.png"));
+                    g.drawImage(img3, xCoord[2]-50, yCoord[2]-50, null);
+                    Image img4 = ImageIO.read(getClass().getResourceAsStream("tokenImages/wheelbarrow.png"));
+                    g.drawImage(img4, xCoord[3]-50, yCoord[3]-50, null);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 
                 // Tiles next
                 g.setColor(Color.white); // Changes the text colour to white
