@@ -43,7 +43,11 @@ public class ShopEvent extends JFrame{
             }
         });
         left.add(buy1);
-        left.add(Box.createRigidArea(new Dimension(80, 300)));
+        left.add(Box.createRigidArea(new Dimension(80, card1.getIcon().getIconHeight() - 100)));
+        JTextField nameField1 = new JTextField(card1.getName());
+        nameField1.setHorizontalAlignment(0);
+        nameField1.setEditable(false);
+        left.add(nameField1);
         JTextField f1 = new JTextField(card1.getEffect());
         f1.setHorizontalAlignment(0);
         f1.setEditable(false);
@@ -67,7 +71,11 @@ public class ShopEvent extends JFrame{
             }
         });
         right.add(buy2);
-        right.add(Box.createRigidArea(new Dimension(80, 300)));
+        right.add(Box.createRigidArea(new Dimension(80, card2.getIcon().getIconHeight() - 100)));
+        JTextField nameField2 = new JTextField(card2.getName());
+        nameField2.setHorizontalAlignment(0);
+        nameField2.setEditable(false);
+        right.add(nameField2);
         JTextField f2 = new JTextField(card2.getEffect());
         f2.setHorizontalAlignment(0);
         f2.setEditable(false);
