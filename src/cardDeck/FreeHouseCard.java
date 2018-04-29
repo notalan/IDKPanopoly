@@ -1,5 +1,6 @@
 package cardDeck;
 
+import events.FreeHousePopUp;
 import player.Player;
 
 import javax.swing.*;
@@ -16,18 +17,22 @@ public class FreeHouseCard implements PlayableCard{
 
     @Override
     public String getEffect() {
-        return "Gives a free house on any of your monopolised tiles";
+        return "Free house on any monopolised tile";
     }
 
     @Override
     public ImageIcon getIcon() {
-        return new ImageIcon("Resources/Images/CommCardImage.png");
+        return new ImageIcon("Resources/Images/HouseCardImage.png");
+    }
+
+    @Override
+    public int getWorth() {
+        return 400;
     }
 
     @Override
     public void use(){
-        //new FreeHousePopUp(Player, LOCATION);
+        new FreeHousePopUp(Player);
         //each actionListener will .dispose the window after calling line below
-//        new BuildHouseTransaction(Player, LOCATION);
     }
 }

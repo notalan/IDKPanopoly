@@ -28,6 +28,12 @@ public class FYFCard implements PlayableCard{
     public ImageIcon getIcon() {
         return new ImageIcon("Resources/Images/FYFCardImage.png");
     }
+
+    @Override
+    public int getWorth() {
+        return 400;
+    }
+
     @Override
     public void use() {
         new FYFPopUp(PLAYER, PLAYER_LIST);

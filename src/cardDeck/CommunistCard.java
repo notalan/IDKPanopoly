@@ -30,6 +30,11 @@ public class CommunistCard implements PlayableCard{
     }
 
     @Override
+    public int getWorth() {
+        return 1000;
+    }
+
+    @Override
     public void use() {
         int total = 0;
         for(Player p : P_LIST){

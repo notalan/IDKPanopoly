@@ -25,6 +25,11 @@ public class CapitalistCard implements PlayableCard {
     }
 
     @Override
+    public int getWorth() {
+        return 50;
+    }
+
+    @Override
     public void use() {
         int total = 0;
         for(Player p : P_LIST){

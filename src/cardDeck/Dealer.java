@@ -49,6 +49,12 @@ public class Dealer {
             public ImageIcon getIcon() {
                 return new ImageIcon("Resources/Images/quitbutton.png");
             }
+
+            @Override
+            public int getWorth() {
+                return 0;
+            }
+
             @Override
             public void use() {
                 Player.receiveIncome(1000);
