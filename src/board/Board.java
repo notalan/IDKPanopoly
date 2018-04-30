@@ -20,6 +20,4 @@ public class Board extends JFrame {
         panopoly.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         panopoly.setBackground(Color.BLACK);
     }
-
-
 }
