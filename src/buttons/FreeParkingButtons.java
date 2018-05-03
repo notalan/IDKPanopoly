@@ -1,5 +1,9 @@
 package buttons;
 
+import player.Player;
+import property.FreeParking;
+import transactions.IncomeTransaction;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -8,8 +12,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FreeParkingButtons extends Buttons{
-    public List<Component> showButtons()
+    FreeParking F;
+    public List<Component> showButtons(Player p, FreeParking f)
     {
+        F = f;
+        PLAYER = p;
         ArrayList<Component> buttonList = new ArrayList<>();
         //buttonList.add(makeRoll());
         buttonList.add(makeCollectMoney());
@@ -24,8 +31,8 @@ public class FreeParkingButtons extends Buttons{
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Money collected, lucky boiiii!");
-
+                new IncomeTransaction(PLAYER, F.freeParkingPool);
+                F.freeParkingPool = 0.0;
             }
 
         } );

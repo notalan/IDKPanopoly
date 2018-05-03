@@ -197,7 +197,7 @@ public class IntermediateAI implements AIplayer {
             System.out.println("nothing yet");
         }
         else if(currentTile instanceof StationTile){
-            new ChooseEvent(SELF, currentTile);
+            new ChooseEvent(SELF, currentTile, otherPlayers);
             System.out.println(SELF.balance());
         }
         else if(currentTile instanceof TaxTiles){

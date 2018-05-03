@@ -40,7 +40,7 @@ class Initialiser {
         Tile[] tileArray = new Tile[40];
         tileArray[0] = GO;
         tileArray[2] = new CardTIle ( 530,  665);
-        tileArray[4] = new TaxTiles ("Income Tax", 410,640,100, 200,2,3); // 420, 665
+        tileArray[4] = new TaxTiles ("Income Tax", 410,640,1, 0.1,100,200); // 420, 665
         tileArray[7] = new CardTIle ( 250, 665);
         tileArray[10] = new Jail    ("Jail", 50, 665);
         tileArray[12] = new Shop("Shop", 50, 530);
@@ -51,7 +51,7 @@ class Initialiser {
         tileArray[30] = new GoToJail("Go To Jail", 665, 50);
         tileArray[33] = new CardTIle( 665, 250);
         tileArray[36] = new CardTIle( 665, 420);
-        tileArray[38] = new TaxTiles ("Luxury Tax", 633,510,100, 200,2,3/*,0*/); // 665, 530
+        tileArray[38] = new TaxTiles ("Luxury Tax", 633,510,3, 0.1,100,200); // 665, 530
 
         String[] stationName = new String[4];
         String[] stationlist = new String[8];

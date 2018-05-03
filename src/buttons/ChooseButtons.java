@@ -47,7 +47,7 @@ public class ChooseButtons {
         }
         else if(currentTile instanceof FreeParking)
         {
-            return new FreeParkingButtons().showButtons(currentPlayer);
+            return new FreeParkingButtons().showButtons(currentPlayer, freeParkingP);
         }
 
         return null;

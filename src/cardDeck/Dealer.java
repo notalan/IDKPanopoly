@@ -20,7 +20,7 @@ public class Dealer {
 
     public PlayableCard drawCard(){
         Random rand = new Random();
-        int chooser = rand.nextInt(4);
+        int chooser = rand.nextInt(5);
         System.out.println(chooser);
         switch (chooser){
             case 0:
@@ -31,6 +31,8 @@ public class Dealer {
                 return new CapitalistCard(P_LIST);
             case 3:
                 return new FYFCard(Player, P_LIST);
+            case 4:
+                return new LeapCard();
         }
         //not supposed to ever reach here bc of switch statement but if there's a bug and it returns this
         //then the least we can do is give the player a thousand bob :)

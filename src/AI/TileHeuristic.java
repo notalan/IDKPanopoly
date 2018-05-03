@@ -14,8 +14,6 @@ class TileHeuristic {
     }
 
     void setHeuristic(Player p) {
-        //chance of landing on it + owned other props of same colour + price compared to balance?
-        // * other player owns same colour (0 or 1)
         int ownedByOther = 1;
         if(T.hasOwner() && !(T.owner().equals(p)))
             ownedByOther = 0;

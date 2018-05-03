@@ -13,12 +13,13 @@ import java.util.List;
 
 public class TaxButtons extends Buttons{
 
-//    private Player PLAYER;
-//    private TaxTiles TILE;
+    private TaxTiles TILE;
+    private FreeParking F;
     public List<Component> showButtons(TaxTiles tile, Player p, FreeParking freeParkingP)
     {
         PLAYER = p;
         TILE = tile;
+        F = freeParkingP;
 
         ArrayList<Component> buttonList = new ArrayList<>();
         //buttonList.add(makeRoll());
@@ -40,8 +41,21 @@ public class TaxButtons extends Buttons{
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Tax Paid");
-                //Need some way to identify which type of tax tile it is.
+                double taxtype = TILE.getTypeOfTax();
+                if(taxtype < TILE.getFlatIncomeTaxAmount()){
+                    new transactions.IncomeTaxTransaction(PLAYER, TILE, false, F);
+                    System.out.println("income " + PLAYER.balance());
+                }
+                else if(taxtype > TILE.getIncomeTaxPercentage()
+                        && taxtype < TILE.getFlatLuxaryTaxAmount()){
+                    new transactions.IncomeTaxTransaction(PLAYER, TILE, true, F);
+                    System.out.println("flatIncome " + PLAYER.balance());
+                }
+                else{
+                    new transactions.LuxuryTransaction(PLAYER, TILE, F);
+                    System.out.println("Luxury " + PLAYER.balance());
+                }
+                System.out.println(F.freeParkingPool);
             }
 
         } );

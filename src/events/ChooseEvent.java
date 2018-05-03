@@ -1,5 +1,6 @@
 package events;
 import AirHockey.src.AirHockey;
+import cardDeck.LeapCard;
 import player.Player;
 import property.MiniGame;
 import property.Shop;
@@ -19,8 +20,8 @@ public class ChooseEvent {
                 while(p.currentPlace != (int)move[0]){
                     p.move(1);
                 }
-                //if(!p.own(leapCarp))
-                new ExpenditureTransaction(p, 2.85);
+                if(!p.CARDS.contains(new LeapCard()))
+                    new ExpenditureTransaction(p, 2.85);
             }
 
         }
