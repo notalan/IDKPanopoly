@@ -26,7 +26,7 @@ public class FreeParkingButtons extends Buttons{
     public JButton makeCollectMoney()
     {
         JButton collectMoney = new JButton();
-        collectMoney.setIcon(new ImageIcon("collectmoney.png"));
+        collectMoney.setIcon(new ImageIcon("Resources/Images/collectmoney.png"));
         collectMoney.addActionListener(new ActionListener() {
 
             @Override
