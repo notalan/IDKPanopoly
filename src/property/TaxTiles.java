@@ -19,7 +19,6 @@ public class TaxTiles extends Tile implements Taxable {
         FlatLuxaryAmount = getFlatLuxaryTaxAmount;
     }
 
-
     @Override
     public double getTypeOfTax(){
         if(typeOfTax == 1)
@@ -44,5 +43,6 @@ public class TaxTiles extends Tile implements Taxable {
     public double getFlatLuxaryTaxAmount() { // takes 75 off
         return FlatLuxaryAmount;
     }
+
 }
 

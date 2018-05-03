@@ -1,6 +1,7 @@
 package buttons;
 
 import player.Player;
+import property.FreeParking;
 import property.TaxTiles;
 
 import javax.swing.*;
@@ -14,7 +15,7 @@ public class TaxButtons extends Buttons{
 
 //    private Player PLAYER;
 //    private TaxTiles TILE;
-    public List<Component> showButtons(TaxTiles tile, Player p)
+    public List<Component> showButtons(TaxTiles tile, Player p, FreeParking freeParkingP)
     {
         PLAYER = p;
         TILE = tile;

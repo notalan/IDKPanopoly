@@ -4,6 +4,7 @@ import buttons.ChooseButtons;
 import dice.Dice;
 import events.ChooseEvent;
 import player.Player;
+import property.FreeParking;
 import property.Tile;
 
 import javax.imageio.ImageIO;
@@ -250,7 +251,7 @@ public class main {
                 yCoord[i % players.length] = currentTile.getYCo();
 
                 image.repaint();
-                ListIterator<Component> iterator = new ChooseButtons().showButtons(currentTile, currentPlayer[0], players).listIterator();
+                ListIterator<Component> iterator = new ChooseButtons().showButtons(currentTile, currentPlayer[0], players, (FreeParking)tiles[20]).listIterator();
                 Component temp;
 
                 while(iterator.hasNext())

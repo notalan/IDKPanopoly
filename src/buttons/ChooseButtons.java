@@ -8,7 +8,7 @@ import java.util.List;
 
 public class ChooseButtons {
 
-    public List<Component> showButtons(Tile currentTile, Player currentPlayer, Player[] list) {
+    public List<Component> showButtons(Tile currentTile, Player currentPlayer, Player[] list, FreeParking freeParkingP) {
 
         if (currentTile instanceof ImproveProperty) {
             return new PropertyButtons().showButtons((ImproveProperty) currentTile, currentPlayer);
@@ -31,7 +31,7 @@ public class ChooseButtons {
         }
         else if(currentTile instanceof TaxTiles)
         {
-            return new TaxButtons().showButtons((TaxTiles)currentTile, currentPlayer);
+            return new TaxButtons().showButtons((TaxTiles)currentTile, currentPlayer, freeParkingP);
         }
         else if(currentTile instanceof StationTile)
         {
