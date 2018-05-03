@@ -22,6 +22,8 @@ public class IntermediateAI implements AIplayer {
     private Tile[] BOARD;
     private Player SELF;
     private Tile currentTile;
+
+    private Player First_Place, Last_Place;
     public IntermediateAI(String name, Player[] pList, Tile[] board){
         otherPlayers = pList;
         BOARD = board;
@@ -40,6 +42,27 @@ public class IntermediateAI implements AIplayer {
         }
         playerAverage = playerAverage/otherPlayers.length;
         System.out.println(playerAverage);
+
+        double last = 10000;
+        Player lastPlace = SELF;
+        for (Player p : otherPlayers) {
+            if (p.balance() <= last) {
+                last = p.balance();
+                lastPlace = p;
+            }
+        }
+        Last_Place = lastPlace;
+
+        double lead = 0;
+        Player leader = SELF;
+        for (Player p : otherPlayers) {
+            if (p.balance() >= lead) {
+                lead = p.balance();
+                leader = p;
+            }
+        }
+        First_Place = leader;
+
         //take inventory of cards in hand
         boolean haveCommCard = false;
         boolean haveCapCard = false;
@@ -57,6 +80,7 @@ public class IntermediateAI implements AIplayer {
                 haveHouseCard = true;
         }
         System.out.println(haveCommCard + "," + haveCapCard + "," + haveFYFCard + "," + haveHouseCard);
+
         //process results
         if(SELF.balance() > playerAverage){
             System.out.println("ahead of curve");
@@ -83,19 +107,14 @@ public class IntermediateAI implements AIplayer {
                 }
             }
             if (haveFYFCard) {
-                double min = 10000;
-                Player lastPlace = SELF;
-                for (Player p : otherPlayers) {
-                    if (p.balance() <= min) {
-                        min = p.balance();
-                        lastPlace = p;
-                    }
-                }
-                useFYF(lastPlace);
+                useFYF(Last_Place);
             }
 
             if (haveHouseCard) {
                 //find anything monopolised, if multiple then pick highest heuristic
+                /**
+                 * TO DO
+                 */
             }
 
         }
@@ -103,7 +122,6 @@ public class IntermediateAI implements AIplayer {
             //stay in jail, if not in jail -> take turn
             System.out.println("behind curve");
             if(!SELF.isJailed()) {
-                //mortgaging, cards
                 //find lowest priority property:
                 if (SELF.getOwnedProperties().size() > 3) {
                     int min = 100;
@@ -137,19 +155,14 @@ public class IntermediateAI implements AIplayer {
                 //END CRIMSON PROTOCOL
 
                 if (haveFYFCard) {
-                    double max = 0;
-                    Player leader = SELF;
-                    for (Player p : otherPlayers) {
-                        if (p.balance() >= max) {
-                            max = p.balance();
-                            leader = p;
-                        }
-                    }
-                    useFYF(leader);
+                    useFYF(First_Place);
                 }
 
                 if (haveHouseCard) {
                     //find anything monopolised, if multiple then pick highest heuristic
+                    /**
+                     * TO DO
+                     */
                 }
             }
         }
@@ -161,7 +174,9 @@ public class IntermediateAI implements AIplayer {
             int first = new Dice().rollDice(1, 6);
             int second = new Dice().rollDice(1, 6);
             if(first == second) {
-                //free from jail
+                /**
+                 * TO DO free from jail
+                 */
             }
         }
         else {
@@ -176,6 +191,9 @@ public class IntermediateAI implements AIplayer {
             //using capcard if can't afford prop or build
             //use tableLookUp to decipher if worth buying
             //if have the cash, build a house
+            /**
+             * TO DO
+             */
             System.out.println("nothing yet");
         }
         else if(currentTile instanceof StationTile){
@@ -246,25 +264,33 @@ public class IntermediateAI implements AIplayer {
         }
         else if(currentTile instanceof Jail){
             //just visiting?
+            /**
+             * TO DO
+             */
         }
         else if(currentTile instanceof GoToJail){
             SELF.moveToJail();
         }
         else if(currentTile instanceof FreeParking){
-            //collect
+            new IncomeTransaction(SELF, ((FreeParking) currentTile).freeParkingPool);
+            ((FreeParking) currentTile).freeParkingPool = 0;
         }
         else if(currentTile instanceof Go){
-            //end turn
+            /**
+             * TO DO
+             */
         }
         else if(currentTile instanceof MiniGame){
-
+            /**
+             * TO DO
+             */
         }
         else if(currentTile instanceof Shop){
             ShopEvent S = new ShopEvent(SELF, otherPlayers);
             PlayableCard[] c = S.getCards();
             double[] values = S.getValues();
             for(int i = 0; i < 2; i++){
-                if(c[i] instanceof CommunistCard){
+                if(c[i] instanceof CommunistCard && (SELF.equals(First_Place) || SELF.equals(Last_Place))){
                     SELF.CARDS.add(c[i]);
                     new ExpenditureTransaction(SELF, values[i]);
                 }
@@ -273,10 +299,6 @@ public class IntermediateAI implements AIplayer {
                     new ExpenditureTransaction(SELF, values[i]);
                 }
                 if(c[i] instanceof FYFCard){
-                    SELF.CARDS.add(c[i]);
-                    new ExpenditureTransaction(SELF, values[i]);
-                }
-                if(c[i] instanceof FreeHouseCard){
                     SELF.CARDS.add(c[i]);
                     new ExpenditureTransaction(SELF, values[i]);
                 }
@@ -293,13 +315,14 @@ public class IntermediateAI implements AIplayer {
 
     private void initialiseTable(){
         for(Tile t: BOARD){
-            tileLookupTable.add(new TileHeuristic(t));
+            if(t instanceof ImproveProperty)
+                tileLookupTable.add(new TileHeuristic(t));
         }
     }
 
     private void updateTable(){
         for(TileHeuristic th: tileLookupTable){
-            th.setHeuristic();
+            th.setHeuristic(SELF);
         }
     }
 
@@ -315,4 +338,5 @@ public class IntermediateAI implements AIplayer {
     public void tester(int x){
         currentTile = SELF.move(x);
     }
+
 }

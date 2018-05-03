@@ -31,7 +31,7 @@ class Initialiser {
     Player[] players(int num, String[] names, Tile[] board){
         Player[] playerArray = new Player[num];
         for(int i = 0; i < num; i++){
-            playerArray[i] = new Player(names[i], 200, GO, board);
+            playerArray[i] = new Player(names[i], 1500, GO, board);
         }
         return playerArray;
     }
@@ -43,11 +43,11 @@ class Initialiser {
         tileArray[4] = new TaxTiles ("Income Tax", 410,640,100, 200,2,3); // 420, 665
         tileArray[7] = new CardTIle ( 250, 665);
         tileArray[10] = new Jail    ("Jail", 50, 665);
-        tileArray[12] = new Property("Electric Company", 50, 530, 150, 75, 4/* *diceroll */);
+        tileArray[12] = new Shop("Shop", 50, 530);
         tileArray[17] = new CardTIle(50, 250);
         tileArray[20] = new FreeParking("Free Parking", 50, 60);
         tileArray[22] = new CardTIle(195, 50);
-        tileArray[28] = new Property("Water Works", 530, 50, 150, 75, 4/* *diceroll */);
+        tileArray[28] = new MiniGame("Mini-game", 530, 50);
         tileArray[30] = new GoToJail("Go To Jail", 665, 50);
         tileArray[33] = new CardTIle( 665, 250);
         tileArray[36] = new CardTIle( 665, 420);
