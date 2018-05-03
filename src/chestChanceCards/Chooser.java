@@ -5,6 +5,8 @@ import events.IncomeCardPopUp;
 import events.QuestionPopup;
 import player.Player;
 
+import java.util.concurrent.TimeUnit;
+
 /*
 50% question card
 10% income
@@ -30,10 +32,22 @@ public class Chooser {
         else if (CHOICE > 40){
             IncomeCard I = new IncomeCard(p);
             if(p.getOwnedProperties().size() > 2){
-                new IncomeCardPopUp(I.message(), I.getAmmount());
+                IncomeCardPopUp i = new IncomeCardPopUp(I.message(), I.getAmmount());
+                try {
+                    TimeUnit.SECONDS.sleep(3);
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+                i.dispose();
             }
             else{
-                new IncomeCardPopUp("TAX REBATES / LOTTO / GRANDAD DIED - GET INHERITANCE", I.getAmmount());
+                IncomeCardPopUp i = new IncomeCardPopUp("TAX REBATES / LOTTO / GRANDAD DIED - GET INHERITANCE", I.getAmmount());
+                try {
+                    TimeUnit.SECONDS.sleep(3);
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+                i.dispose();
             }
         }
 //        else if (CHOICE > 30){

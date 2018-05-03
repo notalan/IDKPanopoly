@@ -16,13 +16,13 @@ public class IncomeCard extends Card{
     private KnowledgeBaseModule L = new KnowledgeBaseModule(kdir + "Veale's location listing.txt", 0);
     private Random rand = new Random();
     private double ammount;
-    IncomeCard(Player player){
+    public IncomeCard(Player player){
         super(player);
         ammount = 40 + rand.nextInt(30);
         new IncomeTransaction(PLAYER, ammount);
     }
 
-    String message(){
+    public String message(){
         if(PLAYER.getOwnedProperties().size() > 2){
             ArrayList<Tile> props = PLAYER.getOwnedProperties();
             int tileChoice = rand.nextInt(props.size());

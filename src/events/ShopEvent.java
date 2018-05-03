@@ -14,9 +14,13 @@ import java.awt.event.ActionListener;
 import java.util.Random;
 
 public class ShopEvent extends JFrame{
+    private PlayableCard card1;
+    private PlayableCard card2;
+    private double amount1;
+    private double amount2;
     public ShopEvent(Player p, Player[] l) {
-        PlayableCard card1 = new Dealer(p, l).drawCard();
-        PlayableCard card2 = new Dealer(p, l).drawCard();
+        card1 = new Dealer(p, l).drawCard();
+        card2 = new Dealer(p, l).drawCard();
         setUndecorated(true);
         setBounds(50, 150, 720, 450);
         setAlwaysOnTop(true);
@@ -28,9 +32,10 @@ public class ShopEvent extends JFrame{
 
         //top
         final int offset1 = rand.nextInt(100) - 50;
+        amount1 = card1.getWorth() + offset1;
         JLabel left = new JLabel(card1.getIcon());
         left.setLayout(new BoxLayout(left, BoxLayout.Y_AXIS));
-        JButton buy1 = new JButton("BUY - " + (card1.getWorth() + offset1) + "sd");
+        JButton buy1 = new JButton("BUY - " + amount1 + "sd");
         buy1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -56,9 +61,10 @@ public class ShopEvent extends JFrame{
 
         //bottom
         final int offset2 = rand.nextInt(100) - 50;
+        amount2 = card2.getWorth() + offset2;
         JLabel right = new JLabel(card2.getIcon());
         right.setLayout(new BoxLayout(right, BoxLayout.Y_AXIS));
-        JButton buy2 = new JButton("BUY - " + (card2.getWorth() + offset2) + "sd");
+        JButton buy2 = new JButton("BUY - " + amount2 + "sd");
         buy2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -98,6 +104,21 @@ public class ShopEvent extends JFrame{
         add(finish, BorderLayout.AFTER_LAST_LINE);
 
         setVisible(true);
+    }
+
+    /*
+    added for AI purposes, not great software engineering but sure look there's 4 days left
+     */
+    public JFrame getFrame(){
+        return this;
+    }
+
+    public PlayableCard[] getCards(){
+        return new PlayableCard[] {card1, card2};
+    }
+
+    public double[] getValues(){
+        return new double[] {amount1, amount2};
     }
 
     public static void main(String[] args) {

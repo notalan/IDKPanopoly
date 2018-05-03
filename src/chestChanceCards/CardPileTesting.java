@@ -11,7 +11,6 @@ public class CardPileTesting {
         for (int i = 0; i < 5; i++) {
             p.addProperty(new ImproveProperty(sample[i], "", 0, 0, 10, 10, 5, 50));
         }
-        //new Chooser(60, p).callCard();
-
+        new Chooser(45, p, new Player[]{}).callCard();
     }
 }

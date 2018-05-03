@@ -14,6 +14,7 @@ public class Player implements Locatable, Interactable, Bankruptable{
     private ArrayList<Tile> OWNED_PROPERTIES = new ArrayList<>();
     private ArrayList<Tile>  MORTGAGED_PROPERTIES = new ArrayList<>();
     public ArrayList<PlayableCard> CARDS = new ArrayList<>();
+    private boolean isAI = false;
 
     public Player(String name, int balance, Tile startingTile, Tile[] board){
         NAME = name;
@@ -57,8 +58,10 @@ public class Player implements Locatable, Interactable, Bankruptable{
 
     @Override
     public Tile move(int diceRoll) {
+        int prevPos = currentPlace;
         currentPlace = (currentPlace + diceRoll) % BOARD.length;
         CURRENT_TILE = BOARD[currentPlace];
+        if(prevPos < 40 && prevPos + diceRoll > 40) { BALANCE += 200; }// passing GO
         return CURRENT_TILE;
     }
 
@@ -122,4 +125,11 @@ public class Player implements Locatable, Interactable, Bankruptable{
         BOARD = updatedBoard;
     }
 
+    public void setAI(){
+        isAI = true;
+    }
+
+    public boolean isAI(){
+        return isAI;
+    }
 }
