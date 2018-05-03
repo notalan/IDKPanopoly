@@ -140,11 +140,12 @@ public class main {
         JPanel buttonPanel = new JPanel();
         buttonPanel.setBackground(Color.BLACK);
         buttonPanel.setLayout(new GridLayout(10,1));
+        buttonPanel.setPreferredSize(new Dimension(180,720));
 
         panel.add(buttonPanel);
 
         JButton btn1 = new JButton("Full-Screen");
-
+        btn1.setIcon(new ImageIcon("Resources/Images/fullscreen.png"));
         btn1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -152,7 +153,8 @@ public class main {
             }
         });
 
-        JButton btn2 = new JButton("Normal");
+        JButton btn2 = new JButton();
+        btn2.setIcon(new ImageIcon("Resources/Images/normal.png"));
 
         btn2.addActionListener(new ActionListener() {
             @Override
@@ -165,7 +167,7 @@ public class main {
         final boolean[] moved = {false};
 
         JButton finished = new JButton("Finished");
-
+        finished.setIcon(new ImageIcon("Resources/Images/finished.png"));
         finished.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -194,7 +196,7 @@ public class main {
         boolean gameEnd = false;
 
         JButton roll = new JButton("Roll");
-
+        roll.setIcon(new ImageIcon("Resources/Images/roll.png"));
         roll.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 Dice dice = new Dice();

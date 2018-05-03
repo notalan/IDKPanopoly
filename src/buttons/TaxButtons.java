@@ -35,8 +35,8 @@ public class TaxButtons extends Buttons{
 
     public JButton makeTax()
     {
-        JButton tax = new JButton("Pay Tax");
-
+        JButton tax = new JButton();
+        tax.setIcon(new ImageIcon("Resources/Images/paytax.png"));
         tax.addActionListener(new ActionListener() {
 
             @Override

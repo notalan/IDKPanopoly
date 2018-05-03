@@ -31,8 +31,8 @@ public class CommunityChestButtons extends Buttons{
 
     public JButton makeDrawCommunityChestCard()
     {
-        JButton drawCard = new JButton("Draw Card");
-
+        JButton drawCard = new JButton();
+        drawCard.setIcon(new ImageIcon("Resources/Images/drawcard.png"));
         drawCard.addActionListener(new ActionListener() {
             boolean drawn = false;
             @Override

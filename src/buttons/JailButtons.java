@@ -27,7 +27,7 @@ public class JailButtons extends Buttons {
     public JButton makePay()
     {
         JButton pay = new JButton("Pay to get out");
-
+        pay.setIcon(new ImageIcon("Resources/Images/paytogetout.png"));
         pay.addActionListener(new ActionListener() {
             boolean payed = false;
             @Override

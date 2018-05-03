@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JButton;
+import javax.swing.*;
 
 public class PropertyButtons extends Buttons {
 
@@ -56,8 +56,8 @@ public class PropertyButtons extends Buttons {
     }
 
     public JButton makeBuy() {
-        JButton buy = new JButton("Buy");
-
+        JButton buy = new JButton();
+        buy.setIcon(new ImageIcon("Resources/Images/buy.png"));
         buy.addActionListener(new ActionListener() {
 
             @Override
@@ -74,8 +74,8 @@ public class PropertyButtons extends Buttons {
     }
 
     public JButton makeAuction() {
-        JButton auction = new JButton("Auction");
-
+        JButton auction = new JButton();
+        auction.setIcon(new ImageIcon("Resources/Images/auction.png"));
         auction.addActionListener(new ActionListener() {
 
             @Override
@@ -89,7 +89,8 @@ public class PropertyButtons extends Buttons {
     }
 
     public JButton makePayRent() {
-        JButton payRent = new JButton("Pay Rent");
+        JButton payRent = new JButton();
+        payRent.setIcon(new ImageIcon("Resources/Images/payrent.png"));
         payRent.addActionListener(new ActionListener() {
 
             boolean payed = false;
@@ -114,8 +115,8 @@ public class PropertyButtons extends Buttons {
     }
 
     public JButton makeSell() {
-        JButton sell = new JButton("Sell");
-
+        JButton sell = new JButton();
+        sell.setIcon(new ImageIcon("Resources/Images/sell.png"));
         sell.addActionListener(new ActionListener() {
 
             @Override
@@ -132,7 +133,8 @@ public class PropertyButtons extends Buttons {
     }
 
     public JButton makeBuild() {
-        JButton build = new JButton("Build");
+        JButton build = new JButton();
+        build.setIcon(new ImageIcon("Resources/Images/build.png"));
 
         build.addActionListener(new ActionListener() {
 

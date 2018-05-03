@@ -37,7 +37,8 @@ public class Buttons {
 
     public JButton makeRoll()
     {
-        JButton roll = new JButton("Roll");
+        JButton roll = new JButton();
+        roll.setIcon(new ImageIcon("Resources/Images/roll.png"));
 
         roll.addActionListener(new ActionListener() {
 
@@ -55,7 +56,8 @@ public class Buttons {
     }
 
     public JButton makeMortgage() {
-        JButton mortgage = new JButton("Mortgage");
+        JButton mortgage = new JButton();
+        mortgage.setIcon(new ImageIcon("Resources/Images/mortgage.png"));
 
         mortgage.addActionListener(new ActionListener() {
 
@@ -69,7 +71,8 @@ public class Buttons {
     }
 
     public JButton makeUnMortgage() {
-        JButton unmortgage = new JButton("UnMortgage");
+        JButton unmortgage = new JButton();
+        unmortgage.setIcon(new ImageIcon("Resources/Images/unmortgage.png"));
 
         unmortgage.addActionListener(new ActionListener() {
 
@@ -82,8 +85,8 @@ public class Buttons {
     }
 
     public JButton makeCardHand() {
-        JButton cardHand = new JButton("Cards");
-
+        JButton cardHand = new JButton();
+        cardHand.setIcon(new ImageIcon("Resources/Images/card.png"));
         cardHand.addActionListener(new ActionListener() {
 
             @Override

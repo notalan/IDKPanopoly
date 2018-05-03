@@ -21,8 +21,8 @@ public class GoToJailButtons extends Buttons{
 
     public JButton makeGoToJail()
     {
-        JButton goToJail = new JButton("Go to Jail");
-
+        JButton goToJail = new JButton();
+        goToJail.setIcon(new ImageIcon("Resources/Images/gotojail.png"));
         goToJail.addActionListener(new ActionListener() {
 
             @Override
