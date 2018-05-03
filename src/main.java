@@ -244,7 +244,7 @@ public class main {
                 xCoord[i % players.length] = currentTile.getXCo();
                 yCoord[i % players.length] = currentTile.getYCo();
 
-                new ChooseEvent(currentPlayer[0], currentTile);
+                new ChooseEvent(currentPlayer[0], currentTile, players);
 
                 currentTile = currentPlayer[0].Location();
                 xCoord[i % players.length] = currentTile.getXCo();

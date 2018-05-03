@@ -37,6 +37,18 @@ public class ChooseButtons {
         {
             return new GoButtons().showButtons(currentPlayer);
         }
+        else if(currentTile instanceof Shop)
+        {
+            return new GoButtons().showButtons(currentPlayer);
+        }
+        else if(currentTile instanceof MiniGame)
+        {
+            return new GoButtons().showButtons(currentPlayer);
+        }
+        else if(currentTile instanceof FreeParking)
+        {
+            return new FreeParkingButtons().showButtons(currentPlayer);
+        }
 
         return null;
     }

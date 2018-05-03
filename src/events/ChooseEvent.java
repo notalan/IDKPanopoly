@@ -1,11 +1,14 @@
 package events;
+import AirHockey.src.AirHockey;
 import player.Player;
+import property.MiniGame;
+import property.Shop;
 import property.StationTile;
 import property.Tile;
 import transactions.ExpenditureTransaction;
 
 public class ChooseEvent {
-    public ChooseEvent(Player p, Tile t){
+    public ChooseEvent(Player p, Tile t, Player[] listOfPlayers){
         if(t instanceof StationTile){
             Object[] move = ((StationTile) t).getDestination();
             new TrainPopUp(t.getIdentifier(), (String)move[1]);
@@ -21,14 +24,14 @@ public class ChooseEvent {
             }
 
         }
-        /*
-        else if(t instanceof ShopTile){
 
+        else if(t instanceof Shop){
+            new ShopEvent(p,listOfPlayers);
         }
-        else if(t instanceof MinigameTile){
+        else if(t instanceof MiniGame){
+            new AirHockey();
+        }
 
-        }
-         */
 
     }
 
