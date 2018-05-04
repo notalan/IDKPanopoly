@@ -49,13 +49,27 @@ public class main {
                 super.paint(g);
                 try {
                     Image img = ImageIO.read(getClass().getResourceAsStream("tokenImages/spaceboat.png"));
-                    g.drawImage(img, xCoord[0]-50, yCoord[0]-50, null);
                     Image img2 = ImageIO.read(getClass().getResourceAsStream("tokenImages/dog.png"));
-                    g.drawImage(img2, xCoord[1]-50, yCoord[1]-50, null);
                     Image img3 = ImageIO.read(getClass().getResourceAsStream("tokenImages/spacecar.png"));
-                    g.drawImage(img3, xCoord[2]-50, yCoord[2]-50, null);
                     Image img4 = ImageIO.read(getClass().getResourceAsStream("tokenImages/wheelbarrow.png"));
-                    g.drawImage(img4, xCoord[3]-50, yCoord[3]-50, null);
+                    switch(players.length) {
+                        case 1: g.drawImage(img, xCoord[0] - 50, yCoord[0] - 50, null);
+                        break;
+                        case 2: g.drawImage(img, xCoord[0] - 50, yCoord[0] - 50, null);
+                                g.drawImage(img2, xCoord[1] - 50, yCoord[1] - 50, null);
+                        break;
+                        case 3:
+                            g.drawImage(img, xCoord[0] - 50, yCoord[0] - 50, null);
+                            g.drawImage(img2, xCoord[1] - 50, yCoord[1] - 50, null);
+                            g.drawImage(img3, xCoord[2] - 50, yCoord[2] - 50, null);
+                        break;
+                        case 4:
+                            g.drawImage(img, xCoord[0] - 50, yCoord[0] - 50, null);
+                            g.drawImage(img2, xCoord[1] - 50, yCoord[1] - 50, null);
+                            g.drawImage(img3, xCoord[2] - 50, yCoord[2] - 50, null);
+                            g.drawImage(img4, xCoord[3] - 50, yCoord[3] - 50, null);
+                            break;
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
