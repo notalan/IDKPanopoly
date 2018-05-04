@@ -328,7 +328,7 @@ public class main {
                 }
             }
         }
-        else if(splittingString1.length == 4) {
+        else if(splittingString1.length >= 4) { // used to be == 4. Changed to >= as it will cover 4+ and there may be a longer name which is why it wasnt drawing
             for (int i = 0; i < splittingString1.length; i++) {
                 g.drawString(splittingString1[i], x, y + i * 10);
             }

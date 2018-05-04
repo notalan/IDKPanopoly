@@ -23,9 +23,9 @@ class Initialiser {
 
     private String[] domainList = new String[8];
 
-    private String [] STATION_NAMES = {"Interdimensional", "Trans-Plane", "Vaporwave", "L o n g", "Magnet", "Space",
-            "Haunted", "Old-Timey", "Colony World"};
-    private String [] STATION_TYPES = {"Parkway", "Line", "Subway", "Monorail", "Bullet Train", "Hyperrail", "Pentarail",
+    private String [] STATION_NAMES = {"Interdimensional", "Trans-Plane", "Vaporwave", "Long", "Magnet", "Space",
+            "Haunted", "Old-Timey", "Colony-World"};
+    private String [] STATION_TYPES = {"Parkway", "Line", "Subway", "Monorail", "Bullet-Train", "Hyperrail", "Pentarail",
             "Northbound", "Southbound", "Eastbound", "WestBound", "Express"};
 
     Player[] players(int num, String[] names, Tile[] board){
