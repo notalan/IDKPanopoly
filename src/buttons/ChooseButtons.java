@@ -49,6 +49,10 @@ public class ChooseButtons {
         {
             return new FreeParkingButtons().showButtons(currentPlayer, freeParkingP);
         }
+        else if(currentTile instanceof GoToJail)
+        {
+            return new GoToJailButtons().showButtons(currentPlayer);
+        }
 
         return null;
     }

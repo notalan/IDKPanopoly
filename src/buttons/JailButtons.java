@@ -24,6 +24,7 @@ public class JailButtons extends Buttons {
         //buttonList.add(makeRoll());
         if(player.isJailed()) {
             buttonList.add(makePay());
+            buttonList.add(makeRollToGetOut());
         }
 
         return buttonList;

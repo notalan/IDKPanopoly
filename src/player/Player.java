@@ -62,6 +62,8 @@ public class Player implements Locatable, Interactable, Bankruptable{
         currentPlace = (currentPlace + diceRoll) % BOARD.length;
         CURRENT_TILE = BOARD[currentPlace];
         if(prevPos < 40 && prevPos + diceRoll > 40) { BALANCE += 200; }// passing GO
+        if(currentPlace == 10)
+            IN_JAIL = true;
         return CURRENT_TILE;
     }
 
@@ -81,7 +83,7 @@ public class Player implements Locatable, Interactable, Bankruptable{
     }
 
     public void freeFromChains(){
-        IN_JAIL = true;
+        IN_JAIL = false;
     }
 
     @Override

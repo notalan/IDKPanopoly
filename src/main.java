@@ -1,6 +1,7 @@
 import board.Board;
 import board.MainMenu;
 import buttons.ChooseButtons;
+import buttons.JailButtons;
 import dice.Dice;
 import events.ChooseEvent;
 import player.Player;
@@ -16,6 +17,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.util.Iterator;
 import java.util.ListIterator;
 import java.awt.GraphicsEnvironment;
 import java.awt.GraphicsDevice;
@@ -223,7 +225,6 @@ public class main {
             }
 
         } );
-
         while(!gameEnd) {
             i = 0;
             while (i < players.length) {
@@ -241,11 +242,16 @@ public class main {
                 image.repaint();
                 buttonPanel.add(btn1);
                 buttonPanel.add(btn2);
-                buttonPanel.add(roll);
+
+                if(!currentPlayer[0].isJailed()) {
+                    buttonPanel.add(roll);
+                }
                 buttonPanel.repaint();
                 try {
                     while (!moved[0]) {
                         TimeUnit.MILLISECONDS.sleep(5);
+                        if(currentPlayer[0].isJailed())
+                            break;
                     }
                 }
                 catch (Exception e){
