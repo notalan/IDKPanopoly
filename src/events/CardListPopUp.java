@@ -48,6 +48,18 @@ public class CardListPopUp extends JFrame{
             label.add(exit);
         }
         add(label);
+
+        JButton finish = new JButton("EXIT");
+        finish.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+            }
+        } );
+
+        add(finish, BorderLayout.AFTER_LAST_LINE);
+
         setVisible(true);
     }
 }

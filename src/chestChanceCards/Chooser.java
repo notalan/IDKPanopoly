@@ -1,6 +1,8 @@
 package chestChanceCards;
 
 import cardDeck.Dealer;
+import cardDeck.PlayableCard;
+import events.CardGetPopUp;
 import events.IncomeCardPopUp;
 import events.QuestionPopup;
 import player.Player;
@@ -55,8 +57,15 @@ public class Chooser {
 //        }
         else{
             Dealer d = new Dealer(p, P_LIST);
-            p.CARDS.add(d.drawCard());
-            //Pop Up
+            PlayableCard C = d.drawCard();
+            p.CARDS.add(C);
+            CardGetPopUp test = new CardGetPopUp(C);
+//            try {
+//                TimeUnit.SECONDS.sleep(3);
+//            }catch(Exception e){
+//                e.printStackTrace();
+//            }
+//            test.dispose();
         }
     }
 }

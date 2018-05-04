@@ -1,7 +1,7 @@
+import AI.IntermediateAI;
 import board.Board;
 import board.MainMenu;
 import buttons.ChooseButtons;
-import buttons.JailButtons;
 import dice.Dice;
 import events.ChooseEvent;
 import player.Player;
@@ -13,11 +13,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.util.Iterator;
 import java.util.ListIterator;
 import java.awt.GraphicsEnvironment;
 import java.awt.GraphicsDevice;
@@ -40,10 +37,10 @@ public class main {
         panel.setBackground(Color.BLACK);
         Initialiser initialise = new Initialiser();
         Tile[] tiles = initialise.tiles();
-        String[] names = {"Bill", "John"};
+        String[] names = {"Bill", "John", ""};
         //players can be acquired properly later one
 
-        Player[] players = initialise.players(2, names, tiles);
+        Player[] players = initialise.players(3, names, tiles);
 
 
         JLabel image = new JLabel(new ImageIcon("Resources/Images/PanopolyBoard3.png")) {
@@ -242,58 +239,70 @@ public class main {
                 image.repaint();
                 buttonPanel.add(btn1);
                 buttonPanel.add(btn2);
+                currentTile = currentPlayer[0].move(10);
+                if(currentPlayer[0].isAI()){
+                    IntermediateAI AI = new IntermediateAI(currentPlayer[0].name(), players, tiles);
 
-                if(!currentPlayer[0].isJailed()) {
-                    buttonPanel.add(roll);
+                    AI.updater(currentPlayer[0]);
+                    AI.strategize();
+                    AI.roll();
+
+                    currentTile = currentPlayer[0].Location();
+                    xCoord[i % players.length] = currentTile.getXCo();
+                    yCoord[i % players.length] = currentTile.getYCo();
+
+                    AI.act();
+
                 }
-                buttonPanel.repaint();
-                try {
-                    while (!moved[0]) {
-                        TimeUnit.MILLISECONDS.sleep(5);
-                        if(currentPlayer[0].isJailed())
-                            break;
+                else {
+                    if (!currentPlayer[0].isJailed()) {
+                        buttonPanel.add(roll);
                     }
-                }
-                catch (Exception e){
-                    e.printStackTrace();
-                }
-
-                buttonPanel.add(finished);
-                buttonPanel.remove(roll);
-                buttonPanel.repaint();
-
-                currentTile = currentPlayer[0].Location();
-                xCoord[i % players.length] = currentTile.getXCo();
-                yCoord[i % players.length] = currentTile.getYCo();
-
-                new ChooseEvent(currentPlayer[0], currentTile, players);
-
-                currentTile = currentPlayer[0].Location();
-                xCoord[i % players.length] = currentTile.getXCo();
-                yCoord[i % players.length] = currentTile.getYCo();
-
-                image.repaint();
-                ListIterator<Component> iterator = new ChooseButtons().showButtons(currentTile, currentPlayer[0], players, (FreeParking)tiles[20]).listIterator();
-                Component temp;
-
-                while(iterator.hasNext())
-                {
-                    temp = iterator.next();
-                    temp.setSize(new Dimension(30, 10));
-                    buttonPanel.add(temp);
                     buttonPanel.repaint();
-                }
-                buttonPanel.revalidate();
-                try {
-                    while (!turnEnd[0]) {
-                        TimeUnit.MILLISECONDS.sleep(5);
+                    try {
+                        while (!moved[0]) {
+                            TimeUnit.MILLISECONDS.sleep(5);
+                            if (currentPlayer[0].isJailed())
+                                break;
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
-                }
-                catch (Exception e){
-                    e.printStackTrace();
+
+                    buttonPanel.add(finished);
+                    buttonPanel.remove(roll);
+                    buttonPanel.repaint();
+
+                    currentTile = currentPlayer[0].Location();
+                    xCoord[i % players.length] = currentTile.getXCo();
+                    yCoord[i % players.length] = currentTile.getYCo();
+
+                    new ChooseEvent(currentPlayer[0], currentTile, players);
+
+                    currentTile = currentPlayer[0].Location();
+                    xCoord[i % players.length] = currentTile.getXCo();
+                    yCoord[i % players.length] = currentTile.getYCo();
+
+                    image.repaint();
+                    ListIterator<Component> iterator = new ChooseButtons().showButtons(currentTile, currentPlayer[0], players, (FreeParking) tiles[20]).listIterator();
+                    Component temp;
+
+                    while (iterator.hasNext()) {
+                        temp = iterator.next();
+                        temp.setSize(new Dimension(30, 10));
+                        buttonPanel.add(temp);
+                        buttonPanel.repaint();
+                    }
+                    buttonPanel.revalidate();
+                    try {
+                        while (!turnEnd[0]) {
+                            TimeUnit.MILLISECONDS.sleep(5);
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
                 buttonPanel.removeAll();
-                //image.repaint();
                 buttonPanel.repaint();
                 i++;
             }

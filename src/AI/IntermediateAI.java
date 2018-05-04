@@ -7,10 +7,7 @@ import dice.Dice;
 import events.*;
 import player.Player;
 import property.*;
-import transactions.ExpenditureTransaction;
-import transactions.IncomeTransaction;
-import transactions.MortgageTransaction;
-import transactions.UnmortgageTransaction;
+import transactions.*;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -22,21 +19,30 @@ public class IntermediateAI implements AIplayer {
     private Tile[] BOARD;
     private Player SELF;
     private Tile currentTile;
+    private int HeuristicAve;
+    double playerAverage;
 
     private Player First_Place, Last_Place;
     public IntermediateAI(String name, Player[] pList, Tile[] board){
         otherPlayers = pList;
         BOARD = board;
         initialiseTable();
-        SELF = new Player(name, 1000, BOARD[0], BOARD);
+        SELF = new Player(name, 1500, BOARD[0], BOARD);
     }
     @Override
     public void strategize() {
         //update tileHeuristic table to include any changes made to board during other player turns.
         updateTable();
 
+        //find average heuristic value of the board
+        HeuristicAve = 0;
+        for(TileHeuristic th : tileLookupTable){
+            HeuristicAve += th.Heuristic;
+        }
+        HeuristicAve = HeuristicAve/tileLookupTable.size();
+
         //estimate monetary position in game
-        double playerAverage = 0;
+        playerAverage = 0;
         for(Player p : otherPlayers){
             playerAverage += p.balance();
         }
@@ -86,8 +92,9 @@ public class IntermediateAI implements AIplayer {
             System.out.println("ahead of curve");
             //un-mortgaging, cards, leave jail
             if(SELF.isJailed()){
-                //if haveGetoutofJailCard -> use
-                //else pay the fine criminal scum
+                new ExpenditureTransaction(SELF, 50);
+                SELF.freeFromChains();
+                System.out.println("set self free");
             }
             /*
             un-mort most valuable mort property
@@ -108,13 +115,6 @@ public class IntermediateAI implements AIplayer {
             }
             if (haveFYFCard) {
                 useFYF(Last_Place);
-            }
-
-            if (haveHouseCard) {
-                //find anything monopolised, if multiple then pick highest heuristic
-                /**
-                 * TO DO
-                 */
             }
 
         }
@@ -144,28 +144,46 @@ public class IntermediateAI implements AIplayer {
                         new UnmortgageTransaction(SELF, (Property) SELF.getMortProperties().get(i));
                         i++;
                     }
+                    PlayableCard C = null;
                     for (PlayableCard c : SELF.CARDS) {
                         if (c instanceof CommunistCard) {
                             c.use();
-                            SELF.CARDS.remove(c);
+                            C = c;
                             break;
                         }
                     }
+                    SELF.CARDS.remove(C);
                 }
                 //END CRIMSON PROTOCOL
 
                 if (haveFYFCard) {
                     useFYF(First_Place);
                 }
-
-                if (haveHouseCard) {
-                    //find anything monopolised, if multiple then pick highest heuristic
-                    /**
-                     * TO DO
-                     */
+            }
+            //else stay in jail
+        }
+        if (haveHouseCard) {
+            //find anything monopolised, if multiple then pick highest heuristic
+            ArrayList<ImproveProperty> monopoliedProps = new ArrayList<>();
+            for(Tile I : SELF.getOwnedProperties()){
+                if(((ImproveProperty)I).monopolyCheck() && ((ImproveProperty)I).getConstructable()){
+                    monopoliedProps.add((ImproveProperty)I);
                 }
             }
+            //if a house can be built on the best tile, build it and remove the card
+            if(getPriorityTile(monopoliedProps).getConstructable()) {
+                getPriorityTile(monopoliedProps).buildHouse();
+                PlayableCard C = null;
+                for (PlayableCard c : SELF.CARDS) {
+                    if (c instanceof FreeHouseCard) {
+                        C = c;
+                        break;
+                    }
+                }
+                SELF.CARDS.remove(C);
+            }
         }
+
     }
 
     @Override
@@ -174,9 +192,7 @@ public class IntermediateAI implements AIplayer {
             int first = new Dice().rollDice(1, 6);
             int second = new Dice().rollDice(1, 6);
             if(first == second) {
-                /**
-                 * TO DO free from jail
-                 */
+                SELF.freeFromChains();
             }
         }
         else {
@@ -188,13 +204,22 @@ public class IntermediateAI implements AIplayer {
     @Override
     public void act() {
         if(currentTile instanceof ImproveProperty){
-            //using capcard if can't afford prop or build
-            //use tableLookUp to decipher if worth buying
-            //if have the cash, build a house
-            /**
-             * TO DO
-             */
-            System.out.println("nothing yet");
+            if(((ImproveProperty) currentTile).hasOwner() && !((ImproveProperty) currentTile).owner().equals(SELF)){
+                new RentTransaction(SELF, (ImproveProperty)currentTile);
+            }
+            else if(SELF.balance() >= playerAverage) {
+                for (TileHeuristic th : tileLookupTable) {
+                    if (th.T.equals(currentTile)) {
+                        if (th.Heuristic >= HeuristicAve)
+                            new BuyTransaction(SELF, (ImproveProperty) currentTile);
+                        break;
+                    }
+                }
+                if (((ImproveProperty) currentTile).monopolyCheck()
+                        && ((ImproveProperty) currentTile).owner().equals(SELF)) {
+                    new BuildHouseTransaction(SELF, (ImproveProperty) currentTile);
+                }
+            }
         }
         else if(currentTile instanceof StationTile){
             new ChooseEvent(SELF, currentTile, otherPlayers);
@@ -264,9 +289,7 @@ public class IntermediateAI implements AIplayer {
         }
         else if(currentTile instanceof Jail){
             //just visiting?
-            /**
-             * TO DO
-             */
+            SELF.moveToJail();
         }
         else if(currentTile instanceof GoToJail){
             SELF.moveToJail();
@@ -327,14 +350,43 @@ public class IntermediateAI implements AIplayer {
     }
 
     private void useFYF(Player target){
+        PlayableCard C = null;
         for (PlayableCard c : SELF.CARDS) {
             if (c instanceof FYFCard) {
                 new ExpenditureTransaction(target, 200);
                 new IncomeTransaction(SELF, 200);
-                SELF.CARDS.remove(c);
+                C = c;
+                break;
             }
         }//should use all FYF cards, unintentional but think should be kept
+        SELF.CARDS.remove(C);
     }
+
+    private ImproveProperty getPriorityTile(ArrayList<ImproveProperty> set){
+        ImproveProperty best = set.get(0);
+        int max = 0;
+        for(ImproveProperty I : set){
+            for(TileHeuristic th : tileLookupTable){
+                if(th.T.equals(I)){
+                    if(th.Heuristic >= max){
+                        best = I;
+                        max = tileLookupTable.get(tileLookupTable.indexOf(I)).Heuristic;
+                    }
+                }
+            }
+        }
+
+        return best;
+    }
+
+    public Player findInnerSelf(){
+        return SELF;
+    }
+
+    public void updater(Player p){
+        SELF = p;
+    }
+
     public void tester(int x){
         currentTile = SELF.move(x);
     }

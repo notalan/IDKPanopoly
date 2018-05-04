@@ -45,21 +45,9 @@ public class JailButtons extends Buttons {
                     if (dice.rollDice(1, 6) == dice.rollDice(1, 6)) {
                         PLAYER.freeFromChains();
                         RolledOutOfJailPopUp R = new RolledOutOfJailPopUp();
-                        try {
-                            TimeUnit.SECONDS.sleep(2);
-                        }catch(Exception E){
-                            E.printStackTrace();
-                        }
-                        R.dispose();
                     }
                     else {
                         RolledOutOfJailFailPopUp F = new RolledOutOfJailFailPopUp();
-                        try {
-                            TimeUnit.SECONDS.sleep(2);
-                        }catch(Exception E){
-                            E.printStackTrace();
-                        }
-                        F.dispose();
                     }
                     beenRolled();
                 }

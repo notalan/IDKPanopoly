@@ -1,3 +1,4 @@
+import AI.IntermediateAI;
 import player.Player;
 import property.*;
 import twitterbotics.KnowledgeBaseModule;
@@ -31,7 +32,10 @@ class Initialiser {
     Player[] players(int num, String[] names, Tile[] board){
         Player[] playerArray = new Player[num];
         for(int i = 0; i < num; i++){
-            playerArray[i] = new Player(names[i], 1500, GO, board);
+            if(names[i].equals(""))
+                (playerArray[i] = new IntermediateAI("Alice" + i, playerArray, board).findInnerSelf()).setAI();
+            else
+                playerArray[i] = new Player(names[i], 1500, GO, board);
         }
         return playerArray;
     }
