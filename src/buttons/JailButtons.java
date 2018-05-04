@@ -1,5 +1,9 @@
 package buttons;
 
+import dice.Dice;
+import events.PayedOutOfJailPopUp;
+import events.RolledOutOfJailFailPopUp;
+import events.RolledOutOfJailPopUp;
 import transactions.ExpenditureTransaction;
 import player.Player;
 
@@ -9,6 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class JailButtons extends Buttons {
 
@@ -24,6 +29,47 @@ public class JailButtons extends Buttons {
         return buttonList;
     }
 
+    public JButton makeRollToGetOut()
+    {
+        JButton roll = new JButton();
+        roll.setIcon(new ImageIcon("Resources/Images/roll.png"));
+
+        roll.addActionListener(new ActionListener() {
+            boolean rolled = false;
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(!rolled) {
+                    Dice dice = new Dice();
+                    if (dice.rollDice(1, 6) == dice.rollDice(1, 6)) {
+                        PLAYER.freeFromChains();
+                        RolledOutOfJailPopUp R = new RolledOutOfJailPopUp();
+                        try {
+                            TimeUnit.SECONDS.sleep(2);
+                        }catch(Exception E){
+                            E.printStackTrace();
+                        }
+                        R.dispose();
+                    }
+                    else {
+                        RolledOutOfJailFailPopUp F = new RolledOutOfJailFailPopUp();
+                        try {
+                            TimeUnit.SECONDS.sleep(2);
+                        }catch(Exception E){
+                            E.printStackTrace();
+                        }
+                        F.dispose();
+                    }
+                    beenRolled();
+                }
+                else{
+                    //already Rolled popup
+                    }
+            }
+            void beenRolled(){ rolled = true; }
+        } );
+        return roll;
+    }
     public JButton makePay()
     {
         JButton pay = new JButton("Pay to get out");
@@ -34,10 +80,18 @@ public class JailButtons extends Buttons {
             public void actionPerformed(ActionEvent e) {
                 if(!payed){
                     new ExpenditureTransaction(PLAYER, 50);
+                    PLAYER.freeFromChains();
                     beenPayed();
+                    PayedOutOfJailPopUp P = new PayedOutOfJailPopUp();
+                    try {
+                        TimeUnit.SECONDS.sleep(2);
+                    }catch(Exception E){
+                        E.printStackTrace();
+                    }
+                    P.dispose();
                 }
                 else{
-                    System.out.println("already payed" + PLAYER.balance());
+
                 }
             }
             void beenPayed(){

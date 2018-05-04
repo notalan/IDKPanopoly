@@ -77,6 +77,11 @@ public class Player implements Locatable, Interactable, Bankruptable{
     public void moveToJail() {
         CURRENT_TILE = BOARD[10];
         currentPlace = 10;
+        IN_JAIL = true;
+    }
+
+    public void freeFromChains(){
+        IN_JAIL = true;
     }
 
     @Override
