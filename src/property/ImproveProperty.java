@@ -22,8 +22,7 @@ public class ImproveProperty extends Property implements Constructable, Sellable
     }
 
     @Override
-    public int countHouses() { return numberOfHouses;
-    }
+    public int countHouses() { return numberOfHouses;}
 
     @Override
     public int countHotels() { return numberOfHotels;
@@ -74,4 +73,20 @@ public class ImproveProperty extends Property implements Constructable, Sellable
 
     // monopoly function boolean here
 
+    @Override
+    public double getRent() {
+        if (countHouses() == 1) {
+            return super.rentPrice + countHouses() * 10;
+        } else if (countHouses() == 2) {
+            return super.rentPrice + countHouses() * 12;
+        } else if (countHouses() == 3) {
+            return super.rentPrice + countHouses() * 14;
+        } else if (countHouses() == 4) {
+            return super.rentPrice + countHouses() * 16;
+        }
+        if (countHotels() == 1) {
+            return super.rentPrice + countHouses() * 18;
+        }
+        return super.rentPrice;
+    }
 }

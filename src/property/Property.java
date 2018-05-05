@@ -7,9 +7,8 @@ public class Property extends Tile implements Buyable, Ownable, Mortgageable, Re
     private double MortgagePrice; // How much you get back when you mortgage something
     private int tilePrice;
     private Player owner;
-    private double rentPrice;
+    double rentPrice;
     private boolean isMortgaged;
-    private ImproveProperty variableName;
 
     public Property(String name, int xco, int yco, int price, double mortgagePrice, double rent) {
         tilePrice = price;
@@ -37,10 +36,7 @@ public class Property extends Tile implements Buyable, Ownable, Mortgageable, Re
     }
 
     @Override
-    public void mortgageProperty() {
-        isMortgaged = true;
-
-    }
+    public void mortgageProperty() { isMortgaged = true; }
 
     @Override
     public void unMortgageProperty() {
@@ -61,26 +57,6 @@ public class Property extends Tile implements Buyable, Ownable, Mortgageable, Re
 
     @Override
     public double getRent() {
-        if(variableName.countHouses() == 1)
-        {
-            rentPrice = getRent() + variableName.countHouses() * 10;
-        }
-        else if(variableName.countHouses() == 2)
-        {
-            rentPrice = getRent() + variableName.countHouses() * 12;
-        }
-        else if(variableName.countHouses() == 3)
-        {
-            rentPrice = getRent() + variableName.countHouses() * 14;
-        }
-        else if(variableName.countHouses() == 4)
-        {
-            rentPrice = getRent() + variableName.countHouses() * 16;
-        }
-        else if(variableName.countHouses() == 1)
-        {
-            rentPrice = getRent() + variableName.countHouses() * 18;
-        }
 
         return rentPrice;
     }
@@ -94,6 +70,5 @@ public class Property extends Tile implements Buyable, Ownable, Mortgageable, Re
     public String transfer() {
         return null;
     }
-
 
 }
