@@ -1,4 +1,5 @@
 import AI.IntermediateAI;
+import board.BalanceScreen;
 import board.Board;
 import board.MainMenu;
 import buttons.ChooseButtons;
@@ -37,10 +38,10 @@ public class main {
         panel.setBackground(Color.BLACK);
         Initialiser initialise = new Initialiser();
         Tile[] tiles = initialise.tiles();
-        String[] names = {"Bill", "John", ""};
+        String[] names = {"Bill", "John", "", ""};
         //players can be acquired properly later one
 
-        Player[] players = initialise.players(3, names, tiles);
+        Player[] players = initialise.players(4, names, tiles);
 
 
         JLabel image = new JLabel(new ImageIcon("Resources/Images/PanopolyBoard3.png")) {
@@ -195,8 +196,10 @@ public class main {
         buttonPanel.add(finished);
 
         panel.add(buttonPanel);
-
+        BalanceScreen balanceScreen = new BalanceScreen(players);
         panopoly.getContentPane().add(panel, FlowLayout.LEFT);
+        panopoly.getContentPane().add(balanceScreen);
+
         panopoly.setUndecorated(true); // hides close, minimize, fullscreen
         panopoly.pack();
         panopoly.setVisible(false);
@@ -296,6 +299,7 @@ public class main {
                     try {
                         while (!turnEnd[0]) {
                             TimeUnit.MILLISECONDS.sleep(5);
+                            balanceScreen.repaint();
                         }
                     } catch (Exception e) {
                         e.printStackTrace();
