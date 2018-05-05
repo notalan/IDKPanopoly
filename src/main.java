@@ -4,6 +4,7 @@ import board.Board;
 import board.MainMenu;
 import buttons.ChooseButtons;
 import dice.Dice;
+import events.AITurnPopUp;
 import events.ChooseEvent;
 import player.Player;
 import property.FreeParking;
@@ -225,6 +226,8 @@ public class main {
             }
 
         } );
+
+
         while(!gameEnd) {
             i = 0;
             while (i < players.length) {
@@ -242,11 +245,22 @@ public class main {
                 image.repaint();
                 buttonPanel.add(btn1);
                 buttonPanel.add(btn2);
+
+                panopoly.remove(balanceScreen);
+                balanceScreen = new BalanceScreen(players);
+                panopoly.add(balanceScreen);
+
                 if(currentPlayer[0].isAI()){
                     IntermediateAI AI = new IntermediateAI(currentPlayer[0].name(), players, tiles);
-
+                    buttonPanel.removeAll();
+                    AITurnPopUp A = new AITurnPopUp();
                     AI.updater(currentPlayer[0]);
                     AI.strategize();
+
+                    panopoly.remove(balanceScreen);
+                    balanceScreen = new BalanceScreen(players);
+                    panopoly.add(balanceScreen);
+
                     AI.roll();
 
                     currentTile = currentPlayer[0].Location();
@@ -255,6 +269,10 @@ public class main {
 
                     AI.act();
 
+                    panopoly.remove(balanceScreen);
+                    balanceScreen = new BalanceScreen(players);
+                    panopoly.add(balanceScreen);
+                    A.dispose();
                 }
                 else {
                     if (!currentPlayer[0].isJailed()) {
@@ -263,7 +281,7 @@ public class main {
                     buttonPanel.repaint();
                     try {
                         while (!moved[0]) {
-                            TimeUnit.MILLISECONDS.sleep(5);
+                            TimeUnit.MILLISECONDS.sleep(10);
                             if (currentPlayer[0].isJailed())
                                 break;
                         }
@@ -298,13 +316,16 @@ public class main {
                     buttonPanel.revalidate();
                     try {
                         while (!turnEnd[0]) {
-                            TimeUnit.MILLISECONDS.sleep(5);
-                            balanceScreen.repaint();
+                            TimeUnit.MILLISECONDS.sleep(10);
+
                         }
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
+                panopoly.remove(balanceScreen);
+                balanceScreen = new BalanceScreen(players);
+                panopoly.add(balanceScreen);
                 buttonPanel.removeAll();
                 buttonPanel.repaint();
                 i++;

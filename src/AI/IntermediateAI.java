@@ -162,7 +162,7 @@ public class IntermediateAI implements AIplayer {
             }
             //else stay in jail
         }
-        if (haveHouseCard) {
+        if (haveHouseCard && SELF.getOwnedProperties().size() > 0) {
             //find anything monopolised, if multiple then pick highest heuristic
             ArrayList<ImproveProperty> monopoliedProps = new ArrayList<>();
             for(Tile I : SELF.getOwnedProperties()){

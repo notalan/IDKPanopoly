@@ -67,6 +67,7 @@ public class UnmortgagePopUp {
         frame.add(p);
         frame.add(finish, BorderLayout.AFTER_LAST_LINE);
         frame.validate();
+        frame.setAlwaysOnTop(true);
         frame.setVisible(true);
 
     }
