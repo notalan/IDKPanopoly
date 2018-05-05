@@ -12,7 +12,6 @@ public class ImproveProperty extends Property implements Constructable, Sellable
         super(name, xco, yco, price, mortgagePrice, rent);
         housePrices = housePrice;
         colourOfTiles = colourOfTile;
-
     }
 
     @Override
@@ -23,13 +22,11 @@ public class ImproveProperty extends Property implements Constructable, Sellable
     }
 
     @Override
-    public int countHouses() {
-        return numberOfHouses;
+    public int countHouses() { return numberOfHouses;
     }
 
     @Override
-    public int countHotels() {
-        return numberOfHotels;
+    public int countHotels() { return numberOfHotels;
     }
 
     @Override
