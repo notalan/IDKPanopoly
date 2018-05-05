@@ -32,9 +32,9 @@ public class BalanceScreen extends JPanel{
         add(Box.createRigidArea(new Dimension(0, 100)));
 
         JLabel player3 = new JLabel(player_balances[2].name() + "'s balance: ");
-        player3.setForeground(Color.YELLOW);
+        player3.setForeground(Color.RED);
         JLabel player3_bal = new JLabel("SD$" + player_balances[2].balance());
-        player3_bal.setForeground(Color.YELLOW);
+        player3_bal.setForeground(Color.RED);
         player3.setAlignmentX(Component.CENTER_ALIGNMENT);
         player3_bal.setAlignmentX(Component.CENTER_ALIGNMENT);
         add(player3);
@@ -43,9 +43,9 @@ public class BalanceScreen extends JPanel{
         add(Box.createRigidArea(new Dimension(0, 100)));
 
         JLabel player4 = new JLabel(player_balances[3].name() + "'s balance: ");
-        player4.setForeground(Color.RED);
+        player4.setForeground(Color.GREEN);
         JLabel player4_bal = new JLabel("SD$" + player_balances[3].balance());
-        player4_bal.setForeground(Color.RED);
+        player4_bal.setForeground(Color.GREEN);
         player4.setAlignmentX(Component.CENTER_ALIGNMENT);
         player4_bal.setAlignmentX(Component.CENTER_ALIGNMENT);
         add(player4);
