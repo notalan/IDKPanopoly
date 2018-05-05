@@ -72,12 +72,6 @@ public class JailButtons extends Buttons {
                     PLAYER.freeFromChains();
                     beenPayed();
                     PayedOutOfJailPopUp P = new PayedOutOfJailPopUp();
-                    try {
-                        TimeUnit.SECONDS.sleep(2);
-                    }catch(Exception E){
-                        E.printStackTrace();
-                    }
-                    P.dispose();
                 }
                 else{
 

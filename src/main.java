@@ -239,7 +239,6 @@ public class main {
                 image.repaint();
                 buttonPanel.add(btn1);
                 buttonPanel.add(btn2);
-                currentTile = currentPlayer[0].move(10);
                 if(currentPlayer[0].isAI()){
                     IntermediateAI AI = new IntermediateAI(currentPlayer[0].name(), players, tiles);
 
