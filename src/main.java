@@ -246,20 +246,12 @@ public class main {
                 buttonPanel.add(btn1);
                 buttonPanel.add(btn2);
 
-                panopoly.remove(balanceScreen);
-                balanceScreen = new BalanceScreen(players);
-                panopoly.add(balanceScreen);
-
                 if(currentPlayer[0].isAI()){
                     IntermediateAI AI = new IntermediateAI(currentPlayer[0].name(), players, tiles);
                     buttonPanel.removeAll();
                     AITurnPopUp A = new AITurnPopUp();
                     AI.updater(currentPlayer[0]);
                     AI.strategize();
-
-                    panopoly.remove(balanceScreen);
-                    balanceScreen = new BalanceScreen(players);
-                    panopoly.add(balanceScreen);
 
                     AI.roll();
 
@@ -269,9 +261,6 @@ public class main {
 
                     AI.act();
 
-                    panopoly.remove(balanceScreen);
-                    balanceScreen = new BalanceScreen(players);
-                    panopoly.add(balanceScreen);
                     A.dispose();
                 }
                 else {
