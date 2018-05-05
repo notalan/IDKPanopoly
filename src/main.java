@@ -323,9 +323,7 @@ public class main {
                         e.printStackTrace();
                     }
                 }
-                panopoly.remove(balanceScreen);
-                balanceScreen = new BalanceScreen(players);
-                panopoly.add(balanceScreen);
+                balanceScreen.update_bal(players);
                 buttonPanel.removeAll();
                 buttonPanel.repaint();
                 i++;
