@@ -61,4 +61,40 @@ public class BuyTransaction{
 //            p.updateBoard(tileList);
 //        }
     }
+
+    public BuyTransaction(Player player, ImproveProperty prop, double price) {
+        player.pay(price);
+        player.addProperty(prop);
+        prop.buyTile(player);
+
+        String colour = prop.colourOfTiles; // Colour check
+        int count = 0;
+        for (int i = 0; i < player.getOwnedProperties().size(); i++) {
+            String temp = ((ImproveProperty) player.getOwnedProperties().get(i)).colourOfTiles;
+            if (colour.equals(temp)) {
+                count++;
+            }
+        }
+
+        if (colour.equals("Brown") || colour.equals("DBlue")) {
+            if (count == 2) {
+                for (int i = 0; i < player.getOwnedProperties().size(); i++) {
+                    String temp = ((ImproveProperty) player.getOwnedProperties().get(i)).colourOfTiles;
+                    if (colour.equals(temp)) {
+                        ((ImproveProperty) player.getOwnedProperties().get(i)).monopolySet();
+                    }
+                }
+            }
+        } else {
+            if (count == 3) {
+                for (int i = 0; i < player.getOwnedProperties().size(); i++) {
+                    String temp = ((ImproveProperty) player.getOwnedProperties().get(i)).colourOfTiles;
+                    if (colour.equals(temp)) {
+                        ((ImproveProperty) player.getOwnedProperties().get(i)).monopolySet();
+                    }
+                }
+            }
+
+        }
+    }
 }

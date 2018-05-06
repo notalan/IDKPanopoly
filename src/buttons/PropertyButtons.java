@@ -16,10 +16,13 @@ public class PropertyButtons extends Buttons {
 
     //    private Player PLAYER;
     private ImproveProperty TILE;
+    private Player[] PLAYER_ARR;
 
-    public List<Component> showButtons(ImproveProperty currentTile, Player currentPlayer) {
+    public List<Component> showButtons(ImproveProperty currentTile, Player currentPlayer, Player[] players) {
         PLAYER = currentPlayer;
         TILE = currentTile;
+        PLAYER_ARR = players;
+
         ArrayList<Component> buttonList = new ArrayList<>();
         //buttonList.add(makeRoll());
         if(currentPlayer.getOwnedProperties().size() > 0)
@@ -80,8 +83,7 @@ public class PropertyButtons extends Buttons {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                Auction auction = new Auction(TILE);
-                auction.start();
+                Auction auction = new Auction(TILE, PLAYER_ARR);
             }
 
         });
