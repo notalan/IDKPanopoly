@@ -162,7 +162,7 @@ public class IntermediateAI implements AIplayer {
             }
             //else stay in jail
         }
-        if (haveHouseCard && SELF.getOwnedProperties().size() > 0) {
+        if (haveHouseCard) {
             //find anything monopolised, if multiple then pick highest heuristic
             ArrayList<ImproveProperty> monopoliedProps = new ArrayList<>();
             for(Tile I : SELF.getOwnedProperties()){
@@ -171,16 +171,18 @@ public class IntermediateAI implements AIplayer {
                 }
             }
             //if a house can be built on the best tile, build it and remove the card
-            if(getPriorityTile(monopoliedProps).getConstructable()) {
-                getPriorityTile(monopoliedProps).buildHouse();
-                PlayableCard C = null;
-                for (PlayableCard c : SELF.CARDS) {
-                    if (c instanceof FreeHouseCard) {
-                        C = c;
-                        break;
+            if(monopoliedProps.size() > 0) {
+                if (getPriorityTile(monopoliedProps).getConstructable()) {
+                    getPriorityTile(monopoliedProps).buildHouse();
+                    PlayableCard C = null;
+                    for (PlayableCard c : SELF.CARDS) {
+                        if (c instanceof FreeHouseCard) {
+                            C = c;
+                            break;
+                        }
                     }
+                    SELF.CARDS.remove(C);
                 }
-                SELF.CARDS.remove(C);
             }
         }
 
