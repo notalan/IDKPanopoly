@@ -2,6 +2,7 @@ import AI.IntermediateAI;
 import board.BalanceScreen;
 import board.Board;
 import board.MainMenu;
+import board.PlayerMenu;
 import buttons.ChooseButtons;
 import dice.Dice;
 import events.AITurnPopUp;
@@ -39,7 +40,7 @@ public class main {
         panel.setBackground(Color.BLACK);
         Initialiser initialise = new Initialiser();
         Tile[] tiles = initialise.tiles();
-        String[] names = {"Bill", "John", "", ""};
+        String[] names = {"Player 1", "Player 2", "", ""};
         //players can be acquired properly later one
 
         Player[] players = initialise.players(4, names, tiles);

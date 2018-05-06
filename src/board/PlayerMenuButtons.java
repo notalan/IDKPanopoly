@@ -18,6 +18,7 @@ public class PlayerMenuButtons {
             public void actionPerformed(ActionEvent e) {
                 panopoly.setVisible(true);
                 playermenu.dispose();
+
             }
 
         } );

@@ -21,12 +21,9 @@ public class MainMenuButtons {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    PlayerMenu playerMenu = new PlayerMenu(panopoly);
-                } catch (MalformedURLException e1) {
-                    e1.printStackTrace();
-                }
-                mainmenu.dispose();
+                    panopoly.setVisible(true);
+
+                    mainmenu.dispose();
             }
 
         } );

@@ -17,7 +17,6 @@ public class MainMenu extends JFrame{
         main.add(Box.createRigidArea(new Dimension(50, 400)));
         JButton p = main_buttons.playButton(main_menu, panopoly);
         JButton q = main_buttons.quitButton();
-
         p.setAlignmentX(Component.CENTER_ALIGNMENT);
         q.setAlignmentX(Component.CENTER_ALIGNMENT);
         main.add(p);
@@ -27,5 +26,6 @@ public class MainMenu extends JFrame{
         main_menu.add(mainmenu);
         main_menu.pack();
         main_menu.setVisible(true);
+
     }
 }

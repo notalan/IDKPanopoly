@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 import java.net.MalformedURLException;
 
 public class PlayerMenu extends JFrame{
-    private String[] player_names = new String[4];
+    public String[] player_names = new String[4];
 
     public PlayerMenu(Board panopoly) throws MalformedURLException{
         JFrame player_menu = new JFrame("PlayerMenu");
@@ -28,7 +28,7 @@ public class PlayerMenu extends JFrame{
         menu_image.add(player1);
         menu_image.add(Box.createRigidArea(new Dimension(0, 100)));
 
-        JLabel p2 = new JLabel("Enter Player 4 name: (Leave blank for AI)");
+        JLabel p2 = new JLabel("Enter Player 2 name: (Leave blank for AI)");
         p2.setForeground(Color.white);
         menu_image.add(p2);
         JTextField player2 = new JTextField();
@@ -36,7 +36,7 @@ public class PlayerMenu extends JFrame{
         player2.setHorizontalAlignment(0);
         menu_image.add(Box.createRigidArea(new Dimension(0, 100)));
 
-        JLabel p3 = new JLabel("Enter Player 4 name: (Leave blank for AI)");
+        JLabel p3 = new JLabel("Enter Player 3 name: (Leave blank for AI)");
         p3.setForeground(Color.white);
         menu_image.add(p3);
         JTextField player3 = new JTextField();
@@ -63,24 +63,26 @@ public class PlayerMenu extends JFrame{
                 String player_4 = player4.getText();
                 player_names[0] = player_1;
                 if(player_2.isEmpty()){
-                    //add ai
+                    player_names[1] = "";
                 }
                 else{
                     player_names[1] = player_2;
                 }
                 if(player_3.isEmpty()){
-                    //add ai
+                    player_names[2] = "";
                 }
                 else{
                     player_names[2] = player_3;
                 }
                 if(player_4.isEmpty()){
-                    //add ai
+                    player_names[3] = "";
                 }
                 else{
+
                     player_names[3] = player_4;
                 }
             }
+
         });
         player_menu.setUndecorated(true);
         menu_image.add(next);
