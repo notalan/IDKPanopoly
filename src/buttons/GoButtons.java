@@ -10,7 +10,7 @@ public class GoButtons extends Buttons{
     public List<Component> showButtons(Player currentPlayer) {
         PLAYER = currentPlayer;
         ArrayList<Component> buttonList = new ArrayList<>();
-        buttonList.add(makeRoll());
+        //buttonList.add(makeRoll());
 
         return buttonList;
     }

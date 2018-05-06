@@ -265,21 +265,9 @@ public class IntermediateAI implements AIplayer {
                 IncomeCard I = new IncomeCard(SELF);
                 if(SELF.getOwnedProperties().size() > 2){
                     IncomeCardPopUp i = new IncomeCardPopUp(I.message(), I.getAmmount());
-                    try {
-                        TimeUnit.SECONDS.sleep(3);
-                    }catch(Exception e){
-                        e.printStackTrace();
-                    }
-                    i.dispose();
                 }
                 else{
                     IncomeCardPopUp i = new IncomeCardPopUp("TAX REBATES / LOTTO / GRANDAD DIED - GET INHERITANCE", I.getAmmount());
-                    try {
-                        TimeUnit.SECONDS.sleep(3);
-                    }catch(Exception e){
-                        e.printStackTrace();
-                    }
-                    i.dispose();
                 }
             }
             else{

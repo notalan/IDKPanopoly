@@ -261,6 +261,9 @@ public class main {
 
                     AI.act();
 
+                    xCoord[i % players.length] = currentPlayer[0].Location().getXCo();
+                    yCoord[i % players.length] = currentPlayer[0].Location().getYCo();
+
                     A.dispose();
                 }
                 else {
