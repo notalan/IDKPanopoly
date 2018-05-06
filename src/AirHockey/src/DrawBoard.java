@@ -16,6 +16,7 @@ public class DrawBoard extends JPanel {
     int scoreP1 = 0, scoreCPU = 0;
     boolean goal10 = true, goal11 = false, goal12 = false, goal13 = false;
     boolean goal20 = true, goal21 = false, goal22 = false, goal23 = false;
+    boolean gameOver = false;
 
     public DrawBoard() {
         this.addKeyListener(new CircleListener());
@@ -378,7 +379,7 @@ public class DrawBoard extends JPanel {
                 if(scoreCPU == 3)
             {
                 JOptionPane.showMessageDialog(null, "CPU Wins!!!!!!");
-                System.exit(0);
+                gameOver = true;
             }
             posInit();
         }
@@ -415,5 +416,10 @@ public class DrawBoard extends JPanel {
         double d2 = Math.pow(xDiff2, 2) + Math.pow(yDiff2, 2);
 
         return d < Math.pow((30 + 20 - 20), 2) || d2 < Math.pow((30 + 20), 2);
+    }
+
+    public boolean isGameOver()
+    {
+        return gameOver;
     }
 }
