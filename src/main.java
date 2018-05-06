@@ -228,15 +228,27 @@ public class main {
 
         } );
 
-
         while(!gameEnd) {
             i = 0;
             while (i < players.length) {
                 buttonPanel.removeAll();
                 turnEnd[0] = false;
                 moved[0] = false;
+                int bankruptCount = 0;
 
                 currentPlayer[0] = players[i % players.length];
+
+                //check if player is still in the game or not
+                int poorCount = 0;
+                while(currentPlayer[0].isBankrupt()){
+                    i++;
+                    currentPlayer[0] = players[i % players.length];
+                    poorCount++;
+                }
+                if(poorCount == 3){
+                    gameEnd = true;
+                    break;
+                }
                 System.out.println(currentPlayer[0].name());
 
                 currentTile = currentPlayer[0].Location();
@@ -247,9 +259,12 @@ public class main {
                 buttonPanel.add(btn1);
                 buttonPanel.add(btn2);
 
+                if(currentPlayer[0].balance() < 0)
+                    bankruptCount++;
+
                 if(currentPlayer[0].isAI()){
-                    IntermediateAI AI = new IntermediateAI(currentPlayer[0].name(), players, tiles);
                     buttonPanel.removeAll();
+                    IntermediateAI AI = new IntermediateAI(currentPlayer[0].name(), players, tiles);
                     AITurnPopUp A = new AITurnPopUp();
                     AI.updater(currentPlayer[0]);
                     AI.strategize();
@@ -265,9 +280,16 @@ public class main {
                     xCoord[i % players.length] = currentPlayer[0].Location().getXCo();
                     yCoord[i % players.length] = currentPlayer[0].Location().getYCo();
 
+                    if(currentPlayer[0].balance() < 0)
+                        bankruptCount++;
+
+                    if(bankruptCount > 1)
+                        currentPlayer[0].setBankrupt();
+
                     A.dispose();
                 }
                 else {
+                    currentPlayer[0] = players[i % players.length];
                     if (!currentPlayer[0].isJailed()) {
                         buttonPanel.add(roll);
                     }
@@ -319,9 +341,20 @@ public class main {
                 balanceScreen.update_bal(players);
                 buttonPanel.removeAll();
                 buttonPanel.repaint();
+
+                if(currentPlayer[0].balance() < 0)
+                    bankruptCount++;
+
+                if(bankruptCount > 1) {
+                    currentPlayer[0].setBankrupt();
+                }
                 i++;
             }
-            //gameEnd = true;
+        }
+        for(Player p : players){
+            if(!p.isBankrupt()){
+                System.out.println(p.name() + " is the winner!");
+            }
         }
     }
 

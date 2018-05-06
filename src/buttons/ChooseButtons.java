@@ -11,7 +11,7 @@ public class ChooseButtons {
     public List<Component> showButtons(Tile currentTile, Player currentPlayer, Player[] list, FreeParking freeParkingP) {
 
         if (currentTile instanceof ImproveProperty) {
-            return new PropertyButtons().showButtons((ImproveProperty) currentTile, currentPlayer);
+            return new PropertyButtons().showButtons((ImproveProperty) currentTile, currentPlayer, list);
         }
         else if(currentTile instanceof Go)
         {

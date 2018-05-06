@@ -1,26 +1,35 @@
 package transactions;
 
+import player.Player;
+import property.ImproveProperty;
+import property.Property;
 import property.Tile;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class Auction {
-    Tile tile;
+    ImproveProperty tile;
     double bid;
+    Player highestBidder;
 
-    public Auction(Tile CurrentTile)
+    public Auction(ImproveProperty CurrentTile, Player[] players)
     {
         this.tile = CurrentTile;
         this.bid = 0.0;
+        start(players);
     }
 
-    public void bid()
+    public void bid(Player player)
     {
-        double new_bid = 0.0;
+        double new_bid;
 
-        new_bid = Double.parseDouble(JOptionPane.showInputDialog("Enter your bid"));
+        try {
+            new_bid = Double.parseDouble(JOptionPane.showInputDialog(player.name() + ", Enter your bid"));
+        }
+        catch (Exception e) {
+            new_bid = 0.0;
+            JOptionPane.showMessageDialog(null, "Invalid bid");
+        }
 
         if(new_bid != 0.0)
         {
@@ -28,34 +37,30 @@ public class Auction {
             {
                 JOptionPane.showMessageDialog(null, "Invalid bid");
             }
+            else if(player.balance() < new_bid)
+            {
+                JOptionPane.showMessageDialog(null, "You can't afford to bid that much!");
+            }
             else
             {
+                bid = new_bid;
+                highestBidder = player;
                 JOptionPane.showMessageDialog(null, "Highest bid is now: " + bid);
             }
         }
     }
 
-    public void start()
+    public void start(Player[] players)
     {
-        int delay = 1000;
-        int time[] = {0};
+        JOptionPane.showMessageDialog(null, "Auction rules: Each player gets 2 bids, the highest bidder wins!");
 
-        ActionListener incTime = new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                time[0] += 1;
-            }
-        };
-
-        new Timer(delay, incTime);
-
-        if(time[0] >= 30)
+        for(int i = 0; i < players.length*2; i++)
         {
-            JOptionPane.showMessageDialog(null,"Auction over!");
+            bid(players[i % players.length]);
         }
 
-        while(time[0] >= 30)
-        {
-            bid();
-        }
+        JOptionPane.showMessageDialog(null, "Auction over: " + highestBidder.name() + " won with a bid of " + bid);
+
+        new BuyTransaction(highestBidder, tile, bid);
     }
 }
