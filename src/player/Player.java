@@ -15,6 +15,7 @@ public class Player implements Locatable, Interactable, Bankruptable{
     private ArrayList<Tile>  MORTGAGED_PROPERTIES = new ArrayList<>();
     public ArrayList<PlayableCard> CARDS = new ArrayList<>();
     private boolean isAI = false;
+    private boolean bankrupt = false;
 
     public Player(String name, int balance, Tile startingTile, Tile[] board){
         NAME = name;
@@ -54,6 +55,16 @@ public class Player implements Locatable, Interactable, Bankruptable{
     @Override
     public ArrayList<Tile> getMortProperties() {
         return MORTGAGED_PROPERTIES;
+    }
+
+    @Override
+    public boolean isBankrupt() {
+        return bankrupt;
+    }
+
+    @Override
+    public void setBankrupt() {
+        bankrupt = true;
     }
 
     @Override

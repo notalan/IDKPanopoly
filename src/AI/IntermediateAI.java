@@ -127,10 +127,14 @@ public class IntermediateAI implements AIplayer {
                     int min = 100;
                     Tile toRemove = null;
                     int temp;
-                    for (Tile T : SELF.getOwnedProperties()) {
-                        if (min > (temp = tileLookupTable.get(tileLookupTable.indexOf((T))).Heuristic)) {
-                            min = temp;
-                            toRemove = tileLookupTable.get(tileLookupTable.indexOf(T)).T;
+                    for(TileHeuristic th : tileLookupTable){
+                        for(Tile I : SELF.getOwnedProperties()) {
+                            if (th.T.equals(I)) {
+                                if (th.Heuristic <= min) {
+                                    toRemove = I;
+                                    min = th.Heuristic;
+                                }
+                            }
                         }
                     }
                     if (toRemove != null) {
