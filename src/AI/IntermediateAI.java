@@ -29,6 +29,15 @@ public class IntermediateAI implements AIplayer {
         initialiseTable();
         SELF = new Player(name, 1500, BOARD[0], BOARD);
     }
+
+    /*
+    Constructor used to manage Auctions
+     */
+    public IntermediateAI(Player player, Player[] pList){
+        otherPlayers = pList;
+        updater(player);
+    }
+
     @Override
     public void strategize() {
         //update tileHeuristic table to include any changes made to board during other player turns.
@@ -371,6 +380,26 @@ public class IntermediateAI implements AIplayer {
         }
 
         return best;
+    }
+
+    public double auctionStrategise(Tile auctionTarget, double highestBid){
+        TileHeuristic th = new TileHeuristic(auctionTarget);
+        th.setHeuristic(SELF);
+        System.out.println(th.Heuristic);
+        HeuristicAve  = 250; // median estimate
+        if(th.Heuristic >= HeuristicAve && highestBid < ((ImproveProperty)auctionTarget).getPrice() * 0.6){
+            playerAverage = 0;
+            for(Player p : otherPlayers){
+                playerAverage += p.balance();
+            }
+            playerAverage = playerAverage/otherPlayers.length;
+            if(SELF.balance() > playerAverage)
+                return highestBid + 5;
+            else{
+                return 0.0;
+            }
+        }
+        return 0.0;
     }
 
     public Player findInnerSelf(){

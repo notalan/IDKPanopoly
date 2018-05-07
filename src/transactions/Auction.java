@@ -1,5 +1,6 @@
 package transactions;
 
+import AI.IntermediateAI;
 import player.Player;
 import property.ImproveProperty;
 import property.Property;
@@ -11,6 +12,7 @@ public class Auction {
     ImproveProperty tile;
     double bid;
     Player highestBidder;
+    IntermediateAI A;
 
     public Auction(ImproveProperty CurrentTile, Player[] players)
     {
@@ -19,20 +21,22 @@ public class Auction {
         start(players);
     }
 
-    public void bid(Player player)
-    {
+    public void bid(Player player, Player[] players) {
         double new_bid;
-
-        try {
-            new_bid = Double.parseDouble(JOptionPane.showInputDialog(player.name() + ", Enter your bid"));
+        if (player.isAI()) {
+            A = new IntermediateAI(player, players);//auction specific AI
+            new_bid = A.auctionStrategise(tile, bid);
+            System.out.println(new_bid);
+        } else {
+            try {
+                new_bid = Double.parseDouble(JOptionPane.showInputDialog(player.name() + ", Enter your bid"));
+            } catch (Exception e) {
+                new_bid = 0.0;
+                JOptionPane.showMessageDialog(null, "Invalid bid");
+            }
         }
-        catch (Exception e) {
-            new_bid = 0.0;
-            JOptionPane.showMessageDialog(null, "Invalid bid");
-        }
 
-        if(new_bid != 0.0)
-        {
+        if (new_bid != 0.0) {
             if(new_bid < bid)
             {
                 JOptionPane.showMessageDialog(null, "Invalid bid");
@@ -56,7 +60,7 @@ public class Auction {
 
         for(int i = 0; i < players.length*2; i++)
         {
-            bid(players[i % players.length]);
+            bid(players[i % players.length], players);
         }
 
         JOptionPane.showMessageDialog(null, "Auction over: " + highestBidder.name() + " won with a bid of " + bid);
