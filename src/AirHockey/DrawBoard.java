@@ -1,4 +1,6 @@
-package AirHockey.src;
+package AirHockey;
+
+import player.Player;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,17 +12,19 @@ import java.util.Random;
 
 public class DrawBoard extends JPanel {
 
-    int x, y, i, j, a, b;
-    int directionY[] = {0}; // 0 = nothing, 1 = down, 2 = up
-    int directionX[] = {0}; // 0 = nothing, 1 = left, 2 = right
-    int scoreP1 = 0, scoreCPU = 0;
-    boolean goal10 = true, goal11 = false, goal12 = false, goal13 = false;
-    boolean goal20 = true, goal21 = false, goal22 = false, goal23 = false;
-    boolean gameOver = false;
+    private int x, y, i, j, a, b;
+    private int directionY[] = {0}; // 0 = nothing, 1 = down, 2 = up
+    private int directionX[] = {0}; // 0 = nothing, 1 = left, 2 = right
+    private int scoreP1 = 0, scoreCPU = 0;
+    private boolean goal10 = true, goal11 = false, goal12 = false, goal13 = false;
+    private boolean goal20 = true, goal21 = false, goal22 = false, goal23 = false;
+    private boolean gameOver = false;
+    Player PLAYER;
 
-    public DrawBoard() {
+    public DrawBoard(Player player) {
         this.addKeyListener(new CircleListener());
         this.setFocusable(true);
+        this.PLAYER = player;
         posInit();
         moveBall();
         moveCPU();
@@ -187,17 +191,18 @@ public class DrawBoard extends JPanel {
 
     private void moveBall() {
 
-        int delay = 100;
+        int delay = 20;
 
         ActionListener moveBall = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                System.out.println(i + " " + j);
                 if (isGoal2() || isGoal1()) {
 
                     goal();
 
                 } else if(isCollision()) {
-                    if((Math.abs(i-x) == 0 && Math.abs(j-y) == 40) || (Math.abs(i-a) == 0 && (Math.abs(j-b) == 20)))
+                    if((Math.abs(i-x) == 0 && Math.abs(j-y) == 40 || Math.abs(j-y) == 0) || (Math.abs(i-a) == 0 && (Math.abs(j-b) == 20)))
                     {
                         switchY();
                         direction(directionY[0], directionX[0]);
@@ -208,7 +213,7 @@ public class DrawBoard extends JPanel {
                         switchY();
                         direction(directionY[0], directionX[0]);
                     }
-                    else if(i - x >= 0 && j-y <= 40 && j-y >= 20 || i - a > 0 && j-b <= 0 && j-b >= -40)
+                    else if(i - x >= 0 && j-y <= 40 && j-y >= 20 || i - a > 0 && j-b <= 0 && j-b <= -40)
                     {
                         if(directionX[0] == 0)
                         {
@@ -225,8 +230,11 @@ public class DrawBoard extends JPanel {
                     if(i <= 100 || i >= 300)
                     {
                         switchY();
+                        direction(directionY[0], directionX[0]);
                     }
-                    direction(directionY[0], directionX[0]);
+                    else {
+                        direction(directionY[0], directionX[0]);
+                    }
                 }else {
                     direction(directionY[0], directionX[0]);
                 }
@@ -239,7 +247,7 @@ public class DrawBoard extends JPanel {
 
     private void moveCPU() {
 
-        int delay = 100;
+        int delay = 70;
         Random rand = new Random();
 
         ActionListener moveCPU = new ActionListener() {
@@ -249,11 +257,11 @@ public class DrawBoard extends JPanel {
                 int speed = 0;
 
                 if (chooseSpeed == 0) {
-                    speed = 0;
-                } else if (chooseSpeed == 1) {
-                    speed = 10;
-                } else if (chooseSpeed == 2) {
                     speed = 20;
+                } else if (chooseSpeed == 1) {
+                    speed = 30;
+                } else if (chooseSpeed == 2) {
+                    speed = 40;
                 }
 
                 if (i - a < 0 && a - 40 > 0) {
@@ -349,8 +357,9 @@ public class DrawBoard extends JPanel {
 
             if(scoreP1 == 3)
             {
-                JOptionPane.showMessageDialog(null, "Player 1 Wins!!!!!!");
-                System.exit(0);
+                JOptionPane.showMessageDialog(null, "Player 1 Wins!!!!!! +50 SD");
+                PLAYER.earnsMoney(50);
+                gameOver = true;
             }
             posInit();
         }
@@ -378,7 +387,8 @@ public class DrawBoard extends JPanel {
 
                 if(scoreCPU == 3)
             {
-                JOptionPane.showMessageDialog(null, "CPU Wins!!!!!!");
+                JOptionPane.showMessageDialog(null, "CPU Wins!!!!!! -50 SD");
+                PLAYER.pay(50);
                 gameOver = true;
             }
             posInit();
@@ -387,22 +397,13 @@ public class DrawBoard extends JPanel {
 
     private boolean isGoal1()
     {
-        if((j >= 600) && (i >= 120 && i <= 280))
-        {
-            return true;
-        }
+        return (j >= 600) && (i >= 120 && i <= 280);
 
-        return false;
     }
 
     private boolean isGoal2()
     {
-        if ((j == 0) && (i > 120 && i < 280))
-        {
-            return true;
-        }
-
-        return false;
+        return (j == 0) && (i > 120 && i < 280);
     }
 
     private boolean isCollision()

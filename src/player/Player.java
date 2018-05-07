@@ -150,4 +150,10 @@ public class Player implements Locatable, Interactable, Bankruptable{
     public boolean isAI(){
         return isAI;
     }
+
+    public double earnsMoney(double amount)
+    {
+        BALANCE += amount;
+        return BALANCE;
+    }
 }

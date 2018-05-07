@@ -1,5 +1,5 @@
 package events;
-import AirHockey.src.AirHockey;
+import AirHockey.AirHockey;
 import cardDeck.LeapCard;
 import player.Player;
 import property.MiniGame;
@@ -30,7 +30,7 @@ public class ChooseEvent {
             new ShopEvent(p,listOfPlayers);
         }
         else if(t instanceof MiniGame){
-            new AirHockey();
+            new AirHockey(p);
         }
 
 

@@ -195,7 +195,7 @@ public class main {
 
         buttonPanel.add(btn1);
         buttonPanel.add(btn2);
-        buttonPanel.add(finished);
+  //      buttonPanel.add(finished);
 
         panel.add(buttonPanel);
         BalanceScreen balanceScreen = new BalanceScreen(players);
@@ -209,7 +209,7 @@ public class main {
 
         final Player[] currentPlayer = {null};
         Tile currentTile;
-        Dice dice = new Dice(); //Test rolling dice
+        //Dice dice = new Dice(); //Test rolling dice
         int i;
         boolean gameEnd = false;
 
@@ -304,7 +304,6 @@ public class main {
                         e.printStackTrace();
                     }
 
-                    buttonPanel.add(finished);
                     buttonPanel.remove(roll);
                     buttonPanel.repaint();
 
@@ -328,6 +327,7 @@ public class main {
                         buttonPanel.add(temp);
                         buttonPanel.repaint();
                     }
+                    buttonPanel.add(finished);
                     buttonPanel.revalidate();
                     try {
                         while (!turnEnd[0]) {
