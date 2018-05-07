@@ -20,7 +20,7 @@ public class UnmortgagePopUp {
     public void print() {
         ArrayList<Tile> properties = PLAYER.getMortProperties();
 
-        JFrame frame = new JFrame("Mortgaged Properties");
+        final JFrame frame = new JFrame("Mortgaged Properties");
         frame.setUndecorated(true);
         int x = Math.max(350, PLAYER.getMortProperties().size() * 30);
         frame.setBounds(100,50,250, x);
@@ -35,8 +35,8 @@ public class UnmortgagePopUp {
 
         Iterator<Tile> I = properties.listIterator();
         while(I.hasNext()){
-            Tile t = I.next();
-            JButton j = new JButton(t.getIdentifier());
+            final Tile t = I.next();
+            final JButton j = new JButton(t.getIdentifier());
             label.setComponentZOrder(j, 0);
             j.addActionListener(new ActionListener() {
                 @Override

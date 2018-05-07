@@ -18,7 +18,7 @@ public class ShopEvent extends JFrame{
     private PlayableCard card2;
     private double amount1;
     private double amount2;
-    public ShopEvent(Player p, Player[] l) {
+    public ShopEvent(final Player p, Player[] l) {
         card1 = new Dealer(p, l).drawCard();
         card2 = new Dealer(p, l).drawCard();
         setUndecorated(true);
@@ -35,7 +35,7 @@ public class ShopEvent extends JFrame{
         amount1 = card1.getWorth() + offset1;
         JLabel left = new JLabel(card1.getIcon());
         left.setLayout(new BoxLayout(left, BoxLayout.Y_AXIS));
-        JButton buy1 = new JButton("BUY - " + amount1 + "sd");
+        final JButton buy1 = new JButton("BUY - " + amount1 + "sd");
         buy1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -64,7 +64,7 @@ public class ShopEvent extends JFrame{
         amount2 = card2.getWorth() + offset2;
         JLabel right = new JLabel(card2.getIcon());
         right.setLayout(new BoxLayout(right, BoxLayout.Y_AXIS));
-        JButton buy2 = new JButton("BUY - " + amount2 + "sd");
+        final JButton buy2 = new JButton("BUY - " + amount2 + "sd");
         buy2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

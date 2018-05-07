@@ -10,7 +10,7 @@ import java.net.MalformedURLException;
 public class PlayerMenu extends JFrame{
     public String[] player_names = new String[4];
 
-    public PlayerMenu(Board panopoly) throws MalformedURLException{
+    public PlayerMenu(final Board panopoly) throws MalformedURLException{
         JFrame player_menu = new JFrame("PlayerMenu");
         player_menu.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         PlayerMenuButtons player_buttons = new PlayerMenuButtons();
@@ -23,7 +23,7 @@ public class PlayerMenu extends JFrame{
         p1.setForeground(Color.white);
         menu_image.add(p1);
 
-        JTextField player1 = new JTextField();
+        final JTextField player1 = new JTextField();
         player1.setHorizontalAlignment(0);
         menu_image.add(player1);
         menu_image.add(Box.createRigidArea(new Dimension(0, 100)));
@@ -31,7 +31,7 @@ public class PlayerMenu extends JFrame{
         JLabel p2 = new JLabel("Enter Player 2 name: (Leave blank for AI)");
         p2.setForeground(Color.white);
         menu_image.add(p2);
-        JTextField player2 = new JTextField();
+        final JTextField player2 = new JTextField();
         menu_image.add(player2);
         player2.setHorizontalAlignment(0);
         menu_image.add(Box.createRigidArea(new Dimension(0, 100)));
@@ -39,7 +39,7 @@ public class PlayerMenu extends JFrame{
         JLabel p3 = new JLabel("Enter Player 3 name: (Leave blank for AI)");
         p3.setForeground(Color.white);
         menu_image.add(p3);
-        JTextField player3 = new JTextField();
+        final JTextField player3 = new JTextField();
         player3.setHorizontalAlignment(0);
         menu_image.add(player3);
         menu_image.add(Box.createRigidArea(new Dimension(0, 100)));
@@ -47,7 +47,7 @@ public class PlayerMenu extends JFrame{
         JLabel p4 = new JLabel("Enter Player 4 name: (Leave blank for AI)");
         p4.setForeground(Color.white);
         menu_image.add(p4);
-        JTextField player4 = new JTextField();
+        final JTextField player4 = new JTextField();
         player4.setHorizontalAlignment(0);
         menu_image.add(player4);
 

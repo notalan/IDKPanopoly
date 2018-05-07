@@ -22,7 +22,7 @@ public class MortgagePopUp {
     public void print() {
         ArrayList<Tile> properties = PLAYER.getOwnedProperties();
 
-        JFrame frame = new JFrame("Mortgaged Properties");
+        final JFrame frame = new JFrame("Mortgaged Properties");
         frame.setUndecorated(true);
         int x = Math.max(350, PLAYER.getOwnedProperties().size() * 30);
         frame.setBounds(100,50,250, x);
@@ -37,7 +37,7 @@ public class MortgagePopUp {
 
         Iterator<Tile> I = properties.listIterator();
         while(I.hasNext()){
-            Tile t = I.next();
+            final Tile t = I.next();
             JButton j = new JButton(t.getIdentifier());
             label.setComponentZOrder(j, 0);
             j.addActionListener(new ActionListener() {

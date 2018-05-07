@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class PlayerMenuButtons {
-    public JButton nextButton(JFrame playermenu, Board panopoly)
+    public JButton nextButton(final JFrame playermenu, final Board panopoly)
     {
         JButton next = new JButton();
         next.setIcon(new ImageIcon("Resources/Images/next.png"));

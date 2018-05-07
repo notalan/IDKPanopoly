@@ -10,7 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class FYFPopUp extends JFrame{
-    public FYFPopUp(Player p, Player[] list){
+    public FYFPopUp(final Player p, Player[] list){
         setUndecorated(true);
         int x = Math.max(350, p.getMortProperties().size() * 30);
         setBounds(100,50,250, x);
@@ -22,7 +22,7 @@ public class FYFPopUp extends JFrame{
         BoxLayout b = new BoxLayout(label, BoxLayout.Y_AXIS);
         label.setLayout(b);
 
-        for(Player player : list){
+        for(final Player player : list){
             JButton j = new JButton(player.name());
             label.setComponentZOrder(j, 0);
             j.addActionListener(new ActionListener() {

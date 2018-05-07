@@ -14,7 +14,7 @@ import java.awt.event.ActionListener;
 Input:  array of strings in the format {category, option1, option2, option3, option 4, item, answer}
  */
 public class QuestionPopup extends JFrame {
-    public QuestionPopup(String[] input, Player player){
+    public QuestionPopup(String[] input, final Player player){
         setUndecorated(true);
         setBounds(100, 100, 450, 250);
         JLabel top;

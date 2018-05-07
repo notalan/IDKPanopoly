@@ -248,7 +248,7 @@ public class DrawBoard extends JPanel {
     private void moveCPU() {
 
         int delay = 70;
-        Random rand = new Random();
+        final Random rand = new Random();
 
         ActionListener moveCPU = new ActionListener() {
             @Override

@@ -9,7 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class CardListPopUp extends JFrame{
-    public CardListPopUp(Player p){
+    public CardListPopUp(final Player p){
         setUndecorated(true);
         int x = Math.max(350, p.CARDS.size() * 30);
         setBounds(150,150,250, x);
@@ -22,7 +22,7 @@ public class CardListPopUp extends JFrame{
         label.setLayout(b);
         label.add(Box.createRigidArea(new Dimension(15, 110)));
         if (p.CARDS.size() > 0) {
-            for (PlayableCard card : p.CARDS) {
+            for (final PlayableCard card : p.CARDS) {
                 JButton j = new JButton(card.getName());
                 label.setComponentZOrder(j, 0);
                 j.addActionListener(new ActionListener() {

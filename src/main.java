@@ -32,18 +32,18 @@ public class main {
             .getLocalGraphicsEnvironment().getScreenDevices()[0];
 
     public static void main(String[] args) throws MalformedURLException {
-        Board panopoly = new Board(); // Makes the entire frame, you add panels into it to divide it into board, console etc.
+        final Board panopoly = new Board(); // Makes the entire frame, you add panels into it to divide it into board, console etc.
         panopoly.setBackground(Color.BLACK);
         MainMenu main_menu = new MainMenu(panopoly);
         panopoly.setLayout(new FlowLayout());
         JPanel panel = new JPanel();
         panel.setBackground(Color.BLACK);
         Initialiser initialise = new Initialiser();
-        Tile[] tiles = initialise.tiles();
+        final Tile[] tiles = initialise.tiles();
         String[] names = {"Player 1", "Player 2", "", ""};
         //players can be acquired properly later one
 
-        Player[] players = initialise.players(4, names, tiles);
+        final Player[] players = initialise.players(4, names, tiles);
 
 
         JLabel image = new JLabel(new ImageIcon("Resources/Images/PanopolyBoard3.png")) {

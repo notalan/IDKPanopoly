@@ -13,7 +13,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class FreeHousePopUp extends JFrame {
-    public FreeHousePopUp(Player p){
+    public FreeHousePopUp(final Player p){
         setUndecorated(true);
         ArrayList<Tile> monopProps = new ArrayList<>();
 
@@ -37,7 +37,7 @@ public class FreeHousePopUp extends JFrame {
         label.add(Box.createRigidArea(new Dimension(15, 110)));
 
         if (monopProps.size() > 0) {
-            for (Tile t : monopProps) {
+            for (final Tile t : monopProps) {
                 JButton j = new JButton(t.getIdentifier());
                 label.setComponentZOrder(j, 0);
                 j.addActionListener(new ActionListener() {

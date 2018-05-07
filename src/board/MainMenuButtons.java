@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 
 public class MainMenuButtons {
-    public JButton playButton(JFrame mainmenu, Board panopoly)
+    public JButton playButton(final JFrame mainmenu, final Board panopoly)
     {
         JButton play = new JButton();
 
