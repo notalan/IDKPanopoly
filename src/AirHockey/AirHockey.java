@@ -18,9 +18,9 @@ public class AirHockey extends JFrame{
 
     public void setBoard()
     {
-        DrawBoard table_panel = new DrawBoard(PLAYER);
+        final DrawBoard table_panel = new DrawBoard(PLAYER);
 
-        JFrame table = new JFrame("Air Hockey");
+        final JFrame table = new JFrame("Air Hockey");
         table.setPreferredSize(new Dimension(400, 650));
         table.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         table.setUndecorated(true);
