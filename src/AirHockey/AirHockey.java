@@ -4,14 +4,16 @@ import player.Player;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class AirHockey extends JFrame{
     Player PLAYER;
 
     public AirHockey(Player player)
     {
-        setBoard();
         this.PLAYER = player;
+        setBoard();
     }
 
     public void setBoard()
@@ -26,9 +28,17 @@ public class AirHockey extends JFrame{
         table.pack();
         table.setVisible(true);
 
-        if(table_panel.isGameOver())
-        {
-            this.dispose();
-        }
+        ActionListener listener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(table_panel.isGameOver())
+                {
+                    table.dispose();
+                }
+            }
+        };
+
+        Timer timer = new Timer(100, listener);
+        timer.start();
     }
 }

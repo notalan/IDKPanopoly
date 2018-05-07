@@ -1,6 +1,8 @@
 package AirHockey;
 
 import player.Player;
+import transactions.ExpenditureTransaction;
+import transactions.IncomeTransaction;
 
 import javax.swing.*;
 import java.awt.*;
@@ -196,7 +198,6 @@ public class DrawBoard extends JPanel {
         ActionListener moveBall = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println(i + " " + j);
                 if (isGoal2() || isGoal1()) {
 
                     goal();
@@ -222,6 +223,9 @@ public class DrawBoard extends JPanel {
                         switchX();
                         switchY();
                         direction(directionY[0], directionX[0]);
+                    }
+                    else {
+                        posInit();
                     }
                 } else if ((i + 20 >= 400 || i - 20 <= 0)) {
                     switchX();
@@ -357,8 +361,8 @@ public class DrawBoard extends JPanel {
 
             if(scoreP1 == 3)
             {
+                new IncomeTransaction(PLAYER, 50);
                 JOptionPane.showMessageDialog(null, "Player 1 Wins!!!!!! +50 SD");
-                PLAYER.earnsMoney(50);
                 gameOver = true;
             }
             posInit();
@@ -385,10 +389,10 @@ public class DrawBoard extends JPanel {
                 goal23 = true;
             }
 
-                if(scoreCPU == 3)
+            if(scoreCPU == 3)
             {
+                new ExpenditureTransaction(PLAYER, 50);
                 JOptionPane.showMessageDialog(null, "CPU Wins!!!!!! -50 SD");
-                PLAYER.pay(50);
                 gameOver = true;
             }
             posInit();
