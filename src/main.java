@@ -1,12 +1,11 @@
 import AI.IntermediateAI;
-import board.BalanceScreen;
-import board.Board;
-import board.MainMenu;
-import board.PlayerMenu;
+import board.*;
 import buttons.ChooseButtons;
 import dice.Dice;
 import events.AITurnPopUp;
+import events.AlertPopUp;
 import events.ChooseEvent;
+import events.WinnerPopUp;
 import player.Player;
 import property.FreeParking;
 import property.Tile;
@@ -34,7 +33,8 @@ public class main {
     public static void main(String[] args) throws MalformedURLException {
         final Board panopoly = new Board(); // Makes the entire frame, you add panels into it to divide it into board, console etc.
         panopoly.setBackground(Color.BLACK);
-        MainMenu main_menu = new MainMenu(panopoly);
+        GameMusic music = new GameMusic();
+        MainMenu main_menu = new MainMenu(panopoly, music);
         panopoly.setLayout(new FlowLayout());
         JPanel panel = new JPanel();
         panel.setBackground(Color.BLACK);
@@ -347,13 +347,15 @@ public class main {
 
                 if(bankruptCount > 1) {
                     currentPlayer[0].setBankrupt();
+                    new AlertPopUp(currentPlayer[0].name(), "!!BANKRUPT!!");
                 }
                 i++;
             }
         }
         for(Player p : players){
             if(!p.isBankrupt()){
-                System.out.println(p.name() + " is the winner!");
+                music.stop();
+                new WinnerPopUp(currentPlayer[0].name(), panopoly);
             }
         }
     }
